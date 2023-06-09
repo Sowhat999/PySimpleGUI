@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-version = __version__ = "4.60.5 Released 21-May-2023"
+version = __version__ = "4.60.5"
 
 _change_log = """
     Changelog since 4.60.0 released to PyPI on 8-May-2022.  These are "Dot" releases....
@@ -16,8 +16,6 @@ _change_log = """
         Dot release to quickly fix the Trinket detection which stopped working recently
     4.60.5
         Fix for the Mac.  If running MacOS Ventura 13.2.1 then windows with no titlebar had problems with Input elements. Added support for the Upgrade Service.
-        Change to the 0.99 Alpha patch.  ONLY apply to tkinter version 8.6.12. This will automatically turn it off for 8.6.13+, even if previously enabled
-        Updated GitHub Issue post GUI.  Changed hostname in SDK help window to use PySimpleGUI.org rather than readthedocs.
     """
 
 __version__ = version.split()[0]  # For PEP 396 and PEP 345
@@ -41,7 +39,7 @@ port = 'PySimpleGUI'
 
 
 """
-    Copyright 2018, 2019, 2020, 2021, 2022, 2023 PySimpleGUI(tm)
+    Copyright 2018, 2019, 2020, 2021, 2022 PySimpleGUI(tm)
 
     Before getting into the details, let's talk about the high level goals of the PySimpleGUI project.
 
@@ -65,11 +63,11 @@ port = 'PySimpleGUI'
 
     Now available - "The Official PySimpleGUI Course" on Udemy!
     https://www.udemy.com/pysimplegui
-
+    
     Watch for a coupon codes in the documentation on PySimpleGUI.org
 
     Please consider sponsoring all open source developers that make software you or your business use. They need your help.
-
+    
 
     This software is available for your use under a LGPL3+ license
 
@@ -119,14 +117,14 @@ port = 'PySimpleGUI'
     The User Manual and the Cookbook are both designed to paint some nice looking GUIs on your screen within 5 minutes of you deciding to PySimpleGUI out.
 
     A final note from mike...
-
+    
         “Don’t aim at success. The more you aim at it and make it a target, the more you are going to miss it. 
         For success, like happiness, cannot be pursued; it must ensue, and it only does so as the unintended side effect of one’s personal dedication to a cause greater.”
             — Viktor Frankl
-
+    
         I first saw this quote in a truncated format:
             "Happiness, cannot be pursued; it must ensue, and it only does so as the unintended side effect of one’s personal dedication to a cause greater."    
-
+    
         Everyone is different, but my experience with the PySimpleGUI project matches this theory.  It's taken a lifetime of trying and "failing" and trying
         to find happiness before I finally figured this truth-for-me out.  If I do a long list of things, and live life in a kind & loving way, then the
         result is happiness.  It's a biproduct, not a directly produced thing.  This should be taught in school.  Or maybe it can't.
@@ -160,7 +158,6 @@ import traceback
 import difflib
 import copy
 import pprint
-
 try:  # Because Raspberry Pi is still on 3.4....it's not critical if this module isn't imported on the Pi
     from typing import List, Any, Union, Tuple, Dict, SupportsAbs, Optional  # because this code has to run on 2.7 can't use real type hints.  Must do typing only in comments
 except:
@@ -331,6 +328,7 @@ def running_windows():
     return sys.platform.startswith('win')
 
 
+
 def running_trinket():
     """
     A special case for Trinket. Uses the hostname an platform together to determine if running on Trinket
@@ -343,6 +341,7 @@ def running_trinket():
     if sys.platform.startswith('linux') and socket.gethostname().startswith('pygame-'):
         return True
     return False
+
 
 
 def running_replit():
@@ -358,6 +357,8 @@ def running_replit():
     if 'REPL_OWNER' in os.environ and sys.platform.startswith('linux'):
         return True
     return False
+
+
 
 
 # Handy python statements to increment and decrement with wrapping that I don't want to forget
@@ -408,6 +409,7 @@ UDEMY_ICON = b'iVBORw0KGgoAAAANSUhEUgAAAGcAAAAxCAIAAABI9CBEAAATn0lEQVR4nO2aaYxlx
 
 BLANK_BASE64 = b'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAANSURBVBhXY2BgYGAAAAAFAAGKM+MAAAAAAElFTkSuQmCC'
 BLANK_BASE64 = b'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+
 
 DEFAULT_WINDOW_ICON = DEFAULT_BASE64_ICON
 
@@ -530,7 +532,7 @@ TABLE_SELECT_MODE_NONE = tk.NONE
 TABLE_SELECT_MODE_BROWSE = tk.BROWSE
 TABLE_SELECT_MODE_EXTENDED = tk.EXTENDED
 DEFAULT_TABLE_SELECT_MODE = TABLE_SELECT_MODE_EXTENDED
-TABLE_CLICKED_INDICATOR = '+CLICKED+'  # Part of the tuple returned as an event when a Table element has click events enabled
+TABLE_CLICKED_INDICATOR = '+CLICKED+'           # Part of the tuple returned as an event when a Table element has click events enabled
 DEFAULT_MODAL_WINDOWS_ENABLED = True
 DEFAULT_MODAL_WINDOWS_FORCED = False
 
@@ -546,6 +548,7 @@ TAB_LOCATION_RIGHT_BOTTOM = 'rightbottom'
 TAB_LOCATION_BOTTOM = 'bottom'
 TAB_LOCATION_BOTTOM_LEFT = 'bottomleft'
 TAB_LOCATION_BOTTOM_RIGHT = 'bottomright'
+
 
 TITLE_LOCATION_TOP = tk.N
 TITLE_LOCATION_BOTTOM = tk.S
@@ -621,7 +624,7 @@ ENABLE_TREEVIEW_869_PATCH = True
 ENABLE_MAC_NOTITLEBAR_PATCH = False
 ENABLE_MAC_MODAL_DISABLE_PATCH = False
 ENABLE_MAC_DISABLE_GRAB_ANYWHERE_WITH_TITLEBAR = True
-ENABLE_MAC_ALPHA_99_PATCH = False
+ENABLE_MAC_ALPHA_99_PATCH= False
 
 OLD_TABLE_TREE_SELECTED_ROW_COLORS = ('#FFFFFF', '#4A6984')
 ALTERNATE_TABLE_AND_TREE_SELECTED_ROW_COLORS = ('SystemHighlightText', 'SystemHighlight')
@@ -759,6 +762,8 @@ POPUP_BUTTONS_OK_CANCEL = 4
 POPUP_BUTTONS_OK = 0
 POPUP_BUTTONS_NO_BUTTONS = 5
 
+
+
 PSG_THEME_PART_BUTTON_TEXT = 'Button Text Color'
 PSG_THEME_PART_BUTTON_BACKGROUND = 'Button Background Color'
 PSG_THEME_PART_BACKGROUND = 'Background Color'
@@ -766,8 +771,7 @@ PSG_THEME_PART_INPUT_BACKGROUND = 'Input Element Background Color'
 PSG_THEME_PART_INPUT_TEXT = 'Input Element Text Color'
 PSG_THEME_PART_TEXT = 'Text Color'
 PSG_THEME_PART_SLIDER = 'Slider Color'
-PSG_THEME_PART_LIST = [PSG_THEME_PART_BACKGROUND, PSG_THEME_PART_BUTTON_BACKGROUND, PSG_THEME_PART_BUTTON_TEXT, PSG_THEME_PART_INPUT_BACKGROUND, PSG_THEME_PART_INPUT_TEXT,
-                       PSG_THEME_PART_TEXT, PSG_THEME_PART_SLIDER]
+PSG_THEME_PART_LIST = [PSG_THEME_PART_BACKGROUND, PSG_THEME_PART_BUTTON_BACKGROUND, PSG_THEME_PART_BUTTON_TEXT,PSG_THEME_PART_INPUT_BACKGROUND, PSG_THEME_PART_INPUT_TEXT, PSG_THEME_PART_TEXT, PSG_THEME_PART_SLIDER ]
 
 # theme_button
 
@@ -781,24 +785,22 @@ TTK_SCROLLBAR_PART_RELIEF = 'Relief'
 TTK_SCROLLBAR_PART_LIST = [TTK_SCROLLBAR_PART_TROUGH_COLOR, TTK_SCROLLBAR_PART_BACKGROUND_COLOR, TTK_SCROLLBAR_PART_ARROW_BUTTON_ARROW_COLOR,
                            TTK_SCROLLBAR_PART_FRAME_COLOR, TTK_SCROLLBAR_PART_SCROLL_WIDTH, TTK_SCROLLBAR_PART_ARROW_WIDTH, TTK_SCROLLBAR_PART_RELIEF]
 TTK_SCROLLBAR_PART_THEME_BASED_LIST = [TTK_SCROLLBAR_PART_TROUGH_COLOR, TTK_SCROLLBAR_PART_BACKGROUND_COLOR, TTK_SCROLLBAR_PART_ARROW_BUTTON_ARROW_COLOR,
-                                       TTK_SCROLLBAR_PART_FRAME_COLOR]
+                           TTK_SCROLLBAR_PART_FRAME_COLOR]
 DEFAULT_TTK_PART_MAPPING_DICT = {TTK_SCROLLBAR_PART_TROUGH_COLOR: PSG_THEME_PART_SLIDER,
-                                 TTK_SCROLLBAR_PART_BACKGROUND_COLOR: PSG_THEME_PART_BUTTON_BACKGROUND,
-                                 TTK_SCROLLBAR_PART_ARROW_BUTTON_ARROW_COLOR: PSG_THEME_PART_BUTTON_TEXT,
-                                 TTK_SCROLLBAR_PART_FRAME_COLOR: PSG_THEME_PART_BACKGROUND,
-                                 TTK_SCROLLBAR_PART_SCROLL_WIDTH: 12,
+                                 TTK_SCROLLBAR_PART_BACKGROUND_COLOR : PSG_THEME_PART_BUTTON_BACKGROUND,
+                                 TTK_SCROLLBAR_PART_ARROW_BUTTON_ARROW_COLOR :PSG_THEME_PART_BUTTON_TEXT,
+                                 TTK_SCROLLBAR_PART_FRAME_COLOR : PSG_THEME_PART_BACKGROUND,
+                                 TTK_SCROLLBAR_PART_SCROLL_WIDTH : 12,
                                  TTK_SCROLLBAR_PART_ARROW_WIDTH: 12,
                                  TTK_SCROLLBAR_PART_RELIEF: RELIEF_RAISED}
 
 ttk_part_mapping_dict = copy.copy(DEFAULT_TTK_PART_MAPPING_DICT)
-
 
 class TTKPartOverrides():
     """
     This class contains "overrides" to the defaults for ttk scrollbars that are defined in the global settings file.
     This class is used in every element, in the Window class and there's a global one that is used by set_options.
     """
-
     def __init__(self, sbar_trough_color=None, sbar_background_color=None, sbar_arrow_color=None, sbar_width=None, sbar_arrow_width=None, sbar_frame_color=None, sbar_relief=None):
         self.sbar_trough_color = sbar_trough_color
         self.sbar_background_color = sbar_background_color
@@ -808,7 +810,6 @@ class TTKPartOverrides():
         self.sbar_frame_color = sbar_frame_color
         self.sbar_relief = sbar_relief
 
-
 ttk_part_overrides_from_options = TTKPartOverrides()
 
 # -------------------------  tkinter key codes for bindings  ------------------------- #
@@ -817,73 +818,10 @@ ttk_part_overrides_from_options = TTKPartOverrides()
 DEFAULT_WINDOW_SNAPSHOT_KEY_CODE = None
 DEFAULT_WINDOW_SNAPSHOT_KEY = '--SCREENSHOT THIS WINDOW--'
 
-tkinter_keysyms = (
-'space', 'exclam', 'quotedbl', 'numbersign', 'dollar', 'percent', 'ampersand', 'quoteright', 'parenleft', 'parenright', 'asterisk', 'plus', 'comma', 'minus', 'period', 'slash',
-'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'colon', 'semicolon', 'less', 'equal', 'greater', 'question', 'at', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
-'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'bracketleft', 'backslash', 'bracketright', 'asciicircum', 'underscore', 'quoteleft', 'a', 'b', 'c', 'd', 'e',
-'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'braceleft', 'bar', 'braceright', 'asciitilde', 'nobreakspace',
-'exclamdown', 'cent', 'sterling', 'currency', 'yen', 'brokenbar', 'section', 'diaeresis', 'copyright', 'ordfeminine', 'guillemotleft', 'notsign', 'hyphen', 'registered', 'macron',
-'degree', 'plusminus', 'twosuperior', 'threesuperior', 'acute', 'mu', 'paragraph', 'periodcentered', 'cedilla', 'onesuperior', 'masculine', 'guillemotright', 'onequarter',
-'onehalf', 'threequarters', 'questiondown', 'Agrave', 'Aacute', 'Acircumflex', 'Atilde', 'Adiaeresis', 'Aring', 'AE', 'Ccedilla', 'Egrave', 'Eacute', 'Ecircumflex', 'Ediaeresis',
-'Igrave', 'Iacute', 'Icircumflex', 'Idiaeresis', 'Eth', 'Ntilde', 'Ograve', 'Oacute', 'Ocircumflex', 'Otilde', 'Odiaeresis', 'multiply', 'Ooblique', 'Ugrave', 'Uacute',
-'Ucircumflex', 'Udiaeresis', 'Yacute', 'Thorn', 'ssharp', 'agrave', 'aacute', 'acircumflex', 'atilde', 'adiaeresis', 'aring', 'ae', 'ccedilla', 'egrave', 'eacute', 'ecircumflex',
-'ediaeresis', 'igrave', 'iacute', 'icircumflex', 'idiaeresis', 'eth', 'ntilde', 'ograve', 'oacute', 'ocircumflex', 'otilde', 'odiaeresis', 'division', 'oslash', 'ugrave', 'uacute',
-'ucircumflex', 'udiaeresis', 'yacute', 'thorn', 'ydiaeresis', 'Aogonek', 'breve', 'Lstroke', 'Lcaron', 'Sacute', 'Scaron', 'Scedilla', 'Tcaron', 'Zacute', 'Zcaron', 'Zabovedot',
-'aogonek', 'ogonek', 'lstroke', 'lcaron', 'sacute', 'caron', 'scaron', 'scedilla', 'tcaron', 'zacute', 'doubleacute', 'zcaron', 'zabovedot', 'Racute', 'Abreve', 'Cacute', 'Ccaron',
-'Eogonek', 'Ecaron', 'Dcaron', 'Nacute', 'Ncaron', 'Odoubleacute', 'Rcaron', 'Uring', 'Udoubleacute', 'Tcedilla', 'racute', 'abreve', 'cacute', 'ccaron', 'eogonek', 'ecaron',
-'dcaron', 'nacute', 'ncaron', 'odoubleacute', 'rcaron', 'uring', 'udoubleacute', 'tcedilla', 'abovedot', 'Hstroke', 'Hcircumflex', 'Iabovedot', 'Gbreve', 'Jcircumflex', 'hstroke',
-'hcircumflex', 'idotless', 'gbreve', 'jcircumflex', 'Cabovedot', 'Ccircumflex', 'Gabovedot', 'Gcircumflex', 'Ubreve', 'Scircumflex', 'cabovedot', 'ccircumflex', 'gabovedot',
-'gcircumflex', 'ubreve', 'scircumflex', 'kappa', 'Rcedilla', 'Itilde', 'Lcedilla', 'Emacron', 'Gcedilla', 'Tslash', 'rcedilla', 'itilde', 'lcedilla', 'emacron', 'gacute', 'tslash',
-'ENG', 'eng', 'Amacron', 'Iogonek', 'Eabovedot', 'Imacron', 'Ncedilla', 'Omacron', 'Kcedilla', 'Uogonek', 'Utilde', 'Umacron', 'amacron', 'iogonek', 'eabovedot', 'imacron',
-'ncedilla', 'omacron', 'kcedilla', 'uogonek', 'utilde', 'umacron', 'overline', 'kana_fullstop', 'kana_openingbracket', 'kana_closingbracket', 'kana_comma', 'kana_middledot',
-'kana_WO', 'kana_a', 'kana_i', 'kana_u', 'kana_e', 'kana_o', 'kana_ya', 'kana_yu', 'kana_yo', 'kana_tu', 'prolongedsound', 'kana_A', 'kana_I', 'kana_U', 'kana_E', 'kana_O',
-'kana_KA', 'kana_KI', 'kana_KU', 'kana_KE', 'kana_KO', 'kana_SA', 'kana_SHI', 'kana_SU', 'kana_SE', 'kana_SO', 'kana_TA', 'kana_TI', 'kana_TU', 'kana_TE', 'kana_TO', 'kana_NA',
-'kana_NI', 'kana_NU', 'kana_NE', 'kana_NO', 'kana_HA', 'kana_HI', 'kana_HU', 'kana_HE', 'kana_HO', 'kana_MA', 'kana_MI', 'kana_MU', 'kana_ME', 'kana_MO', 'kana_YA', 'kana_YU',
-'kana_YO', 'kana_RA', 'kana_RI', 'kana_RU', 'kana_RE', 'kana_RO', 'kana_WA', 'kana_N', 'voicedsound', 'semivoicedsound', 'Arabic_comma', 'Arabic_semicolon', 'Arabic_question_mark',
-'Arabic_hamza', 'Arabic_maddaonalef', 'Arabic_hamzaonalef', 'Arabic_hamzaonwaw', 'Arabic_hamzaunderalef', 'Arabic_hamzaonyeh', 'Arabic_alef', 'Arabic_beh', 'Arabic_tehmarbuta',
-'Arabic_teh', 'Arabic_theh', 'Arabic_jeem', 'Arabic_hah', 'Arabic_khah', 'Arabic_dal', 'Arabic_thal', 'Arabic_ra', 'Arabic_zain', 'Arabic_seen', 'Arabic_sheen', 'Arabic_sad',
-'Arabic_dad', 'Arabic_tah', 'Arabic_zah', 'Arabic_ain', 'Arabic_ghain', 'Arabic_tatweel', 'Arabic_feh', 'Arabic_qaf', 'Arabic_kaf', 'Arabic_lam', 'Arabic_meem', 'Arabic_noon',
-'Arabic_heh', 'Arabic_waw', 'Arabic_alefmaksura', 'Arabic_yeh', 'Arabic_fathatan', 'Arabic_dammatan', 'Arabic_kasratan', 'Arabic_fatha', 'Arabic_damma', 'Arabic_kasra',
-'Arabic_shadda', 'Arabic_sukun', 'Serbian_dje', 'Macedonia_gje', 'Cyrillic_io', 'Ukranian_je', 'Macedonia_dse', 'Ukranian_i', 'Ukranian_yi', 'Serbian_je', 'Serbian_lje',
-'Serbian_nje', 'Serbian_tshe', 'Macedonia_kje', 'Byelorussian_shortu', 'Serbian_dze', 'numerosign', 'Serbian_DJE', 'Macedonia_GJE', 'Cyrillic_IO', 'Ukranian_JE', 'Macedonia_DSE',
-'Ukranian_I', 'Ukranian_YI', 'Serbian_JE', 'Serbian_LJE', 'Serbian_NJE', 'Serbian_TSHE', 'Macedonia_KJE', 'Byelorussian_SHORTU', 'Serbian_DZE', 'Cyrillic_yu', 'Cyrillic_a',
-'Cyrillic_be', 'Cyrillic_tse', 'Cyrillic_de', 'Cyrillic_ie', 'Cyrillic_ef', 'Cyrillic_ghe', 'Cyrillic_ha', 'Cyrillic_i', 'Cyrillic_shorti', 'Cyrillic_ka', 'Cyrillic_el',
-'Cyrillic_em', 'Cyrillic_en', 'Cyrillic_o', 'Cyrillic_pe', 'Cyrillic_ya', 'Cyrillic_er', 'Cyrillic_es', 'Cyrillic_te', 'Cyrillic_u', 'Cyrillic_zhe', 'Cyrillic_ve',
-'Cyrillic_softsign', 'Cyrillic_yeru', 'Cyrillic_ze', 'Cyrillic_sha', 'Cyrillic_e', 'Cyrillic_shcha', 'Cyrillic_che', 'Cyrillic_hardsign', 'Cyrillic_YU', 'Cyrillic_A',
-'Cyrillic_BE', 'Cyrillic_TSE', 'Cyrillic_DE', 'Cyrillic_IE', 'Cyrillic_EF', 'Cyrillic_GHE', 'Cyrillic_HA', 'Cyrillic_I', 'Cyrillic_SHORTI', 'Cyrillic_KA', 'Cyrillic_EL',
-'Cyrillic_EM', 'Cyrillic_EN', 'Cyrillic_O', 'Cyrillic_PE', 'Cyrillic_YA', 'Cyrillic_ER', 'Cyrillic_ES', 'Cyrillic_TE', 'Cyrillic_U', 'Cyrillic_ZHE', 'Cyrillic_VE',
-'Cyrillic_SOFTSIGN', 'Cyrillic_YERU', 'Cyrillic_ZE', 'Cyrillic_SHA', 'Cyrillic_E', 'Cyrillic_SHCHA', 'Cyrillic_CHE', 'Cyrillic_HARDSIGN', 'Greek_ALPHAaccent',
-'Greek_EPSILONaccent', 'Greek_ETAaccent', 'Greek_IOTAaccent', 'Greek_IOTAdiaeresis', 'Greek_IOTAaccentdiaeresis', 'Greek_OMICRONaccent', 'Greek_UPSILONaccent',
-'Greek_UPSILONdieresis', 'Greek_UPSILONaccentdieresis', 'Greek_OMEGAaccent', 'Greek_alphaaccent', 'Greek_epsilonaccent', 'Greek_etaaccent', 'Greek_iotaaccent',
-'Greek_iotadieresis', 'Greek_iotaaccentdieresis', 'Greek_omicronaccent', 'Greek_upsilonaccent', 'Greek_upsilondieresis', 'Greek_upsilonaccentdieresis', 'Greek_omegaaccent',
-'Greek_ALPHA', 'Greek_BETA', 'Greek_GAMMA', 'Greek_DELTA', 'Greek_EPSILON', 'Greek_ZETA', 'Greek_ETA', 'Greek_THETA', 'Greek_IOTA', 'Greek_KAPPA', 'Greek_LAMBDA', 'Greek_MU',
-'Greek_NU', 'Greek_XI', 'Greek_OMICRON', 'Greek_PI', 'Greek_RHO', 'Greek_SIGMA', 'Greek_TAU', 'Greek_UPSILON', 'Greek_PHI', 'Greek_CHI', 'Greek_PSI', 'Greek_OMEGA', 'Greek_alpha',
-'Greek_beta', 'Greek_gamma', 'Greek_delta', 'Greek_epsilon', 'Greek_zeta', 'Greek_eta', 'Greek_theta', 'Greek_iota', 'Greek_kappa', 'Greek_lambda', 'Greek_mu', 'Greek_nu',
-'Greek_xi', 'Greek_omicron', 'Greek_pi', 'Greek_rho', 'Greek_sigma', 'Greek_finalsmallsigma', 'Greek_tau', 'Greek_upsilon', 'Greek_phi', 'Greek_chi', 'Greek_psi', 'Greek_omega',
-'leftradical', 'topleftradical', 'horizconnector', 'topintegral', 'botintegral', 'vertconnector', 'topleftsqbracket', 'botleftsqbracket', 'toprightsqbracket', 'botrightsqbracket',
-'topleftparens', 'botleftparens', 'toprightparens', 'botrightparens', 'leftmiddlecurlybrace', 'rightmiddlecurlybrace', 'topleftsummation', 'botleftsummation',
-'topvertsummationconnector', 'botvertsummationconnector', 'toprightsummation', 'botrightsummation', 'rightmiddlesummation', 'lessthanequal', 'notequal', 'greaterthanequal',
-'integral', 'therefore', 'variation', 'infinity', 'nabla', 'approximate', 'similarequal', 'ifonlyif', 'implies', 'identical', 'radical', 'includedin', 'includes', 'intersection',
-'union', 'logicaland', 'logicalor', 'partialderivative', 'function', 'leftarrow', 'uparrow', 'rightarrow', 'downarrow', 'blank', 'soliddiamond', 'checkerboard', 'ht', 'ff', 'cr',
-'lf', 'nl', 'vt', 'lowrightcorner', 'uprightcorner', 'upleftcorner', 'lowleftcorner', 'crossinglines', 'horizlinescan1', 'horizlinescan3', 'horizlinescan5', 'horizlinescan7',
-'horizlinescan9', 'leftt', 'rightt', 'bott', 'topt', 'vertbar', 'emspace', 'enspace', 'em3space', 'em4space', 'digitspace', 'punctspace', 'thinspace', 'hairspace', 'emdash',
-'endash', 'signifblank', 'ellipsis', 'doubbaselinedot', 'onethird', 'twothirds', 'onefifth', 'twofifths', 'threefifths', 'fourfifths', 'onesixth', 'fivesixths', 'careof',
-'figdash', 'leftanglebracket', 'decimalpoint', 'rightanglebracket', 'marker', 'oneeighth', 'threeeighths', 'fiveeighths', 'seveneighths', 'trademark', 'signaturemark',
-'trademarkincircle', 'leftopentriangle', 'rightopentriangle', 'emopencircle', 'emopenrectangle', 'leftsinglequotemark', 'rightsinglequotemark', 'leftdoublequotemark',
-'rightdoublequotemark', 'prescription', 'minutes', 'seconds', 'latincross', 'hexagram', 'filledrectbullet', 'filledlefttribullet', 'filledrighttribullet', 'emfilledcircle',
-'emfilledrect', 'enopencircbullet', 'enopensquarebullet', 'openrectbullet', 'opentribulletup', 'opentribulletdown', 'openstar', 'enfilledcircbullet', 'enfilledsqbullet',
-'filledtribulletup', 'filledtribulletdown', 'leftpointer', 'rightpointer', 'club', 'diamond', 'heart', 'maltesecross', 'dagger', 'doubledagger', 'checkmark', 'ballotcross',
-'musicalsharp', 'musicalflat', 'malesymbol', 'femalesymbol', 'telephone', 'telephonerecorder', 'phonographcopyright', 'caret', 'singlelowquotemark', 'doublelowquotemark', 'cursor',
-'leftcaret', 'rightcaret', 'downcaret', 'upcaret', 'overbar', 'downtack', 'upshoe', 'downstile', 'underbar', 'jot', 'quad', 'uptack', 'circle', 'upstile', 'downshoe', 'rightshoe',
-'leftshoe', 'lefttack', 'righttack', 'hebrew_aleph', 'hebrew_beth', 'hebrew_gimmel', 'hebrew_daleth', 'hebrew_he', 'hebrew_waw', 'hebrew_zayin', 'hebrew_het', 'hebrew_teth',
-'hebrew_yod', 'hebrew_finalkaph', 'hebrew_kaph', 'hebrew_lamed', 'hebrew_finalmem', 'hebrew_mem', 'hebrew_finalnun', 'hebrew_nun', 'hebrew_samekh', 'hebrew_ayin', 'hebrew_finalpe',
-'hebrew_pe', 'hebrew_finalzadi', 'hebrew_zadi', 'hebrew_kuf', 'hebrew_resh', 'hebrew_shin', 'hebrew_taf', 'BackSpace', 'Tab', 'Linefeed', 'Clear', 'Return', 'Pause', 'Scroll_Lock',
-'Sys_Req', 'Escape', 'Multi_key', 'Kanji', 'Home', 'Left', 'Up', 'Right', 'Down', 'Prior', 'Next', 'End', 'Begin', 'Win_L', 'Win_R', 'App', 'Select', 'Print', 'Execute', 'Insert',
-'Undo', 'Redo', 'Menu', 'Find', 'Cancel', 'Help', 'Break', 'Hebrew_switch', 'Num_Lock', 'KP_Space', 'KP_Tab', 'KP_Enter', 'KP_F1', 'KP_F2', 'KP_F3', 'KP_F4', 'KP_Multiply',
-'KP_Add', 'KP_Separator', 'KP_Subtract', 'KP_Decimal', 'KP_Divide', 'KP_0', 'KP_1', 'KP_2', 'KP_3', 'KP_4', 'KP_5', 'KP_6', 'KP_7', 'KP_8', 'KP_9', 'KP_Equal', 'F1', 'F2', 'F3',
-'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', 'L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7', 'L8', 'L9', 'L10', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6', 'R7', 'R8', 'R9', 'R10',
-'R11', 'R12', 'F33', 'R14', 'R15', 'Shift_L', 'Shift_R', 'Control_L', 'Control_R', 'Caps_Lock', 'Shift_Lock', 'Meta_L', 'Meta_R', 'Alt_L', 'Alt_R', 'Super_L', 'Super_R', 'Hyper_L',
-'Hyper_R', 'Delete')
+tkinter_keysyms = ('space', 'exclam', 'quotedbl', 'numbersign', 'dollar', 'percent', 'ampersand', 'quoteright', 'parenleft', 'parenright', 'asterisk', 'plus', 'comma', 'minus', 'period', 'slash', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'colon', 'semicolon', 'less', 'equal', 'greater', 'question', 'at', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'bracketleft', 'backslash', 'bracketright', 'asciicircum', 'underscore', 'quoteleft', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'braceleft', 'bar', 'braceright', 'asciitilde', 'nobreakspace', 'exclamdown', 'cent', 'sterling', 'currency', 'yen', 'brokenbar', 'section', 'diaeresis', 'copyright', 'ordfeminine', 'guillemotleft', 'notsign', 'hyphen', 'registered', 'macron', 'degree', 'plusminus', 'twosuperior', 'threesuperior', 'acute', 'mu', 'paragraph', 'periodcentered', 'cedilla', 'onesuperior', 'masculine', 'guillemotright', 'onequarter', 'onehalf', 'threequarters', 'questiondown', 'Agrave', 'Aacute', 'Acircumflex', 'Atilde', 'Adiaeresis', 'Aring', 'AE', 'Ccedilla', 'Egrave', 'Eacute', 'Ecircumflex', 'Ediaeresis', 'Igrave', 'Iacute', 'Icircumflex', 'Idiaeresis', 'Eth', 'Ntilde', 'Ograve', 'Oacute', 'Ocircumflex', 'Otilde', 'Odiaeresis', 'multiply', 'Ooblique', 'Ugrave', 'Uacute', 'Ucircumflex', 'Udiaeresis', 'Yacute', 'Thorn', 'ssharp', 'agrave', 'aacute', 'acircumflex', 'atilde', 'adiaeresis', 'aring', 'ae', 'ccedilla', 'egrave', 'eacute', 'ecircumflex', 'ediaeresis', 'igrave', 'iacute', 'icircumflex', 'idiaeresis', 'eth', 'ntilde', 'ograve', 'oacute', 'ocircumflex', 'otilde', 'odiaeresis', 'division', 'oslash', 'ugrave', 'uacute', 'ucircumflex', 'udiaeresis', 'yacute', 'thorn', 'ydiaeresis', 'Aogonek', 'breve', 'Lstroke', 'Lcaron', 'Sacute', 'Scaron', 'Scedilla', 'Tcaron', 'Zacute', 'Zcaron', 'Zabovedot', 'aogonek', 'ogonek', 'lstroke', 'lcaron', 'sacute', 'caron', 'scaron', 'scedilla', 'tcaron', 'zacute', 'doubleacute', 'zcaron', 'zabovedot', 'Racute', 'Abreve', 'Cacute', 'Ccaron', 'Eogonek', 'Ecaron', 'Dcaron', 'Nacute', 'Ncaron', 'Odoubleacute', 'Rcaron', 'Uring', 'Udoubleacute', 'Tcedilla', 'racute', 'abreve', 'cacute', 'ccaron', 'eogonek', 'ecaron', 'dcaron', 'nacute', 'ncaron', 'odoubleacute', 'rcaron', 'uring', 'udoubleacute', 'tcedilla', 'abovedot', 'Hstroke', 'Hcircumflex', 'Iabovedot', 'Gbreve', 'Jcircumflex', 'hstroke', 'hcircumflex', 'idotless', 'gbreve', 'jcircumflex', 'Cabovedot', 'Ccircumflex', 'Gabovedot', 'Gcircumflex', 'Ubreve', 'Scircumflex', 'cabovedot', 'ccircumflex', 'gabovedot', 'gcircumflex', 'ubreve', 'scircumflex', 'kappa', 'Rcedilla', 'Itilde', 'Lcedilla', 'Emacron', 'Gcedilla', 'Tslash', 'rcedilla', 'itilde', 'lcedilla', 'emacron', 'gacute', 'tslash', 'ENG', 'eng', 'Amacron', 'Iogonek', 'Eabovedot', 'Imacron', 'Ncedilla', 'Omacron', 'Kcedilla', 'Uogonek', 'Utilde', 'Umacron', 'amacron', 'iogonek', 'eabovedot', 'imacron', 'ncedilla', 'omacron', 'kcedilla', 'uogonek', 'utilde', 'umacron', 'overline', 'kana_fullstop', 'kana_openingbracket', 'kana_closingbracket', 'kana_comma', 'kana_middledot', 'kana_WO', 'kana_a', 'kana_i', 'kana_u', 'kana_e', 'kana_o', 'kana_ya', 'kana_yu', 'kana_yo', 'kana_tu', 'prolongedsound', 'kana_A', 'kana_I', 'kana_U', 'kana_E', 'kana_O', 'kana_KA', 'kana_KI', 'kana_KU', 'kana_KE', 'kana_KO', 'kana_SA', 'kana_SHI', 'kana_SU', 'kana_SE', 'kana_SO', 'kana_TA', 'kana_TI', 'kana_TU', 'kana_TE', 'kana_TO', 'kana_NA', 'kana_NI', 'kana_NU', 'kana_NE', 'kana_NO', 'kana_HA', 'kana_HI', 'kana_HU', 'kana_HE', 'kana_HO', 'kana_MA', 'kana_MI', 'kana_MU', 'kana_ME', 'kana_MO', 'kana_YA', 'kana_YU', 'kana_YO', 'kana_RA', 'kana_RI', 'kana_RU', 'kana_RE', 'kana_RO', 'kana_WA', 'kana_N', 'voicedsound', 'semivoicedsound', 'Arabic_comma', 'Arabic_semicolon', 'Arabic_question_mark', 'Arabic_hamza', 'Arabic_maddaonalef', 'Arabic_hamzaonalef', 'Arabic_hamzaonwaw', 'Arabic_hamzaunderalef', 'Arabic_hamzaonyeh', 'Arabic_alef', 'Arabic_beh', 'Arabic_tehmarbuta', 'Arabic_teh', 'Arabic_theh', 'Arabic_jeem', 'Arabic_hah', 'Arabic_khah', 'Arabic_dal', 'Arabic_thal', 'Arabic_ra', 'Arabic_zain', 'Arabic_seen', 'Arabic_sheen', 'Arabic_sad', 'Arabic_dad', 'Arabic_tah', 'Arabic_zah', 'Arabic_ain', 'Arabic_ghain', 'Arabic_tatweel', 'Arabic_feh', 'Arabic_qaf', 'Arabic_kaf', 'Arabic_lam', 'Arabic_meem', 'Arabic_noon', 'Arabic_heh', 'Arabic_waw', 'Arabic_alefmaksura', 'Arabic_yeh', 'Arabic_fathatan', 'Arabic_dammatan', 'Arabic_kasratan', 'Arabic_fatha', 'Arabic_damma', 'Arabic_kasra', 'Arabic_shadda', 'Arabic_sukun', 'Serbian_dje', 'Macedonia_gje', 'Cyrillic_io', 'Ukranian_je', 'Macedonia_dse', 'Ukranian_i', 'Ukranian_yi', 'Serbian_je', 'Serbian_lje', 'Serbian_nje', 'Serbian_tshe', 'Macedonia_kje', 'Byelorussian_shortu', 'Serbian_dze', 'numerosign', 'Serbian_DJE', 'Macedonia_GJE', 'Cyrillic_IO', 'Ukranian_JE', 'Macedonia_DSE', 'Ukranian_I', 'Ukranian_YI', 'Serbian_JE', 'Serbian_LJE', 'Serbian_NJE', 'Serbian_TSHE', 'Macedonia_KJE', 'Byelorussian_SHORTU', 'Serbian_DZE', 'Cyrillic_yu', 'Cyrillic_a', 'Cyrillic_be', 'Cyrillic_tse', 'Cyrillic_de', 'Cyrillic_ie', 'Cyrillic_ef', 'Cyrillic_ghe', 'Cyrillic_ha', 'Cyrillic_i', 'Cyrillic_shorti', 'Cyrillic_ka', 'Cyrillic_el', 'Cyrillic_em', 'Cyrillic_en', 'Cyrillic_o', 'Cyrillic_pe', 'Cyrillic_ya', 'Cyrillic_er', 'Cyrillic_es', 'Cyrillic_te', 'Cyrillic_u', 'Cyrillic_zhe', 'Cyrillic_ve', 'Cyrillic_softsign', 'Cyrillic_yeru', 'Cyrillic_ze', 'Cyrillic_sha', 'Cyrillic_e', 'Cyrillic_shcha', 'Cyrillic_che', 'Cyrillic_hardsign', 'Cyrillic_YU', 'Cyrillic_A', 'Cyrillic_BE', 'Cyrillic_TSE', 'Cyrillic_DE', 'Cyrillic_IE', 'Cyrillic_EF', 'Cyrillic_GHE', 'Cyrillic_HA', 'Cyrillic_I', 'Cyrillic_SHORTI', 'Cyrillic_KA', 'Cyrillic_EL', 'Cyrillic_EM', 'Cyrillic_EN', 'Cyrillic_O', 'Cyrillic_PE', 'Cyrillic_YA', 'Cyrillic_ER', 'Cyrillic_ES', 'Cyrillic_TE', 'Cyrillic_U', 'Cyrillic_ZHE', 'Cyrillic_VE', 'Cyrillic_SOFTSIGN', 'Cyrillic_YERU', 'Cyrillic_ZE', 'Cyrillic_SHA', 'Cyrillic_E', 'Cyrillic_SHCHA', 'Cyrillic_CHE', 'Cyrillic_HARDSIGN', 'Greek_ALPHAaccent', 'Greek_EPSILONaccent', 'Greek_ETAaccent', 'Greek_IOTAaccent', 'Greek_IOTAdiaeresis', 'Greek_IOTAaccentdiaeresis', 'Greek_OMICRONaccent', 'Greek_UPSILONaccent', 'Greek_UPSILONdieresis', 'Greek_UPSILONaccentdieresis', 'Greek_OMEGAaccent', 'Greek_alphaaccent', 'Greek_epsilonaccent', 'Greek_etaaccent', 'Greek_iotaaccent', 'Greek_iotadieresis', 'Greek_iotaaccentdieresis', 'Greek_omicronaccent', 'Greek_upsilonaccent', 'Greek_upsilondieresis', 'Greek_upsilonaccentdieresis', 'Greek_omegaaccent', 'Greek_ALPHA', 'Greek_BETA', 'Greek_GAMMA', 'Greek_DELTA', 'Greek_EPSILON', 'Greek_ZETA', 'Greek_ETA', 'Greek_THETA', 'Greek_IOTA', 'Greek_KAPPA', 'Greek_LAMBDA', 'Greek_MU', 'Greek_NU', 'Greek_XI', 'Greek_OMICRON', 'Greek_PI', 'Greek_RHO', 'Greek_SIGMA', 'Greek_TAU', 'Greek_UPSILON', 'Greek_PHI', 'Greek_CHI', 'Greek_PSI', 'Greek_OMEGA', 'Greek_alpha', 'Greek_beta', 'Greek_gamma', 'Greek_delta', 'Greek_epsilon', 'Greek_zeta', 'Greek_eta', 'Greek_theta', 'Greek_iota', 'Greek_kappa', 'Greek_lambda', 'Greek_mu', 'Greek_nu', 'Greek_xi', 'Greek_omicron', 'Greek_pi', 'Greek_rho', 'Greek_sigma', 'Greek_finalsmallsigma', 'Greek_tau', 'Greek_upsilon', 'Greek_phi', 'Greek_chi', 'Greek_psi', 'Greek_omega', 'leftradical', 'topleftradical', 'horizconnector', 'topintegral', 'botintegral', 'vertconnector', 'topleftsqbracket', 'botleftsqbracket', 'toprightsqbracket', 'botrightsqbracket', 'topleftparens', 'botleftparens', 'toprightparens', 'botrightparens', 'leftmiddlecurlybrace', 'rightmiddlecurlybrace', 'topleftsummation', 'botleftsummation', 'topvertsummationconnector', 'botvertsummationconnector', 'toprightsummation', 'botrightsummation', 'rightmiddlesummation', 'lessthanequal', 'notequal', 'greaterthanequal', 'integral', 'therefore', 'variation', 'infinity', 'nabla', 'approximate', 'similarequal', 'ifonlyif', 'implies', 'identical', 'radical', 'includedin', 'includes', 'intersection', 'union', 'logicaland', 'logicalor', 'partialderivative', 'function', 'leftarrow', 'uparrow', 'rightarrow', 'downarrow', 'blank', 'soliddiamond', 'checkerboard', 'ht', 'ff', 'cr', 'lf', 'nl', 'vt', 'lowrightcorner', 'uprightcorner', 'upleftcorner', 'lowleftcorner', 'crossinglines', 'horizlinescan1', 'horizlinescan3', 'horizlinescan5', 'horizlinescan7', 'horizlinescan9', 'leftt', 'rightt', 'bott', 'topt', 'vertbar', 'emspace', 'enspace', 'em3space', 'em4space', 'digitspace', 'punctspace', 'thinspace', 'hairspace', 'emdash', 'endash', 'signifblank', 'ellipsis', 'doubbaselinedot', 'onethird', 'twothirds', 'onefifth', 'twofifths', 'threefifths', 'fourfifths', 'onesixth', 'fivesixths', 'careof', 'figdash', 'leftanglebracket', 'decimalpoint', 'rightanglebracket', 'marker', 'oneeighth', 'threeeighths', 'fiveeighths', 'seveneighths', 'trademark', 'signaturemark', 'trademarkincircle', 'leftopentriangle', 'rightopentriangle', 'emopencircle', 'emopenrectangle', 'leftsinglequotemark', 'rightsinglequotemark', 'leftdoublequotemark', 'rightdoublequotemark', 'prescription', 'minutes', 'seconds', 'latincross', 'hexagram', 'filledrectbullet', 'filledlefttribullet', 'filledrighttribullet', 'emfilledcircle', 'emfilledrect', 'enopencircbullet', 'enopensquarebullet', 'openrectbullet', 'opentribulletup', 'opentribulletdown', 'openstar', 'enfilledcircbullet', 'enfilledsqbullet', 'filledtribulletup', 'filledtribulletdown', 'leftpointer', 'rightpointer', 'club', 'diamond', 'heart', 'maltesecross', 'dagger', 'doubledagger', 'checkmark', 'ballotcross', 'musicalsharp', 'musicalflat', 'malesymbol', 'femalesymbol', 'telephone', 'telephonerecorder', 'phonographcopyright', 'caret', 'singlelowquotemark', 'doublelowquotemark', 'cursor', 'leftcaret', 'rightcaret', 'downcaret', 'upcaret', 'overbar', 'downtack', 'upshoe', 'downstile', 'underbar', 'jot', 'quad', 'uptack', 'circle', 'upstile', 'downshoe', 'rightshoe', 'leftshoe', 'lefttack', 'righttack', 'hebrew_aleph', 'hebrew_beth', 'hebrew_gimmel', 'hebrew_daleth', 'hebrew_he', 'hebrew_waw', 'hebrew_zayin', 'hebrew_het', 'hebrew_teth', 'hebrew_yod', 'hebrew_finalkaph', 'hebrew_kaph', 'hebrew_lamed', 'hebrew_finalmem', 'hebrew_mem', 'hebrew_finalnun', 'hebrew_nun', 'hebrew_samekh', 'hebrew_ayin', 'hebrew_finalpe', 'hebrew_pe', 'hebrew_finalzadi', 'hebrew_zadi', 'hebrew_kuf', 'hebrew_resh', 'hebrew_shin', 'hebrew_taf', 'BackSpace', 'Tab', 'Linefeed', 'Clear', 'Return', 'Pause', 'Scroll_Lock', 'Sys_Req', 'Escape', 'Multi_key', 'Kanji', 'Home', 'Left', 'Up', 'Right', 'Down', 'Prior', 'Next', 'End', 'Begin', 'Win_L', 'Win_R', 'App', 'Select', 'Print', 'Execute', 'Insert', 'Undo', 'Redo', 'Menu', 'Find', 'Cancel', 'Help', 'Break', 'Hebrew_switch', 'Num_Lock', 'KP_Space', 'KP_Tab', 'KP_Enter', 'KP_F1', 'KP_F2', 'KP_F3', 'KP_F4', 'KP_Multiply', 'KP_Add', 'KP_Separator', 'KP_Subtract', 'KP_Decimal', 'KP_Divide', 'KP_0', 'KP_1', 'KP_2', 'KP_3', 'KP_4', 'KP_5', 'KP_6', 'KP_7', 'KP_8', 'KP_9', 'KP_Equal', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', 'L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7', 'L8', 'L9', 'L10', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6', 'R7', 'R8', 'R9', 'R10', 'R11', 'R12', 'F33', 'R14', 'R15', 'Shift_L', 'Shift_R', 'Control_L', 'Control_R', 'Caps_Lock', 'Shift_Lock', 'Meta_L', 'Meta_R', 'Alt_L', 'Alt_R', 'Super_L', 'Super_R', 'Hyper_L', 'Hyper_R', 'Delete')
+
+
+
 
 
 # ------------------------------------------------------------------------- #
@@ -1049,11 +987,12 @@ class Element():
             if isinstance(size, int):
                 size = (size, 1)
             if isinstance(size, tuple) and len(size) == 1:
-                size = (size[0], 1)
+                size = (size[0],  1)
 
         if pad is not None and pad != (None, None):
             if isinstance(pad, int):
                 pad = (pad, pad)
+
 
         self.Size = size
         self.Type = type
@@ -1067,7 +1006,7 @@ class Element():
         self.TKText = None
         self.TKEntry = None
         self.TKImage = None
-        self.ttk_style_name = ''  # set in the packer function
+        self.ttk_style_name = ''        # set in the packer function
 
         self._metadata = None  # type: Any
 
@@ -1092,16 +1031,15 @@ class Element():
         self._popup_menu_location = (None, None)
         self.pack_settings = None
         ## TTK Scrollbar Settings
-        self.ttk_part_overrides = TTKPartOverrides(sbar_trough_color=sbar_trough_color, sbar_background_color=sbar_background_color, sbar_arrow_color=sbar_arrow_color,
-                                                   sbar_width=sbar_width, sbar_arrow_width=sbar_arrow_width, sbar_frame_color=sbar_frame_color, sbar_relief=sbar_relief)
+        self.ttk_part_overrides = TTKPartOverrides(sbar_trough_color=sbar_trough_color, sbar_background_color=sbar_background_color, sbar_arrow_color=sbar_arrow_color, sbar_width=sbar_width, sbar_arrow_width=sbar_arrow_width, sbar_frame_color=sbar_frame_color, sbar_relief=sbar_relief)
 
         PSG_THEME_PART_FUNC_MAP = {PSG_THEME_PART_BACKGROUND: theme_background_color,
-                                   PSG_THEME_PART_BUTTON_BACKGROUND: theme_button_color_background,
-                                   PSG_THEME_PART_BUTTON_TEXT: theme_button_color_text,
-                                   PSG_THEME_PART_INPUT_BACKGROUND: theme_input_background_color,
-                                   PSG_THEME_PART_INPUT_TEXT: theme_input_text_color,
-                                   PSG_THEME_PART_TEXT: theme_text_color,
-                                   PSG_THEME_PART_SLIDER: theme_slider_color}
+                                       PSG_THEME_PART_BUTTON_BACKGROUND: theme_button_color_background,
+                                       PSG_THEME_PART_BUTTON_TEXT: theme_button_color_text,
+                                       PSG_THEME_PART_INPUT_BACKGROUND: theme_input_background_color,
+                                       PSG_THEME_PART_INPUT_TEXT: theme_input_text_color,
+                                       PSG_THEME_PART_TEXT: theme_text_color,
+                                       PSG_THEME_PART_SLIDER: theme_slider_color}
 
         # class Theme_Parts():
         #     PSG_THEME_PART_FUNC_MAP = {PSG_THEME_PART_BACKGROUND: theme_background_color,
@@ -1112,21 +1050,22 @@ class Element():
             if callable(self.scroll_trough_color):
                 self.scroll_trough_color = self.scroll_trough_color()
 
+
         if sbar_background_color is not None:
             self.scroll_background_color = sbar_background_color
         else:
-            self.scroll_background_color = PSG_THEME_PART_FUNC_MAP.get(ttk_part_mapping_dict[TTK_SCROLLBAR_PART_BACKGROUND_COLOR],
-                                                                       ttk_part_mapping_dict[TTK_SCROLLBAR_PART_BACKGROUND_COLOR])
+            self.scroll_background_color = PSG_THEME_PART_FUNC_MAP.get(ttk_part_mapping_dict[TTK_SCROLLBAR_PART_BACKGROUND_COLOR], ttk_part_mapping_dict[TTK_SCROLLBAR_PART_BACKGROUND_COLOR])
             if callable(self.scroll_background_color):
-                self.scroll_background_color = self.scroll_background_color()
+                    self.scroll_background_color = self.scroll_background_color()
+
 
         if sbar_arrow_color is not None:
             self.scroll_arrow_color = sbar_arrow_color
         else:
-            self.scroll_arrow_color = PSG_THEME_PART_FUNC_MAP.get(ttk_part_mapping_dict[TTK_SCROLLBAR_PART_ARROW_BUTTON_ARROW_COLOR],
-                                                                  ttk_part_mapping_dict[TTK_SCROLLBAR_PART_ARROW_BUTTON_ARROW_COLOR])
+            self.scroll_arrow_color = PSG_THEME_PART_FUNC_MAP.get(ttk_part_mapping_dict[TTK_SCROLLBAR_PART_ARROW_BUTTON_ARROW_COLOR], ttk_part_mapping_dict[TTK_SCROLLBAR_PART_ARROW_BUTTON_ARROW_COLOR])
             if callable(self.scroll_arrow_color):
                 self.scroll_arrow_color = self.scroll_arrow_color()
+
 
         if sbar_frame_color is not None:
             self.scroll_frame_color = sbar_frame_color
@@ -1150,6 +1089,7 @@ class Element():
         else:
             self.scroll_arrow_width = ttk_part_mapping_dict[TTK_SCROLLBAR_PART_ARROW_WIDTH]
 
+
         if not hasattr(self, 'DisabledTextColor'):
             self.DisabledTextColor = None
         if not hasattr(self, 'ItemFont'):
@@ -1157,7 +1097,7 @@ class Element():
         if not hasattr(self, 'RightClickMenu'):
             self.RightClickMenu = None
         if not hasattr(self, 'Disabled'):
-            self.Disabled = None  # in case the element hasn't defined this, add it here
+            self.Disabled = None        # in case the element hasn't defined this, add it here
 
     @property
     def visible(self):
@@ -1196,6 +1136,8 @@ class Element():
         """
         return self.Key
 
+
+
     @property
     def widget(self):
         """
@@ -1205,6 +1147,9 @@ class Element():
         :rtype:     (tkinter.Widget)
         """
         return self.Widget
+
+
+
 
     def _RightClickMenuCallback(self, event):
         """
@@ -1216,11 +1161,11 @@ class Element():
         """
         if self.Type == ELEM_TYPE_TAB_GROUP:
             try:
-                index = self.Widget.index('@{},{}'.format(event.x, event.y))
+                index  = self.Widget.index('@{},{}'.format(event.x,event.y))
                 tab = self.Widget.tab(index, 'text')
                 key = self.find_key_from_tab_name(tab)
                 tab_element = self.ParentForm.key_dict[key]
-                if tab_element.RightClickMenu is None:  # if this tab didn't explicitly have a menu, then don't show anything
+                if tab_element.RightClickMenu is None:      # if this tab didn't explicitly have a menu, then don't show anything
                     return
                 tab_element.TKRightClickMenu.tk_popup(event.x_root, event.y_root, 0)
                 self.TKRightClickMenu.grab_release()
@@ -1416,6 +1361,7 @@ class Element():
         """
         self._generic_callback_handler('')
 
+
     def _SpinboxSelectHandler(self, event=None):
         """
         Internal callback function for when an entry is selected in a Spinbox.
@@ -1497,6 +1443,7 @@ class Element():
 
         return 'break' if propagate is not True else None
 
+
     def bind(self, bind_string, key_modifier, propagate=True):
         """
         Used to add tkinter events to an Element.
@@ -1563,6 +1510,7 @@ class Element():
         except Exception as e:
             _error_popup_with_traceback("Exception blocking focus. Check your element's Widget", e)
 
+
     def block_focus(self, block=True):
         """
         Enable or disable the element from getting focus by using the keyboard.
@@ -1584,6 +1532,7 @@ class Element():
         except Exception as e:
             _error_popup_with_traceback("Exception blocking focus. Check your element's Widget", e)
 
+
     def get_next_focus(self):
         """
         Gets the next element that should get focus after this element.
@@ -1600,6 +1549,7 @@ class Element():
         except Exception as e:
             _error_popup_with_traceback("Exception getting next focus. Check your element's Widget", e)
 
+
     def get_previous_focus(self):
         """
         Gets the element that should get focus previous to this element.
@@ -1610,10 +1560,11 @@ class Element():
         if not self._widget_was_created():  # if widget hasn't been created yet, then don't allow
             return None
         try:
-            next_widget_focus = self.widget.tk_focusPrev()  # tkinter.Widget
+            next_widget_focus = self.widget.tk_focusPrev()      # tkinter.Widget
             return self.ParentForm.widget_to_element(next_widget_focus)
         except Exception as e:
             _error_popup_with_traceback("Exception getting previous focus. Check your element's Widget", e)
+
 
     def set_size(self, size=(None, None)):
         """
@@ -1639,6 +1590,7 @@ class Element():
 
         if self.Type == ELEM_TYPE_GRAPH:
             self.CanvasSize = size
+
 
     def get_size(self):
         """
@@ -1764,6 +1716,7 @@ class Element():
                                             )
             return False
 
+
     def _grab_anywhere_on_using_control_key(self):
         """
         Turns on Grab Anywhere functionality AFTER a window has been created.  Don't try on a window that's not yet
@@ -1772,6 +1725,7 @@ class Element():
         self.Widget.bind("<Control-Button-1>", self.ParentForm._StartMove)
         self.Widget.bind("<Control-ButtonRelease-1>", self.ParentForm._StopMove)
         self.Widget.bind("<Control-B1-Motion>", self.ParentForm._OnMotion)
+
 
     def _grab_anywhere_on(self):
         """
@@ -1805,6 +1759,8 @@ class Element():
         """
         self.ParentForm._grab_anywhere_include_these_list.append(self.Widget)
 
+
+
     def set_right_click_menu(self, menu=None):
         if menu == MENU_RIGHT_CLICK_DISABLED:
             return
@@ -1830,7 +1786,7 @@ class Element():
                 top_menu.config(activebackground=self.ParentForm.right_click_menu_selected_colors[1])
             AddMenuItem(top_menu, menu[1], self, right_click_menu=True)
             self.TKRightClickMenu = top_menu
-            if self.ParentForm.RightClickMenu:  # if the top level has a right click menu, then setup a callback for the Window itself
+            if self.ParentForm.RightClickMenu:            # if the top level has a right click menu, then setup a callback for the Window itself
                 if self.ParentForm.TKRightClickMenu is None:
                     self.ParentForm.TKRightClickMenu = top_menu
                     if (running_mac()):
@@ -1841,6 +1797,8 @@ class Element():
                 self.Widget.bind('<ButtonRelease-2>', self._RightClickMenuCallback)
             else:
                 self.Widget.bind('<ButtonRelease-3>', self._RightClickMenuCallback)
+
+
 
     def _pack_forget_save_settings(self, alternate_widget=None):
         """
@@ -1880,6 +1838,7 @@ class Element():
         if widget is not None:
             widget.pack(**self.pack_settings)
 
+
     def update(self, *args, **kwargs):
         """
         A dummy update call.  This will only be called if an element hasn't implemented an update method
@@ -1891,6 +1850,7 @@ class Element():
         """
         print('* Base Element Class update was called. Your element does not seem to have an update method')
 
+
     def __call__(self, *args, **kwargs):
         """
         Makes it possible to "call" an already existing element.  When you do make the "call", it actually calls
@@ -1901,6 +1861,11 @@ class Element():
                     window.find_element('T')('new text value')
         """
         return self.update(*args, **kwargs)
+
+
+
+
+
 
     SetTooltip = set_tooltip
     SetFocus = set_focus
@@ -1977,6 +1942,7 @@ class Input(Element):
         :param metadata:                           User metadata that can be set to ANYTHING
         :type metadata:                            (Any)
         """
+
 
         self.DefaultText = default_text if default_text is not None else ''
         self.PasswordCharacter = password_char
@@ -2106,9 +2072,7 @@ class Combo(Element):
     ComboBox Element - A combination of a single-line input and a drop-down menu. User can type in their own value or choose from list.
     """
 
-    def __init__(self, values, default_value=None, size=(None, None), s=(None, None), auto_size_text=None, background_color=None, text_color=None, button_background_color=None,
-                 button_arrow_color=None, bind_return_key=False, change_submits=False, enable_events=False, disabled=False, key=None, k=None, pad=None, p=None, expand_x=False,
-                 expand_y=False, tooltip=None, readonly=False, font=None, visible=True, metadata=None):
+    def __init__(self, values, default_value=None, size=(None, None), s=(None, None), auto_size_text=None, background_color=None, text_color=None, button_background_color=None, button_arrow_color=None, bind_return_key=False, change_submits=False, enable_events=False, disabled=False, key=None, k=None, pad=None, p=None, expand_x=False, expand_y=False, tooltip=None, readonly=False, font=None, visible=True, metadata=None):
         """
         :param values:                  values to choose. While displayed as text, the items returned are what the caller supplied, not text
         :type values:                   List[Any] or Tuple[Any]
@@ -2160,6 +2124,7 @@ class Combo(Element):
         :type metadata:                 (Any)
         """
 
+
         self.Values = values
         self.DefaultValue = default_value
         self.ChangeSubmits = change_submits or enable_events
@@ -2182,6 +2147,7 @@ class Combo(Element):
             self.button_arrow_color = theme_button_color()[0]
         else:
             self.button_arrow_color = button_arrow_color
+
 
         super().__init__(ELEM_TYPE_INPUT_COMBO, size=sz, auto_size_text=auto_size_text, background_color=bg,
                          text_color=fg, key=key, pad=pad, tooltip=tooltip, font=font or DEFAULT_FONT, visible=visible, metadata=metadata)
@@ -2220,7 +2186,7 @@ class Combo(Element):
             if isinstance(size, int):
                 size = (size, 1)
             if isinstance(size, tuple) and len(size) == 1:
-                size = (size[0], 1)
+                size = (size[0],  1)
 
         if not self._widget_was_created():  # if widget hasn't been created yet, then don't allow
             return
@@ -2270,9 +2236,9 @@ class Combo(Element):
         if disabled is True:
             self.TKCombo['state'] = 'disable'
         elif disabled is False and self.Readonly is True:
-            self.TKCombo['state'] = 'readonly'
+                self.TKCombo['state'] = 'readonly'
         elif disabled is False and self.Readonly is False:
-            self.TKCombo['state'] = 'enable'
+                self.TKCombo['state'] = 'enable'
         self.Disabled = disabled if disabled is not None else self.Disabled
         if font is not None:
             self.TKCombo.configure(font=font)
@@ -2375,6 +2341,7 @@ class OptionMenu(Element):
         self.expand_x = expand_x
         self.expand_y = expand_y
 
+
         super().__init__(ELEM_TYPE_INPUT_OPTION_MENU, size=sz, auto_size_text=auto_size_text, background_color=bg,
                          text_color=fg, key=key, pad=pad, tooltip=tooltip, visible=visible, metadata=metadata)
 
@@ -2461,7 +2428,7 @@ class Listbox(Element):
                  bind_return_key=False, size=(None, None), s=(None, None), disabled=False, auto_size_text=None, font=None, no_scrollbar=False, horizontal_scroll=False,
                  background_color=None, text_color=None, highlight_background_color=None, highlight_text_color=None,
                  sbar_trough_color=None, sbar_background_color=None, sbar_arrow_color=None, sbar_width=None, sbar_arrow_width=None, sbar_frame_color=None, sbar_relief=None,
-                 key=None, k=None, pad=None, p=None, tooltip=None, expand_x=False, expand_y=False, right_click_menu=None, visible=True, metadata=None):
+                 key=None, k=None, pad=None, p=None, tooltip=None, expand_x=False, expand_y=False,right_click_menu=None, visible=True, metadata=None):
         """
         :param values:                     list of values to display. Can be any type including mixed types as long as they have __str__ method
         :type values:                      List[Any] or Tuple[Any]
@@ -2568,8 +2535,7 @@ class Listbox(Element):
 
         super().__init__(ELEM_TYPE_INPUT_LISTBOX, size=sz, auto_size_text=auto_size_text, font=font,
                          background_color=bg, text_color=fg, key=key, pad=pad, tooltip=tooltip, visible=visible, metadata=metadata,
-                         sbar_trough_color=sbar_trough_color, sbar_background_color=sbar_background_color, sbar_arrow_color=sbar_arrow_color, sbar_width=sbar_width,
-                         sbar_arrow_width=sbar_arrow_width, sbar_frame_color=sbar_frame_color, sbar_relief=sbar_relief)
+                         sbar_trough_color=sbar_trough_color, sbar_background_color=sbar_background_color, sbar_arrow_color=sbar_arrow_color, sbar_width=sbar_width, sbar_arrow_width=sbar_arrow_width, sbar_frame_color=sbar_frame_color, sbar_relief=sbar_relief)
 
     def update(self, values=None, disabled=None, set_to_index=None, scroll_to_index=None, select_mode=None, visible=None):
         """
@@ -2758,6 +2724,7 @@ class Radio(Element):
         :param metadata:         User metadata that can be set to ANYTHING
         :type metadata:          (Any)
         """
+
 
         self.InitialState = default
         self.Text = text
@@ -2957,6 +2924,7 @@ class Checkbox(Element):
         :type metadata:          (Any)
         """
 
+
         self.Text = text
         self.InitialState = bool(default)
         self.Value = None
@@ -3097,8 +3065,7 @@ class Spin(Element):
     """
 
     def __init__(self, values, initial_value=None, disabled=False, change_submits=False, enable_events=False, readonly=False,
-                 size=(None, None), s=(None, None), auto_size_text=None, bind_return_key=None, font=None, background_color=None, text_color=None, key=None, k=None, pad=None,
-                 p=None,
+                 size=(None, None), s=(None, None), auto_size_text=None, bind_return_key=None, font=None, background_color=None, text_color=None, key=None, k=None, pad=None, p=None,
                  tooltip=None, right_click_menu=None, expand_x=False, expand_y=False, visible=True, metadata=None):
         """
         :param values:           List of valid values
@@ -3149,6 +3116,7 @@ class Spin(Element):
         :type metadata:          (Any)
         """
 
+
         self.Values = values
         self.DefaultValue = initial_value
         self.ChangeSubmits = change_submits or enable_events
@@ -3165,6 +3133,7 @@ class Spin(Element):
         pad = pad if pad is not None else p
         self.expand_x = expand_x
         self.expand_y = expand_y
+
 
         super().__init__(ELEM_TYPE_INPUT_SPIN, size=sz, auto_size_text=auto_size_text, font=font, background_color=bg, text_color=fg,
                          key=key, pad=pad, tooltip=tooltip, visible=visible, metadata=metadata)
@@ -3232,6 +3201,7 @@ class Spin(Element):
         if visible is not None:
             self._visible = visible
 
+
     def _SpinChangedHandler(self, event):
         """
         Callback function. Used internally only. Called by tkinter when Spinbox Widget changes.  Results in Window.Read() call returning
@@ -3284,9 +3254,8 @@ class Multiline(Element):
     """
 
     def __init__(self, default_text='', enter_submits=False, disabled=False, autoscroll=False, border_width=None,
-                 size=(None, None), s=(None, None), auto_size_text=None, background_color=None, text_color=None, horizontal_scroll=False, change_submits=False,
-                 enable_events=False, do_not_clear=True, key=None, k=None, write_only=False, auto_refresh=False, reroute_stdout=False, reroute_stderr=False, reroute_cprint=False,
-                 echo_stdout_stderr=False, focus=False, font=None, pad=None, p=None, tooltip=None, justification=None, no_scrollbar=False,
+                 size=(None, None), s=(None, None), auto_size_text=None, background_color=None, text_color=None,  horizontal_scroll=False, change_submits=False,
+                 enable_events=False, do_not_clear=True, key=None, k=None, write_only=False, auto_refresh=False, reroute_stdout=False, reroute_stderr=False, reroute_cprint=False, echo_stdout_stderr=False, focus=False, font=None, pad=None, p=None, tooltip=None, justification=None, no_scrollbar=False,
                  sbar_trough_color=None, sbar_background_color=None, sbar_arrow_color=None, sbar_width=None, sbar_arrow_width=None, sbar_frame_color=None, sbar_relief=None,
                  expand_x=False, expand_y=False, rstrip=True, right_click_menu=None, visible=True, metadata=None):
         """
@@ -3376,6 +3345,7 @@ class Multiline(Element):
         :type metadata:                      (Any)
         """
 
+
         self.DefaultText = str(default_text)
         self.EnterSubmits = enter_submits
         bg = background_color if background_color else DEFAULT_INPUT_ELEMENTS_COLOR
@@ -3410,13 +3380,12 @@ class Multiline(Element):
         if reroute_stderr:
             self.reroute_stderr_to_here()
         self.no_scrollbar = no_scrollbar
-        self.hscrollbar = None  # The horizontal scrollbar
+        self.hscrollbar = None      # The horizontal scrollbar
         sz = size if size != (None, None) else s
 
         super().__init__(ELEM_TYPE_INPUT_MULTILINE, size=sz, auto_size_text=auto_size_text, background_color=bg,
                          text_color=fg, key=key, pad=pad, tooltip=tooltip, font=font or DEFAULT_FONT, visible=visible, metadata=metadata,
-                         sbar_trough_color=sbar_trough_color, sbar_background_color=sbar_background_color, sbar_arrow_color=sbar_arrow_color, sbar_width=sbar_width,
-                         sbar_arrow_width=sbar_arrow_width, sbar_frame_color=sbar_frame_color, sbar_relief=sbar_relief)
+                         sbar_trough_color=sbar_trough_color, sbar_background_color=sbar_background_color, sbar_arrow_color=sbar_arrow_color, sbar_width=sbar_width, sbar_arrow_width=sbar_arrow_width, sbar_frame_color=sbar_frame_color, sbar_relief=sbar_relief)
         return
 
     def update(self, value=None, disabled=None, append=False, font=None, text_color=None, background_color=None, text_color_for_value=None,
@@ -3522,6 +3491,7 @@ class Multiline(Element):
         if font is not None:
             self.TKText.configure(font=font)
 
+
         if visible is False:
             self._pack_forget_save_settings(alternate_widget=self.element_frame)
             # self.element_frame.pack_forget()
@@ -3548,6 +3518,7 @@ class Multiline(Element):
         if self.rstrip:
             return value.rstrip()
         return value
+
 
     def print(self, *args, end=None, sep=None, text_color=None, background_color=None, justification=None, font=None, colors=None, t=None, b=None, c=None,
               autoscroll=True):
@@ -3699,8 +3670,7 @@ class Text(Element):
     """
 
     def __init__(self, text='', size=(None, None), s=(None, None), auto_size_text=None, click_submits=False, enable_events=False, relief=None, font=None,
-                 text_color=None, background_color=None, border_width=None, justification=None, pad=None, p=None, key=None, k=None, right_click_menu=None, expand_x=False,
-                 expand_y=False, grab=None,
+                 text_color=None, background_color=None, border_width=None, justification=None, pad=None, p=None, key=None, k=None, right_click_menu=None, expand_x=False, expand_y=False, grab=None,
                  tooltip=None, visible=True, metadata=None):
         """
         :param text:             The text to display. Can include /n to achieve multiple lines.  Will convert (optional) parameter into a string
@@ -3828,6 +3798,7 @@ class Text(Element):
             text = ''
         return text
 
+
     @classmethod
     def fonts_installed_list(cls):
         """
@@ -3843,6 +3814,7 @@ class Text(Element):
         fonts.sort()
 
         return fonts
+
 
     @classmethod
     def char_width_in_pixels(cls, font, character='W'):
@@ -3883,6 +3855,7 @@ class Text(Element):
 
         # A window must exist before can perform this operation. Create the hidden master root if it doesn't exist
         _get_hidden_master_root()
+
 
         size = 0
         try:
@@ -3958,8 +3931,7 @@ class Text(Element):
         except:
             pass
 
-    def print(self, *args, end=None, sep=None, text_color=None, background_color=None, justification=None, font=None, colors=None, t=None, b=None, c=None, autoscroll=True,
-              append=True):
+    def print(self, *args, end=None, sep=None, text_color=None, background_color=None, justification=None, font=None, colors=None, t=None, b=None, c=None, autoscroll=True, append=True):
         """
         Print like Python normally prints except route the output to a multiline element and also add colors if desired
 
@@ -4019,8 +3991,8 @@ class Text(Element):
         except Exception as e:
             print('* multiline print warning * you messed up with color formatting', e)
 
-        self._print_to_element(*args, end=end, sep=sep, text_color=kw_text_color, background_color=kw_background_color, justification=justification, autoscroll=autoscroll,
-                               font=font, append=append)
+        self._print_to_element( *args, end=end, sep=sep, text_color=kw_text_color, background_color=kw_background_color, justification=justification, autoscroll=autoscroll, font=font, append=append)
+
 
     Get = get
     Update = update
@@ -4087,6 +4059,7 @@ class StatusBar(Element):
         :param metadata:         User metadata that can be set to ANYTHING
         :type metadata:          (Any)
         """
+
 
         self.DisplayText = text
         self.TextColor = text_color if text_color else DEFAULT_TEXT_COLOR
@@ -4252,7 +4225,6 @@ class TKProgressBar():
                 return False
         return True
 
-
 #
 # # ---------------------------------------------------------------------- #
 # #                           TKOutput                                     #
@@ -4381,7 +4353,7 @@ class Output(Multiline):
 
     def __init__(self, size=(None, None), s=(None, None), background_color=None, text_color=None, pad=None, p=None, echo_stdout_stderr=False, font=None, tooltip=None,
                  key=None, k=None, right_click_menu=None, expand_x=False, expand_y=False, visible=True, metadata=None,
-                 sbar_trough_color=None, sbar_background_color=None, sbar_arrow_color=None, sbar_width=None, sbar_arrow_width=None, sbar_frame_color=None, sbar_relief=None):
+                 sbar_trough_color=None, sbar_background_color=None, sbar_arrow_color=None,  sbar_width=None, sbar_arrow_width=None, sbar_frame_color=None, sbar_relief=None):
         """
         :param size:                        (w, h) w=characters-wide, h=rows-high. If an int instead of a tuple is supplied, then height is auto-set to 1
         :type size:                         (int, int)  | (None, None) | int
@@ -4431,6 +4403,7 @@ class Output(Multiline):
         :type sbar_relief:                  (str)
         """
 
+
         # self._TKOut = self.Widget = None  # type: TKOutput
         # bg = background_color if background_color else DEFAULT_INPUT_ELEMENTS_COLOR
         # fg = text_color if text_color is not None else DEFAULT_INPUT_TEXT_COLOR
@@ -4443,10 +4416,8 @@ class Output(Multiline):
         # self.expand_y = expand_y
 
         super().__init__(size=size, s=s, background_color=background_color, text_color=text_color, pad=pad, p=p, echo_stdout_stderr=echo_stdout_stderr, font=font, tooltip=tooltip,
-                         key=key, k=k, right_click_menu=right_click_menu, write_only=True, reroute_stdout=True, reroute_stderr=True, autoscroll=True, expand_x=expand_x,
-                         expand_y=expand_y, visible=visible, metadata=metadata,
-                         sbar_trough_color=sbar_trough_color, sbar_background_color=sbar_background_color, sbar_arrow_color=sbar_arrow_color, sbar_width=sbar_width,
-                         sbar_arrow_width=sbar_arrow_width, sbar_frame_color=sbar_frame_color, sbar_relief=sbar_relief)
+                 key=key, k=k, right_click_menu=right_click_menu, write_only=True, reroute_stdout=True, reroute_stderr=True, autoscroll=True, expand_x=expand_x, expand_y=expand_y, visible=visible, metadata=metadata,
+                         sbar_trough_color=sbar_trough_color, sbar_background_color=sbar_background_color, sbar_arrow_color=sbar_arrow_color, sbar_width=sbar_width, sbar_arrow_width=sbar_arrow_width, sbar_frame_color=sbar_frame_color, sbar_relief=sbar_relief)
     #
     # @property
     # def tk_out(self):
@@ -4623,12 +4594,11 @@ class Button(Element):
         :type metadata:               (Any)
         """
 
+
         self.AutoSizeButton = auto_size_button
         self.BType = button_type
         if file_types is not None and len(file_types) == 2 and isinstance(file_types[0], str) and isinstance(file_types[1], str):
-            warnings.warn(
-                'file_types parameter not correctly specified. This parameter is a LIST of TUPLES. You have passed (str,str) rather than ((str, str),). Fixing it for you this time.\nchanging {} to {}\nPlease correct your code'.format(
-                    file_types, ((file_types[0], file_types[1]),)), UserWarning)
+            warnings.warn('file_types parameter not correctly specified. This parameter is a LIST of TUPLES. You have passed (str,str) rather than ((str, str),). Fixing it for you this time.\nchanging {} to {}\nPlease correct your code'.format(file_types, ((file_types[0], file_types[1]),)), UserWarning)
             file_types = ((file_types[0], file_types[1]),)
         self.FileTypes = file_types
         self.Widget = self.TKButton = None  # type: tk.Button
@@ -4688,7 +4658,7 @@ class Button(Element):
         self.Disabled = disabled
         self.ChangeSubmits = change_submits or enable_events
         self.UseTtkButtons = use_ttk_buttons
-        self.ttk_style_name = ''  # set in the packer function
+        self.ttk_style_name = ''        # set in the packer function
         self._files_delimiter = BROWSE_FILES_DELIMITER  # used by the file browse button. used when multiple files are selected by user
         if use_ttk_buttons is None and running_mac():
             self.UseTtkButtons = True
@@ -4828,7 +4798,7 @@ class Button(Element):
             if file_name:
                 strvar.set(file_name)
                 self.TKStringVar.set(file_name)
-            else:  # if "cancel" button clicked, don't generate an event
+            else:           # if "cancel" button clicked, don't generate an event
                 should_submit_window = False
         elif self.BType == BUTTON_TYPE_COLOR_CHOOSER:
             color = tk.colorchooser.askcolor(parent=self.ParentForm.TKroot)  # show the 'get file' dialog box
@@ -4845,20 +4815,19 @@ class Button(Element):
                 file_name = self._files_delimiter.join(file_name)  # normally a ';'
                 strvar.set(file_name)
                 self.TKStringVar.set(file_name)
-            else:  # if "cancel" button clicked, don't generate an event
+            else:           # if "cancel" button clicked, don't generate an event
                 should_submit_window = False
         elif self.BType == BUTTON_TYPE_SAVEAS_FILE:
             # show the 'get file' dialog box
             if running_mac():
                 file_name = tk.filedialog.asksaveasfilename(defaultextension=self.DefaultExtension, initialdir=self.InitialFolder)
             else:
-                file_name = tk.filedialog.asksaveasfilename(filetypes=filetypes, defaultextension=self.DefaultExtension, initialdir=self.InitialFolder,
-                                                            parent=self.ParentForm.TKroot)
+                file_name = tk.filedialog.asksaveasfilename(filetypes=filetypes, defaultextension=self.DefaultExtension, initialdir=self.InitialFolder, parent=self.ParentForm.TKroot)
 
             if file_name:
                 strvar.set(file_name)
                 self.TKStringVar.set(file_name)
-            else:  # if "cancel" button clicked, don't generate an event
+            else:           # if "cancel" button clicked, don't generate an event
                 should_submit_window = False
         elif self.BType == BUTTON_TYPE_CLOSES_WIN:  # this is a return type button so GET RESULTS and destroy window
             # first, get the results table built
@@ -4895,9 +4864,9 @@ class Button(Element):
             should_submit_window = False
             _exit_mainloop(self.ParentForm)
         # elif self.BType == BUTTON_TYPE_SHOW_DEBUGGER:
-        # **** DEPRICATED *****
-        # if self.ParentForm.DebuggerEnabled:
-        # show_debugger_popout_window()
+            # **** DEPRICATED *****
+            # if self.ParentForm.DebuggerEnabled:
+                # show_debugger_popout_window()
 
         if should_submit_window:
             self.ParentForm.LastButtonClicked = target_element.Key
@@ -4941,7 +4910,7 @@ class Button(Element):
             return
 
         if self.UseTtkButtons:
-            style_name = self.ttk_style_name  # created when made initial window (in the pack)
+            style_name = self.ttk_style_name        # created when made initial window (in the pack)
             # style_name = str(self.Key) + 'custombutton.TButton'
             button_style = ttk.Style()
         if text is not None:
@@ -5159,6 +5128,7 @@ class ButtonMenu(Element):
                          text_color=self.TextColor, background_color=self.BackgroundColor, visible=visible, metadata=metadata)
         self.Tearoff = tearoff
 
+
     def _MenuItemChosenCallback(self, item_chosen):  # ButtonMenu Menu Item Chosen Callback
         """
         Not a user callable function.  Called by tkinter when an item is chosen from the menu.
@@ -5173,6 +5143,7 @@ class ButtonMenu(Element):
         # if self.ParentForm.CurrentlyRunningMainloop:
         #     self.ParentForm.TKroot.quit()  # kick the users out of the mainloop
         _exit_mainloop(self.ParentForm)
+
 
     def update(self, menu_definition=None, visible=None, image_source=None, image_size=(None, None), image_subsample=None, button_text=None):
         """
@@ -5269,7 +5240,6 @@ class ButtonMenu(Element):
     Update = update
     Click = click
 
-
 BMenu = ButtonMenu
 BM = ButtonMenu
 
@@ -5325,13 +5295,14 @@ class ProgressBar(Element):
         :type metadata:          (Any)
         """
 
+
         self.MaxValue = max_value
         self.TKProgressBar = None  # type: TKProgressBar
         self.Cancelled = False
         self.NotRunning = True
         self.Orientation = orientation if orientation else DEFAULT_METER_ORIENTATION
         self.RightClickMenu = right_click_menu
-        self.ttk_style_name = None  # set in the pack function so can use in the update
+        self.ttk_style_name = None      # set in the pack function so can use in the update
         # Progress Bar colors can be a tuple (text, background) or a string with format "bar on background" - examples "red on white" or ("red", "white")
         if bar_color is None:
             bar_color = DEFAULT_PROGRESS_BAR_COLOR
@@ -5444,8 +5415,7 @@ class Image(Element):
     Image Element - show an image in the window. Should be a GIF or a PNG only
     """
 
-    def __init__(self, source=None, filename=None, data=None, background_color=None, size=(None, None), s=(None, None), pad=None, p=None, key=None, k=None, tooltip=None,
-                 subsample=None, right_click_menu=None, expand_x=False, expand_y=False, visible=True, enable_events=False, metadata=None):
+    def __init__(self, source=None, filename=None, data=None, background_color=None, size=(None, None), s=(None, None), pad=None, p=None, key=None, k=None, tooltip=None, subsample=None, right_click_menu=None, expand_x=False, expand_y=False, visible=True, enable_events=False, metadata=None):
         """
         :param source:           A filename or a base64 bytes. Will automatically detect the type and fill in filename or data for you.
         :type source:            str | bytes | None
@@ -5651,6 +5621,7 @@ class Image(Element):
         except Exception as e:
             print('Exception in update_animation', e)
 
+
     def update_animation_no_buffering(self, source, time_between_frames=0):
         """
         Show an Animated GIF. Call the function as often as you like. The function will determine when to show the next frame and will automatically advance to the next frame at the right time.
@@ -5745,6 +5716,7 @@ class Canvas(Element):
         :type metadata:          (Any)
         """
 
+
         self.BackgroundColor = background_color if background_color is not None else DEFAULT_BACKGROUND_COLOR
         self._TKCanvas = self.Widget = canvas
         self.RightClickMenu = right_click_menu
@@ -5759,7 +5731,8 @@ class Canvas(Element):
                          tooltip=tooltip, visible=visible, metadata=metadata)
         return
 
-    def update(self, background_color=None, visible=None):
+
+    def update(self,  background_color=None, visible=None):
         """
 
         :param background_color: color of background
@@ -5779,6 +5752,7 @@ class Canvas(Element):
             self._pack_restore_settings()
         if visible is not None:
             self._visible = visible
+
 
     @property
     def tk_canvas(self):
@@ -6564,8 +6538,7 @@ class Frame(Element):
 
     def __init__(self, title, layout, title_color=None, background_color=None, title_location=None,
                  relief=DEFAULT_FRAME_RELIEF, size=(None, None), s=(None, None), font=None, pad=None, p=None, border_width=None, key=None, k=None,
-                 tooltip=None, right_click_menu=None, expand_x=False, expand_y=False, grab=None, visible=True, element_justification='left', vertical_alignment=None,
-                 metadata=None):
+                 tooltip=None, right_click_menu=None, expand_x=False, expand_y=False, grab=None, visible=True, element_justification='left', vertical_alignment=None, metadata=None):
         """
         :param title:                 text that is displayed as the Frame's "label" or title
         :type title:                  (str)
@@ -6615,6 +6588,7 @@ class Frame(Element):
         :type metadata:               (Any)
         """
 
+
         self.UseDictionary = False
         self.ReturnValues = None
         self.ReturnValuesList = []
@@ -6645,6 +6619,7 @@ class Frame(Element):
         super().__init__(ELEM_TYPE_FRAME, background_color=background_color, text_color=title_color, size=sz,
                          font=font, pad=pad, key=key, tooltip=tooltip, visible=visible, metadata=metadata)
         return
+
 
     def add_row(self, *args):
         """
@@ -6857,7 +6832,7 @@ class Sizegrip(Element):
         The color will match the theme's background color.
     """
 
-    def __init__(self, background_color=None, pad=None, p=(0, 0), key=None, k=None):
+    def __init__(self, background_color=None, pad=None, p=(0,0), key=None, k=None):
         """
         Sizegrip Element
         :param background_color: color to use for the background of the grip
@@ -6876,7 +6851,8 @@ class Sizegrip(Element):
         pad = pad if pad is not None else p
         key = key if key is not None else k
 
-        super().__init__(ELEM_TYPE_SIZEGRIP, background_color=bg, key=key, pad=pad)
+
+        super().__init__(ELEM_TYPE_SIZEGRIP, background_color=bg,key=key, pad=pad)
 
 
 SGrip = Sizegrip
@@ -6892,8 +6868,7 @@ class Tab(Element):
     """
 
     def __init__(self, title, layout, title_color=None, background_color=None, font=None, pad=None, p=None, disabled=False,
-                 border_width=None, key=None, k=None, tooltip=None, right_click_menu=None, expand_x=False, expand_y=False, visible=True, element_justification='left',
-                 image_source=None, image_subsample=None, metadata=None):
+                 border_width=None, key=None, k=None, tooltip=None, right_click_menu=None, expand_x=False, expand_y=False, visible=True, element_justification='left', image_source=None, image_subsample=None, metadata=None):
         """
         :param title:                 text to show on the tab
         :type title:                  (str)
@@ -6992,32 +6967,32 @@ class Tab(Element):
         for i, element in enumerate(args):  # Loop through list of elements and add them to the row
             if type(element) == list:
                 popup_error_with_traceback('Error creating Tab layout',
-                                           'Layout has a LIST instead of an ELEMENT',
-                                           'This means you have a badly placed ]',
-                                           'The offensive list is:',
-                                           element,
-                                           'This list will be stripped from your layout')
+                           'Layout has a LIST instead of an ELEMENT',
+                           'This means you have a badly placed ]',
+                           'The offensive list is:',
+                           element,
+                           'This list will be stripped from your layout')
                 continue
             elif callable(element) and not isinstance(element, Element):
                 popup_error_with_traceback('Error creating Tab layout',
-                                           'Layout has a FUNCTION instead of an ELEMENT',
-                                           'This likely means you are missing () from your layout',
-                                           'The offensive list is:',
-                                           element,
-                                           'This item will be stripped from your layout')
+                           'Layout has a FUNCTION instead of an ELEMENT',
+                           'This likely means you are missing () from your layout',
+                           'The offensive list is:',
+                           element,
+                           'This item will be stripped from your layout')
                 continue
             if element.ParentContainer is not None:
                 warnings.warn(
                     '*** YOU ARE ATTEMPTING TO RESUSE AN ELEMENT IN YOUR LAYOUT! Once placed in a layout, an element cannot be used in another layout. ***',
                     UserWarning)
                 popup_error_with_traceback('Error creating Tab layout',
-                                           'The layout specified has already been used',
-                                           'You MUST start witha "clean", unused layout every time you create a window',
-                                           'The offensive Element = ',
-                                           element,
-                                           'and has a key = ', element.Key,
-                                           'This item will be stripped from your layout',
-                                           'Hint - try printing your layout and matching the IDs "print(layout)"')
+                           'The layout specified has already been used',
+                           'You MUST start witha "clean", unused layout every time you create a window',
+                           'The offensive Element = ',
+                           element,
+                           'and has a key = ', element.Key,
+                           'This item will be stripped from your layout',
+                           'Hint - try printing your layout and matching the IDs "print(layout)"')
                 continue
             element.Position = (CurrentRowNumber, i)
             element.ParentContainer = self
@@ -7135,8 +7110,7 @@ class TabGroup(Element):
     """
 
     def __init__(self, layout, tab_location=None, title_color=None, tab_background_color=None, selected_title_color=None, selected_background_color=None,
-                 background_color=None, focus_color=None, font=None, change_submits=False, enable_events=False, pad=None, p=None, border_width=None, tab_border_width=None,
-                 theme=None, key=None, k=None,
+                 background_color=None, focus_color=None, font=None, change_submits=False, enable_events=False, pad=None, p=None, border_width=None, tab_border_width=None, theme=None, key=None, k=None,
                  size=(None, None), s=(None, None), tooltip=None, right_click_menu=None, expand_x=False, expand_y=False, visible=True, metadata=None):
         """
         :param layout:                    Layout of Tabs. Different than normal layouts. ALL Tabs should be on first row
@@ -7192,6 +7166,7 @@ class TabGroup(Element):
         :param metadata:                  User metadata that can be set to ANYTHING
         :type metadata:                   (Any)
         """
+
 
         self.UseDictionary = False
         self.ReturnValues = None
@@ -7565,6 +7540,7 @@ class Slider(Element):
         if visible is not None:
             self._visible = visible
 
+
     def _SliderChangedHandler(self, event):
         """
         Not user callable.  Callback function for when slider is moved.
@@ -7684,10 +7660,12 @@ class TkScrollableFrame(tk.Frame):
         # self.TKFrame.bind("<Leave>", self.unhookMouseWheel)
         # self.bind('<Configure>', self.set_scrollregion)
 
+
         self.unhookMouseWheel(None)
         self.canvas.bind("<Enter>", self.hookMouseWheel)
         self.canvas.bind("<Leave>", self.unhookMouseWheel)
         self.bind('<Configure>', self.set_scrollregion)
+
 
     # Chr0nic
     def hookMouseWheel(self, e):
@@ -7808,6 +7786,7 @@ class Column(Element):
         :type sbar_relief:                  (str)
         """
 
+
         self.UseDictionary = False
         self.ReturnValues = None
         self.ReturnValuesList = []
@@ -7838,8 +7817,7 @@ class Column(Element):
         self.size_subsample_height = size_subsample_height
 
         super().__init__(ELEM_TYPE_COLUMN, background_color=bg, size=sz, pad=pad, key=key, visible=visible, metadata=metadata,
-                         sbar_trough_color=sbar_trough_color, sbar_background_color=sbar_background_color, sbar_arrow_color=sbar_arrow_color, sbar_width=sbar_width,
-                         sbar_arrow_width=sbar_arrow_width, sbar_frame_color=sbar_frame_color, sbar_relief=sbar_relief)
+                         sbar_trough_color=sbar_trough_color, sbar_background_color=sbar_background_color, sbar_arrow_color=sbar_arrow_color, sbar_width=sbar_width, sbar_arrow_width=sbar_arrow_width, sbar_frame_color=sbar_frame_color, sbar_relief=sbar_relief)
         return
 
     def add_row(self, *args):
@@ -7997,7 +7975,7 @@ class Pane(Element):
     """
 
     def __init__(self, pane_list, background_color=None, size=(None, None), s=(None, None), pad=None, p=None, orientation='vertical',
-                 show_handle=True, relief=RELIEF_RAISED, handle_size=None, border_width=None, key=None, k=None, expand_x=None, expand_y=None, visible=True, metadata=None):
+                 show_handle=True, relief=RELIEF_RAISED, handle_size=None, border_width=None, key=None, k=None,  expand_x=None, expand_y=None, visible=True, metadata=None):
         """
         :param pane_list:        Must be a list of Column Elements. Each Column supplied becomes one pane that's shown
         :type pane_list:         List[Column] | Tuple[Column]
@@ -8034,6 +8012,7 @@ class Pane(Element):
         :param metadata:         User metadata that can be set to ANYTHING
         :type metadata:          (Any)
         """
+
 
         self.UseDictionary = False
         self.ReturnValues = None
@@ -8471,12 +8450,10 @@ class Table(Element):
     def __init__(self, values, headings=None, visible_column_map=None, col_widths=None, def_col_width=10,
                  auto_size_columns=True, max_col_width=20, select_mode=None, display_row_numbers=False, num_rows=None,
                  row_height=None, font=None, justification='right', text_color=None, background_color=None,
-                 alternating_row_color=None, selected_row_colors=(None, None), header_text_color=None, header_background_color=None, header_font=None, header_border_width=None,
-                 header_relief=None,
+                 alternating_row_color=None, selected_row_colors=(None, None), header_text_color=None, header_background_color=None, header_font=None, header_border_width=None, header_relief=None,
                  row_colors=None, vertical_scroll_only=True, hide_vertical_scroll=False, border_width=None,
                  sbar_trough_color=None, sbar_background_color=None, sbar_arrow_color=None, sbar_width=None, sbar_arrow_width=None, sbar_frame_color=None, sbar_relief=None,
-                 size=(None, None), s=(None, None), change_submits=False, enable_events=False, enable_click_events=False, right_click_selects=False, bind_return_key=False,
-                 pad=None, p=None,
+                 size=(None, None), s=(None, None), change_submits=False, enable_events=False, enable_click_events=False, right_click_selects=False, bind_return_key=False, pad=None, p=None,
                  key=None, k=None, tooltip=None, right_click_menu=None, expand_x=False, expand_y=False, visible=True, metadata=None):
         """
         :param values:                  Your table data represented as a 2-dimensions table... a list of rows, with each row representing a row in your table.
@@ -8579,6 +8556,7 @@ class Table(Element):
         :type metadata:                 (Any)
         """
 
+
         self.Values = values
         self.ColumnHeadings = headings
         self.ColumnsToDisplay = visible_column_map
@@ -8634,8 +8612,7 @@ class Table(Element):
 
         super().__init__(ELEM_TYPE_TABLE, text_color=text_color, background_color=background_color, font=font,
                          size=sz, pad=pad, key=key, tooltip=tooltip, visible=visible, metadata=metadata,
-                         sbar_trough_color=sbar_trough_color, sbar_background_color=sbar_background_color, sbar_arrow_color=sbar_arrow_color, sbar_width=sbar_width,
-                         sbar_arrow_width=sbar_arrow_width, sbar_frame_color=sbar_frame_color, sbar_relief=sbar_relief)
+                         sbar_trough_color=sbar_trough_color, sbar_background_color=sbar_background_color, sbar_arrow_color=sbar_arrow_color, sbar_width=sbar_width, sbar_arrow_width=sbar_arrow_width, sbar_frame_color=sbar_frame_color, sbar_relief=sbar_relief)
         return
 
     def update(self, values=None, num_rows=None, visible=None, select_rows=None, alternating_row_color=None, row_colors=None):
@@ -8762,6 +8739,7 @@ class Table(Element):
             #     self.ParentForm.TKroot.quit()
             _exit_mainloop(self.ParentForm)
 
+
     def _table_clicked(self, event):
         """
         Not user callable.  Callback function that is called a click happens on a table.
@@ -8778,21 +8756,20 @@ class Table(Element):
             if region == 'heading':
                 row = -1
             elif region == 'cell':
-                row = int(self.Widget.identify_row(event.y)) - 1
+                row = int(self.Widget.identify_row(event.y))-1
             elif region == 'separator':
                 row = None
             else:
                 row = None
             col_identified = self.Widget.identify_column(event.x)
-            if col_identified:  # Sometimes tkinter returns a value of '' which would cause an error if cast to an int
-                column = int(self.Widget.identify_column(event.x)[1:]) - 1 - int(self.DisplayRowNumbers is True)
+            if col_identified:      # Sometimes tkinter returns a value of '' which would cause an error if cast to an int
+                column = int(self.Widget.identify_column(event.x)[1:])-1-int(self.DisplayRowNumbers is True)
             else:
                 column = None
         except Exception as e:
             warnings.warn('Error getting table click data for table with key= {}\nError: {}'.format(self.Key, e), UserWarning)
             if not SUPPRESS_ERROR_POPUPS:
-                _error_popup_with_traceback('Unable to complete operation getting the clicked event for table with key {}'.format(self.Key), _create_error_message(), e,
-                                            'Event data:', obj_to_string_single_obj(event))
+                _error_popup_with_traceback('Unable to complete operation getting the clicked event for table with key {}'.format(self.Key), _create_error_message(), e, 'Event data:', obj_to_string_single_obj(event))
             row = column = None
 
         self.last_clicked_position = (row, column)
@@ -8804,7 +8781,7 @@ class Table(Element):
         if self.right_click_selects and len(selections) <= 1:
             if (event.num == 3 and not running_mac()) or (event.num == 2 and running_mac()):
                 if row != -1 and row is not None:
-                    selections = [row + 1]
+                    selections = [row+1]
                     self.TKTreeview.selection_set(selections)
         # print(selections)
         self.SelectedRows = [int(x) - 1 for x in selections]
@@ -8817,6 +8794,8 @@ class Table(Element):
             self.ParentForm.FormRemainedOpen = True
             _exit_mainloop(self.ParentForm)
 
+
+
     def get(self):
         """
         Dummy function for tkinter port.  In the Qt port you can read back the values in the table in case they were
@@ -8828,6 +8807,7 @@ class Table(Element):
         """
         return self.Values
 
+
     def get_last_clicked_position(self):
         """
         Returns a tuple with the row and column of the cell that was last clicked.
@@ -8836,6 +8816,9 @@ class Table(Element):
         :rtype:  (int | None, int | None)
         """
         return self.last_clicked_position
+
+
+
 
     Update = update
     Get = get
@@ -8853,8 +8836,7 @@ class Tree(Element):
     def __init__(self, data=None, headings=None, visible_column_map=None, col_widths=None, col0_width=10, col0_heading='',
                  def_col_width=10, auto_size_columns=True, max_col_width=20, select_mode=None, show_expanded=False,
                  change_submits=False, enable_events=False, font=None, justification='right', text_color=None, border_width=None,
-                 background_color=None, selected_row_colors=(None, None), header_text_color=None, header_background_color=None, header_font=None, header_border_width=None,
-                 header_relief=None, num_rows=None,
+                 background_color=None, selected_row_colors=(None, None), header_text_color=None, header_background_color=None, header_font=None, header_border_width=None, header_relief=None, num_rows=None,
                  sbar_trough_color=None, sbar_background_color=None, sbar_arrow_color=None, sbar_width=None, sbar_arrow_width=None, sbar_frame_color=None, sbar_relief=None,
                  row_height=None, vertical_scroll_only=True, hide_vertical_scroll=False, pad=None, p=None, key=None, k=None, tooltip=None,
                  right_click_menu=None, expand_x=False, expand_y=False, visible=True, metadata=None):
@@ -9005,8 +8987,7 @@ class Tree(Element):
 
         super().__init__(ELEM_TYPE_TREE, text_color=text_color, background_color=background_color, font=font, pad=pad, key=key, tooltip=tooltip,
                          visible=visible, metadata=metadata,
-                         sbar_trough_color=sbar_trough_color, sbar_background_color=sbar_background_color, sbar_arrow_color=sbar_arrow_color, sbar_width=sbar_width,
-                         sbar_arrow_width=sbar_arrow_width, sbar_frame_color=sbar_frame_color, sbar_relief=sbar_relief)
+                         sbar_trough_color=sbar_trough_color, sbar_background_color=sbar_background_color, sbar_arrow_color=sbar_arrow_color, sbar_width=sbar_width, sbar_arrow_width=sbar_arrow_width, sbar_frame_color=sbar_frame_color, sbar_relief=sbar_relief)
         return
 
     def _treeview_selected(self, event):
@@ -9241,7 +9222,7 @@ class TreeData(object):
         :type level:  (int)
         """
         return '\n'.join(
-            [str(node.key) + ' : ' + str(node.text) + ' [ ' + ', '.join([str(v) for v in node.values]) + ' ]'] +
+            [str(node.key) + ' : ' + str(node.text) + ' [ ' +  ', '.join([str(v) for v in node.values])  +' ]'] +
             [' ' * 4 * level + self._NodeStr(child, level + 1) for child in node.children])
 
     Insert = insert
@@ -9306,12 +9287,10 @@ def Stretch(background_color=None):
     :type background_color:  (str)
     :return:                 (Text)
     """
-    return Text(font='_ 1', background_color=background_color, pad=(0, 0), expand_x=True)
-
+    return Text(font='_ 1', background_color=background_color, pad=(0,0), expand_x=True)
 
 Push = Stretch
 P = Stretch
-
 
 def VStretch(background_color=None):
     """
@@ -9321,7 +9300,7 @@ def VStretch(background_color=None):
     :type background_color:  (str)
     :return:                 (Text)
     """
-    return Text(font='_ 1', background_color=background_color, pad=(0, 0), expand_y=True)
+    return Text(font='_ 1', background_color=background_color, pad=(0,0), expand_y=True)
 
 
 VPush = VStretch
@@ -9493,6 +9472,7 @@ class Window:
         :type metadata:                              (Any)
         """
 
+
         self._metadata = None  # type: Any
         self.AutoSizeText = auto_size_text if auto_size_text is not None else DEFAULT_AUTOSIZE_TEXT
         self.AutoSizeButtons = auto_size_buttons if auto_size_buttons is not None else DEFAULT_AUTOSIZE_BUTTONS
@@ -9622,8 +9602,7 @@ class Window:
             self.Margins = (0, 0)
             self.NoTitleBar = True
 
-        self.ttk_part_overrides = TTKPartOverrides(sbar_trough_color=sbar_trough_color, sbar_background_color=sbar_background_color, sbar_arrow_color=sbar_arrow_color,
-                                                   sbar_width=sbar_width, sbar_arrow_width=sbar_arrow_width, sbar_frame_color=sbar_frame_color, sbar_relief=sbar_relief)
+        self.ttk_part_overrides = TTKPartOverrides(sbar_trough_color=sbar_trough_color, sbar_background_color=sbar_background_color, sbar_arrow_color=sbar_arrow_color, sbar_width=sbar_width, sbar_arrow_width=sbar_arrow_width, sbar_frame_color=sbar_frame_color, sbar_relief=sbar_relief)
 
         if no_titlebar is True:
             self.override_custom_titlebar = True
@@ -9640,6 +9619,7 @@ class Window:
             print("Window will be a boring gray. Try removing the theme call entirely\n",
                   "You will get the default theme or the one set in global settings\n"
                   "If you seriously want this gray window and no more nagging, add  theme('DefaultNoMoreNagging')  or theme('Gray Gray Gray') for completely gray/System Defaults")
+
 
     @classmethod
     def _GetAContainerNumber(cls):
@@ -9774,11 +9754,11 @@ class Window:
                 iter(row)
             except TypeError:
                 _error_popup_with_traceback('Error Creating Window Layout', 'Error creating Window layout',
-                                            'Your row is not an iterable (e.g. a list)',
-                                            'Instead of a list, the type found was {}'.format(type(row)),
-                                            'The offensive row = ',
-                                            row,
-                                            'This item will be stripped from your layout')
+                           'Your row is not an iterable (e.g. a list)',
+                           'Instead of a list, the type found was {}'.format(type(row)),
+                           'The offensive row = ',
+                           row,
+                           'This item will be stripped from your layout')
                 continue
             self.add_row(*row)
 
@@ -9854,7 +9834,7 @@ class Window:
         :type non_blocking:  (bool)
         """
         _error_popup_with_traceback('LayoutAndRead Depricated', 'Wow!  You have been using PySimpleGUI for a very long time.',
-                                    'The Window.LayoutAndRead call is no longer supported')
+                                                                'The Window.LayoutAndRead call is no longer supported')
 
         raise DeprecationWarning(
             'LayoutAndRead is no longer supported... change your call window.Layout(layout).Read()\nor window(title, layout).Read()')
@@ -10091,6 +10071,7 @@ class Window:
             if timeout is None or timeout > 3000:
                 timeout = 200
 
+
         while True:
             Window._root_running_mainloop = self.TKroot
             results = self._read(timeout=timeout, timeout_key=timeout_key)
@@ -10115,6 +10096,7 @@ class Window:
                 break
             except:
                 break  # wasn't a calendar button for sure
+
 
         if close:
             self.close()
@@ -10160,8 +10142,7 @@ class Window:
         if self.TKrootDestroyed:
             self.read_closed_window_count += 1
             if self.read_closed_window_count > 100:
-                popup_error_with_traceback('Trying to read a closed window', 'You have tried 100 times to read a closed window.',
-                                           'You need to add a check for event == WIN_CLOSED', )
+                popup_error_with_traceback('Trying to read a closed window', 'You have tried 100 times to read a closed window.', 'You need to add a check for event == WIN_CLOSED',)
             return None, None
         if not self.Shown:
             self._Show()
@@ -10472,6 +10453,7 @@ class Window:
         element = _FindElementWithFocusInSubForm(self)
         return element
 
+
     def widget_to_element(self, widget):
         """
         Returns the element that matches a supplied tkinter widget.
@@ -10487,6 +10469,7 @@ class Window:
             if element.Widget == widget:
                 return element
         return None
+
 
     def _BuildKeyDict(self):
         """
@@ -10653,6 +10636,7 @@ class Window:
         except:
             pass
 
+
     def move_to_center(self):
         """
         Recenter your window after it's been moved or the size changed.
@@ -10663,8 +10647,10 @@ class Window:
             return
         screen_width, screen_height = self.get_screen_dimensions()
         win_width, win_height = self.size
-        x, y = (screen_width - win_width) // 2, (screen_height - win_height) // 2
+        x, y = (screen_width - win_width)//2, (screen_height - win_height)//2
         self.move(x, y)
+
+
 
     def minimize(self):
         """
@@ -10707,6 +10693,7 @@ class Window:
                 self.TKroot.attributes('-fullscreen', False)
         self.maximized = False
 
+
     def _StartMoveUsingControlKey(self, event):
         """
         Used by "Grab Anywhere" style windows. This function is bound to mouse-down. It marks the beginning of a drag.
@@ -10716,24 +10703,26 @@ class Window:
 
         self._StartMove(event)
 
+
     def _StartMoveGrabAnywhere(self, event):
+
 
         """
         Used by "Grab Anywhere" style windows. This function is bound to mouse-down. It marks the beginning of a drag.
         :param event: event information passed in by tkinter. Contains x,y position of mouse
         :type event:  (event)
         """
-        if (isinstance(event.widget,
-                       GRAB_ANYWHERE_IGNORE_THESE_WIDGETS) or event.widget in self._grab_anywhere_ignore_these_list) and event.widget not in self._grab_anywhere_include_these_list:
+        if (isinstance(event.widget, GRAB_ANYWHERE_IGNORE_THESE_WIDGETS) or event.widget in self._grab_anywhere_ignore_these_list) and event.widget not in self._grab_anywhere_include_these_list:
             # print('Found widget to ignore in grab anywhere...')
             return
 
         self._StartMove(event)
 
+
     def _StartMove(self, event):
         try:
             geometry = self.TKroot.geometry()
-            location = geometry[geometry.find('+') + 1:].split('+')
+            location = geometry[geometry.find('+')+1:].split('+')
             self._startx = int(location[0])
             self._starty = int(location[1])
             self._mousex = event.x + event.widget.winfo_rootx()
@@ -10750,6 +10739,8 @@ class Window:
                 window._offsetx = event.x + event.widget.winfo_rootx() - window.TKroot.winfo_rootx()
                 window._offsety = event.y + event.widget.winfo_rooty() - window.TKroot.winfo_rooty()
 
+
+
     def _StopMove(self, event):
         """
         Used by "Grab Anywhere" style windows. This function is bound to mouse-up. It marks the ending of a drag.
@@ -10759,8 +10750,10 @@ class Window:
         """
         return
 
+
     def _OnMotionUsingControlKey(self, event):
         self._OnMotion(event)
+
 
     def _OnMotionGrabAnywhere(self, event):
 
@@ -10769,12 +10762,12 @@ class Window:
         :param event: event information passed in by tkinter. Contains x,y position of mouse
         :type event:  (event)
         """
-        if (isinstance(event.widget,
-                       GRAB_ANYWHERE_IGNORE_THESE_WIDGETS) or event.widget in self._grab_anywhere_ignore_these_list) and event.widget not in self._grab_anywhere_include_these_list:
+        if (isinstance(event.widget, GRAB_ANYWHERE_IGNORE_THESE_WIDGETS) or event.widget in self._grab_anywhere_ignore_these_list) and event.widget not in self._grab_anywhere_include_these_list:
             # print('Found widget to ignore in grab anywhere...')
             return
 
         self._OnMotion(event)
+
 
     def _OnMotion(self, event):
         try:
@@ -10970,6 +10963,7 @@ class Window:
             return True
         return False
 
+
     # IT FINALLY WORKED! 29-Oct-2018 was the first time this damned thing got called
     def _OnClosingCallback(self):
         """
@@ -11119,6 +11113,7 @@ class Window:
         except:
             pass
 
+
     def keep_on_top_set(self):
         """
         Sets keep_on_top after a window has been created.  Effect is the same
@@ -11134,6 +11129,7 @@ class Window:
         except Exception as e:
             warnings.warn('Problem in Window.keep_on_top_set trying to set wm_attributes topmost' + str(e), UserWarning)
 
+
     def keep_on_top_clear(self):
         """
         Clears keep_on_top after a window has been created.  Effect is the same
@@ -11146,6 +11142,8 @@ class Window:
             self.TKroot.wm_attributes("-topmost", 0)
         except Exception as e:
             warnings.warn('Problem in Window.keep_on_top_clear trying to clear wm_attributes topmost' + str(e), UserWarning)
+
+
 
     def current_location(self, more_accurate=False):
         """
@@ -11169,11 +11167,11 @@ class Window:
                 location = geometry[geometry.find('+') + 1:].split('+')
                 x, y = int(location[0]), int(location[1])
             else:
-                x, y = int(self.TKroot.winfo_x()), int(self.TKroot.winfo_y())
+                x, y =  int(self.TKroot.winfo_x()), int(self.TKroot.winfo_y())
         except Exception as e:
             warnings.warn('Error in Window.current_location. Trouble getting x,y location\n' + str(e), UserWarning)
             x, y = (None, None)
-        return (x, y)
+        return (x,y)
 
     def current_size_accurate(self):
         """
@@ -11193,7 +11191,7 @@ class Window:
         except Exception as e:
             warnings.warn('Error in Window.current_size_accurate. Trouble getting x,y size\n{} {}'.format(geometry, geometry_tuple) + str(e), UserWarning)
             x, y = (None, None)
-        return (x, y)
+        return (x,y)
 
     @property
     def size(self):
@@ -11266,7 +11264,7 @@ class Window:
         :rtype:     (int, int)
         """
         if not self._is_window_created('tried Window.mouse_location'):
-            return (0, 0)
+            return (0,0)
 
         return (self.TKroot.winfo_pointerx(), self.TKroot.winfo_pointery())
 
@@ -11315,6 +11313,7 @@ class Window:
         #     self.TKroot.quit()
         _exit_mainloop(self)
         return 'break' if propagate is not True else None
+
 
     def bind(self, bind_string, key, propagate=True):
         """
@@ -11409,7 +11408,7 @@ class Window:
 
         # if modal windows have been disabled globally
         if not DEFAULT_MODAL_WINDOWS_ENABLED and not DEFAULT_MODAL_WINDOWS_FORCED:
-            # if not DEFAULT_MODAL_WINDOWS_ENABLED:
+        # if not DEFAULT_MODAL_WINDOWS_ENABLED:
             return
 
         try:
@@ -11554,6 +11553,8 @@ class Window:
         # self.thread_lock.release()
         return qsize != 0
 
+
+
     def _RightClickMenuCallback(self, event):
         """
         When a right click menu is specified for an entire window, then this callback catches right clicks
@@ -11575,6 +11576,7 @@ class Window:
             return
         self.TKRightClickMenu.tk_popup(event.x_root, event.y_root, 0)
         self.TKRightClickMenu.grab_release()
+
 
     def save_window_screenshot_to_disk(self, filename=None):
         """
@@ -11603,7 +11605,7 @@ class Window:
             pos = self.current_location()
             # Add a little to the X direction if window has a titlebar
             if not self.NoTitleBar:
-                pos = (pos[0] + 7, pos[1])
+                pos = (pos[0]+7, pos[1])
             # Get size of wiondow
             size = self.current_size_accurate()
             # Get size of the titlebar
@@ -11611,11 +11613,11 @@ class Window:
             # Add titlebar to size of window so that titlebar and window will be saved
             size = (size[0], size[1] + titlebar_height)
             if not self.NoTitleBar:
-                size_adjustment = (2, 1)
+                size_adjustment = (2,1)
             else:
-                size_adjustment = (0, 0)
+                size_adjustment = (0,0)
             # Make the "Bounding rectangle" used by PLK to do the screen grap "operation
-            rect = (pos[0], pos[1], pos[0] + size[0] + size_adjustment[0], pos[1] + size[1] + size_adjustment[1])
+            rect = (pos[0], pos[1], pos[0] + size[0]+size_adjustment[0], pos[1] + size[1]+size_adjustment[1])
             # Grab the image
             grab = ImageGrab.grab(bbox=rect)
             # Save the grabbed image to disk
@@ -11639,6 +11641,7 @@ class Window:
         else:
             popup_error_with_traceback('Screen capture failure', 'You have attempted a screen capture but have not set up a good filename to save to')
         return grab
+
 
     def perform_long_operation(self, func, end_key):
         """
@@ -11919,7 +11922,6 @@ def read_all_windows(timeout=None, timeout_key=TIMEOUT_KEY):
         event, values = window.ReturnValues
 
     return window, event, values
-
 
 # MP""""""`MM                     dP
 # M  mmmmm..M                     88
@@ -12282,7 +12284,7 @@ def pin(elem, vertical_alignment=None, shrink=True, expand_x=None, expand_y=None
     """
     if shrink:
         # return Column([[elem, Canvas(size=(0, 0),background_color=elem.BackgroundColor, pad=(0, 0))]], pad=(0, 0), vertical_alignment=vertical_alignment, expand_x=expand_x, expand_y=expand_y)
-        return Column([[elem, Column([[]], pad=(0, 0))]], pad=(0, 0), vertical_alignment=vertical_alignment, expand_x=expand_x, expand_y=expand_y)
+        return Column([[elem, Column([[]],pad=(0,0))]], pad=(0, 0), vertical_alignment=vertical_alignment, expand_x=expand_x, expand_y=expand_y)
     else:
         return Column([[elem]], pad=(0, 0), vertical_alignment=vertical_alignment, expand_x=expand_x, expand_y=expand_y)
 
@@ -13289,6 +13291,7 @@ def Debug(button_text='', size=(None, None), s=(None, None), auto_size_button=No
     :rtype:                  (Button)
     """
 
+
     user_key = key if key is not None else k if k is not None else button_text
 
     return Button(button_text='', button_type=BUTTON_TYPE_READ_FORM, tooltip=tooltip, size=size, s=s,
@@ -14081,8 +14084,8 @@ def _BuildResultsForSubform(form, initialize_only, top_level_form):
 
             # if an input type element, update the results
             if element.Type not in (
-                    ELEM_TYPE_BUTTON, ELEM_TYPE_TEXT, ELEM_TYPE_IMAGE, ELEM_TYPE_OUTPUT, ELEM_TYPE_PROGRESS_BAR, ELEM_TYPE_COLUMN, ELEM_TYPE_FRAME, ELEM_TYPE_SEPARATOR,
-                    ELEM_TYPE_TAB):
+            ELEM_TYPE_BUTTON, ELEM_TYPE_TEXT, ELEM_TYPE_IMAGE, ELEM_TYPE_OUTPUT, ELEM_TYPE_PROGRESS_BAR, ELEM_TYPE_COLUMN, ELEM_TYPE_FRAME, ELEM_TYPE_SEPARATOR,
+            ELEM_TYPE_TAB):
                 if not (element.Type == ELEM_TYPE_BUTTONMENU and element.part_of_custom_menubar):
                     AddToReturnList(form, value)
                     AddToReturnDictionary(top_level_form, element, value)
@@ -14343,7 +14346,6 @@ def _fixed_map(style, style_name, option, highlight_colors=(None, None)):
     # return new_map
     #
 
-
 def _add_right_click_menu(element, toplevel_form):
     if element.RightClickMenu == MENU_RIGHT_CLICK_DISABLED:
         return
@@ -14376,14 +14378,13 @@ def _change_ttk_theme(style, theme_name):
     global ttk_theme_in_use
     if theme_name not in style.theme_names():
         _error_popup_with_traceback('You are trying to use TTK theme "{}"'.format(theme_name),
-                                    'This is not legal for your system',
-                                    'The valid themes to choose from are: {}'.format(', '.join(style.theme_names())))
+                                        'This is not legal for your system',
+                                        'The valid themes to choose from are: {}'.format(', '.join(style.theme_names())))
         return False
 
     style.theme_use(theme_name)
     ttk_theme_in_use = theme_name
     return True
-
 
 # class Stylist:
 #     """
@@ -14459,6 +14460,7 @@ def _make_ttk_scrollbar(element, orientation, window):
         element.hsb_style = style
         element.hsb = ttk.Scrollbar(element.element_frame, orient=orient, command=element.Widget.xview, style=style_name)
 
+
     # ------------------ Get the colors using heirarchy of element, window, options, settings ------------------
     # Trough Color
     if element.ttk_part_overrides.sbar_trough_color is not None:
@@ -14524,6 +14526,7 @@ def _make_ttk_scrollbar(element, orientation, window):
     else:
         scroll_width = element.scroll_width
 
+
     if trough_color not in (None, COLOR_SYSTEM_DEFAULT):
         style.configure(style_name, troughcolor=trough_color)
 
@@ -14533,11 +14536,11 @@ def _make_ttk_scrollbar(element, orientation, window):
         style.configure(style_name, bordercolor=frame_color)
 
     if (background_color not in (None, COLOR_SYSTEM_DEFAULT)) and \
-            (arrow_color not in (None, COLOR_SYSTEM_DEFAULT)):
+        (arrow_color not in (None, COLOR_SYSTEM_DEFAULT)):
         style.map(style_name, background=[("selected", background_color), ('active', arrow_color), ('background', background_color), ('!focus', background_color)])
     if (background_color not in (None, COLOR_SYSTEM_DEFAULT)) and \
-            (arrow_color not in (None, COLOR_SYSTEM_DEFAULT)):
-        style.map(style_name, arrowcolor=[("selected", arrow_color), ('active', background_color), ('background', background_color), ('!focus', arrow_color)])
+        (arrow_color not in (None, COLOR_SYSTEM_DEFAULT)):
+        style.map(style_name, arrowcolor=[("selected", arrow_color), ('active', background_color), ('background', background_color),('!focus', arrow_color)])
 
     if scroll_width not in (None, COLOR_SYSTEM_DEFAULT):
         style.configure(style_name, width=scroll_width)
@@ -14546,7 +14549,6 @@ def _make_ttk_scrollbar(element, orientation, window):
 
     if scroll_relief not in (None, COLOR_SYSTEM_DEFAULT):
         style.configure(style_name, relief=scroll_relief)
-
 
 # if __name__ == '__main__':
 #     root = tk.Tk()
@@ -14636,6 +14638,9 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
     def _string_width_in_pixels(font, string):
         return tkinter.font.Font(font=font).measure(string)  # single character width
 
+
+
+
     # def _valid_theme(style, theme_name):
     #     if theme_name in style.theme_names():
     #         return True
@@ -14647,6 +14652,8 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
     #     # print('** Invalid ttk theme specified {} **'.format(theme_name),
     #     #       '\nValid choices include: {}'.format(style.theme_names()))
     #     return False
+
+
 
     def _add_grab(element):
 
@@ -14671,7 +14678,7 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
     def _add_right_click_menu_and_grab(element):
         if element.RightClickMenu == MENU_RIGHT_CLICK_DISABLED:
             return
-        if element.Type == ELEM_TYPE_TAB_GROUP:  # unless everything disabled, then need to always set a right click menu for tabgroups
+        if element.Type == ELEM_TYPE_TAB_GROUP:   # unless everything disabled, then need to always set a right click menu for tabgroups
             if toplevel_form.RightClickMenu == MENU_RIGHT_CLICK_DISABLED:
                 return
             menu = _MENU_RIGHT_CLICK_TABGROUP_DEFAULT
@@ -14696,7 +14703,7 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                 top_menu.config(activebackground=toplevel_form.right_click_menu_selected_colors[1])
             AddMenuItem(top_menu, menu[1], element, right_click_menu=True)
             element.TKRightClickMenu = top_menu
-            if toplevel_form.RightClickMenu:  # if the top level has a right click menu, then setup a callback for the Window itself
+            if toplevel_form.RightClickMenu:            # if the top level has a right click menu, then setup a callback for the Window itself
                 if toplevel_form.TKRightClickMenu is None:
                     toplevel_form.TKRightClickMenu = top_menu
                     if (running_mac()):
@@ -14713,6 +14720,7 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                 except:
                     pass
         _add_grab(element)
+
 
     def _add_expansion(element, row_should_expand, row_fill_direction):
         expand = True
@@ -14733,6 +14741,7 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
         return expand, fill, row_should_expand, row_fill_direction
 
     tclversion_detailed = tkinter.Tcl().eval('info patchlevel')
+
 
     # --------------------------------------------------------------------------- #
     # ****************  Use FlexForm to build the tkinter window ********** ----- #
@@ -15017,7 +15026,7 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                 tkbutton = element.Widget = tk.Button(tk_row_frame, text=btext, width=width, height=height, justify=tk.CENTER, bd=bd, font=font)
                 try:
                     if btype != BUTTON_TYPE_REALTIME:
-                        tkbutton.config(command=element.ButtonCallBack)
+                        tkbutton.config( command=element.ButtonCallBack)
 
                     else:
                         tkbutton.bind('<ButtonRelease-1>', element.ButtonReleaseCallBack)
@@ -15186,7 +15195,7 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                 if height > 1:
                     button_style.configure(style_name, padding=height * _char_height_in_pixels(font))  # should this be height instead?
                 if width != 0:
-                    wraplen = width * _char_width_in_pixels(font)  # width of widget in Pixels
+                    wraplen = width * _char_width_in_pixels(font) # width of widget in Pixels
                     button_style.configure(style_name, wraplength=wraplen)  # set wrap to width of widget
 
                 ## -------------- TTK Button With Image -------------- ##
@@ -15399,6 +15408,7 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                 # Creates a unique name for each field element(Sure there is a better way to do this)
                 unique_field = _make_ttk_style_name('.TCombobox.field', element)
 
+
                 # Set individual widget options
                 try:
                     if element.TextColor not in (None, COLOR_SYSTEM_DEFAULT):
@@ -15430,15 +15440,15 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                 # make tcl call to deal with colors for the drop-down formatting
                 try:
                     if element.BackgroundColor not in (None, COLOR_SYSTEM_DEFAULT) and \
-                            element.TextColor not in (None, COLOR_SYSTEM_DEFAULT):
+                        element.TextColor not in (None, COLOR_SYSTEM_DEFAULT):
                         element.Widget.tk.eval(
-                            '[ttk::combobox::PopdownWindow {}].f.l configure -foreground {} -background {} -selectforeground {} -selectbackground {}'.format(element.Widget,
-                                                                                                                                                             element.TextColor,
-                                                                                                                                                             element.BackgroundColor,
-                                                                                                                                                             element.BackgroundColor,
-                                                                                                                                                             element.TextColor))
+                    '[ttk::combobox::PopdownWindow {}].f.l configure -foreground {} -background {} -selectforeground {} -selectbackground {}'.format(element.Widget,
+                                                                                                                                                    element.TextColor,
+                                                                                                                                                    element.BackgroundColor,
+                                                                                                                                                    element.BackgroundColor,
+                                                                                                                                                    element.TextColor))
                 except Exception as e:
-                    pass  # going to let this one slide
+                    pass    # going to let this one slide
 
                 # Chr0nic
                 element.TKCombo.bind("<Enter>", lambda event, em=element: testMouseHook2(em))
@@ -15536,6 +15546,9 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                 if element.ChangeSubmits:
                     element.TKListbox.bind('<<ListboxSelect>>', element._ListboxSelectHandler)
 
+
+
+
                 if not element.NoScrollbar:
                     _make_ttk_scrollbar(element, 'v', toplevel_form)
                     element.Widget.configure(yscrollcommand=element.vsb.set)
@@ -15575,6 +15588,8 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                 #
                 #
 
+
+
                 expand, fill, row_should_expand, row_fill_direction = _add_expansion(element, row_should_expand, row_fill_direction)
                 element_frame.pack(side=tk.LEFT, padx=elementpad[0], pady=elementpad[1], fill=fill, expand=expand)
                 element.TKListbox.pack(side=tk.LEFT, fill=fill, expand=expand)
@@ -15598,7 +15613,7 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                 element.element_frame = element_frame = tk.Frame(tk_row_frame)
 
                 # if element.no_scrollbar:
-                element.TKText = element.Widget = tk.Text(element_frame, width=width, height=height, bd=bd, font=font, relief=RELIEF_SUNKEN)
+                element.TKText = element.Widget = tk.Text(element_frame, width=width, height=height,  bd=bd, font=font, relief=RELIEF_SUNKEN)
                 # else:
                 #     element.TKText = element.Widget = tk.scrolledtext.ScrolledText(element_frame, width=width, height=height, bd=bd, font=font, relief=RELIEF_SUNKEN)
 
@@ -15665,6 +15680,7 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                 if text_color is not None and text_color != COLOR_SYSTEM_DEFAULT:
                     element.TKText.configure(fg=text_color, selectbackground=text_color)
 
+
                 if element.Disabled is True:
                     element.TKText['state'] = 'disabled'
                 if element.Tooltip is not None:
@@ -15687,9 +15703,9 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                 element.TKIntVar.set(default_value if default_value is not None else 0)
 
                 element.TKCheckbutton = element.Widget = tk.Checkbutton(tk_row_frame, anchor=tk.NW,
-                                                                        text=element.Text, width=width,
-                                                                        variable=element.TKIntVar, bd=border_depth,
-                                                                        font=font)
+                                                                            text=element.Text, width=width,
+                                                                            variable=element.TKIntVar, bd=border_depth,
+                                                                            font=font)
                 if element.ChangeSubmits:
                     element.TKCheckbutton.configure(command=element._CheckboxHandler)
                 if element.Disabled:
@@ -15862,6 +15878,7 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                     else:
                         width, height = element_size
                     element.tktext_label.config(image=photo, width=width, height=height)
+
 
                 if not element.BackgroundColor in (None, COLOR_SYSTEM_DEFAULT):
                     element.tktext_label.config(background=element.BackgroundColor)
@@ -16048,7 +16065,7 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                 else:
                     element.tktext_label = tk.Label(tk_row_frame, bd=0)
                 if photo is not None:
-                    form.TKNotebook.add(element.TKFrame, text=element.Title, compound=tk.LEFT, state=state, image=photo)
+                    form.TKNotebook.add(element.TKFrame, text=element.Title, compound=tk.LEFT, state=state,image=photo)
 
                 # element.photo_image = tk.PhotoImage(data=DEFAULT_BASE64_ICON)
                 # form.TKNotebook.add(element.TKFrame, text=element.Title, compound=tk.LEFT, state=state,image = element.photo_image)
@@ -16103,7 +16120,7 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                 if element.BorderWidth is not None:
                     style.configure(custom_style, borderwidth=element.BorderWidth)
                 if element.TabBorderWidth is not None:
-                    style.configure(custom_style + '.Tab', borderwidth=element.TabBorderWidth)  # if ever want to get rid of border around the TABS themselves
+                    style.configure(custom_style + '.Tab', borderwidth=element.TabBorderWidth)       # if ever want to get rid of border around the TABS themselves
                 if element.FocusColor is not None:
                     style.configure(custom_style + '.Tab', focuscolor=element.FocusColor)
 
@@ -16141,12 +16158,12 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                     range_from = element.Range[0]
                     range_to = element.Range[1]
                 tkscale = element.Widget = tk.Scale(tk_row_frame, orient=element.Orientation,
-                                                    variable=element.TKIntVar,
-                                                    from_=range_from, to_=range_to, resolution=element.Resolution,
-                                                    length=slider_length, width=slider_width,
-                                                    bd=element.BorderWidth,
-                                                    relief=element.Relief, font=font,
-                                                    tickinterval=element.TickInterval)
+                                                        variable=element.TKIntVar,
+                                                        from_=range_from, to_=range_to, resolution=element.Resolution,
+                                                        length=slider_length, width=slider_width,
+                                                        bd=element.BorderWidth,
+                                                        relief=element.Relief, font=font,
+                                                        tickinterval=element.TickInterval)
                 tkscale.config(highlightthickness=0)
                 if element.ChangeSubmits:
                     tkscale.config(command=element._SliderChangedHandler)
@@ -16218,7 +16235,7 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                 treeview = element.TKTreeview
                 if element.DisplayRowNumbers:
                     treeview.heading(element.RowHeaderText, text=element.RowHeaderText)  # make a dummy heading
-                    row_number_header_width = _string_width_in_pixels(element.HeaderFont, element.RowHeaderText) + 10
+                    row_number_header_width =_string_width_in_pixels(element.HeaderFont, element.RowHeaderText) + 10
                     row_number_width = _string_width_in_pixels(font, str(len(element.Values))) + 10
                     row_number_width = max(row_number_header_width, row_number_width)
                     treeview.column(element.RowHeaderText, width=row_number_width, minwidth=10, anchor=anchor, stretch=0)
@@ -16227,8 +16244,8 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                 for i, heading in enumerate(headings):
                     treeview.heading(heading, text=heading)
                     if element.AutoSizeColumns:
-                        col_width = column_widths.get(i, len(heading))  # in case more headings than there are columns of data
-                        width = max(col_width * _char_width_in_pixels(font), len(heading) * _char_width_in_pixels(element.HeaderFont))
+                        col_width = column_widths.get(i, len(heading))      # in case more headings than there are columns of data
+                        width = max(col_width * _char_width_in_pixels(font), len(heading)*_char_width_in_pixels(element.HeaderFont))
                     else:
                         try:
                             width = element.ColumnWidths[i] * _char_width_in_pixels(font)
@@ -16252,7 +16269,7 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                             treeview.tag_configure(row_def[0], background=row_def[2], foreground=row_def[1])
                 # ------ Do Styling of Colors -----
                 # style_name = str(element.Key) + 'customtable.Treeview'
-                style_name = _make_ttk_style_name('.customtable.Treeview', element)
+                style_name = _make_ttk_style_name( '.customtable.Treeview', element)
 
                 table_style = ttk.Style()
                 element.ttk_style = table_style
@@ -16300,6 +16317,9 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                     treeview.bind('<Return>', element._treeview_double_click)
                     treeview.bind('<Double-Button-1>', element._treeview_double_click)
 
+
+
+
                 if not element.HideVerticalScroll:
                     _make_ttk_scrollbar(element, 'v', toplevel_form)
 
@@ -16318,6 +16338,8 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                     element.Widget.bind("<Enter>", lambda event, em=element: testMouseHook(em))
                     element.Widget.bind("<Leave>", lambda event, em=element: testMouseUnhook(em))
 
+
+
                 # if not element.HideVerticalScroll:
                 #     scrollbar = tk.Scrollbar(frame)
                 #     scrollbar.pack(side=tk.RIGHT, fill='y')
@@ -16330,11 +16352,16 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                 #     hscrollbar.config(command=treeview.xview)
                 #     treeview.configure(xscrollcommand=hscrollbar.set)
 
+
+
+
+
+
                 expand, fill, row_should_expand, row_fill_direction = _add_expansion(element, row_should_expand, row_fill_direction)
                 element.TKTreeview.pack(side=tk.LEFT, padx=0, pady=0, expand=expand, fill=fill)
                 frame.pack(side=tk.LEFT, padx=elementpad[0], pady=elementpad[1], expand=expand, fill=fill)
                 if element.visible is False:
-                    element._pack_forget_save_settings(alternate_widget=element.element_frame)  # seems like it should be the frame if following other elements conventions
+                    element._pack_forget_save_settings(alternate_widget=element.element_frame)       # seems like it should be the frame if following other elements conventions
                     # element.TKTreeview.pack_forget()
                 if element.Tooltip is not None:
                     element.TooltipObject = ToolTip(element.TKTreeview, text=element.Tooltip,
@@ -16380,12 +16407,13 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                         if len(str(value)) > max_width:
                             max_widths[i] = len(str(value))
 
+
                 for i, heading in enumerate(element.ColumnHeadings):  # Configure cols + headings
                     treeview.heading(heading, text=heading)
                     if element.AutoSizeColumns:
                         max_width = max_widths.get(i, 0)
                         max_width = max(max_width, len(heading))
-                        width = min(element.MaxColumnWidth, max_width + 1)
+                        width = min(element.MaxColumnWidth, max_width+1)
                     else:
                         try:
                             width = element.ColumnWidths[i]
@@ -16466,6 +16494,8 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
 
                 treeview.configure(style=style_name)  # IMPORTANT! Be sure and set the style name for this widget
 
+
+
                 if not element.HideVerticalScroll:
                     _make_ttk_scrollbar(element, 'v', toplevel_form)
 
@@ -16484,6 +16514,7 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                     element.Widget.bind("<Enter>", lambda event, em=element: testMouseHook(em))
                     element.Widget.bind("<Leave>", lambda event, em=element: testMouseUnhook(em))
 
+
                 # Horizontal scrollbar
                 # if not element.VerticalScrollOnly:
                 #     element.TKText.config(wrap='none')
@@ -16492,20 +16523,25 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                 #     element.Widget.configure(xscrollcommand=element.hsb.set)
 
                 # if not element.HideVerticalScroll or not element.VerticalScrollOnly:
-                # Chr0nic
+                    # Chr0nic
                 # element.Widget.bind("<Enter>", lambda event, em=element: testMouseHook(em))
                 # element.Widget.bind("<Leave>", lambda event, em=element: testMouseUnhook(em))
+
+
+
+
 
                 # element.scrollbar = scrollbar = tk.Scrollbar(element_frame)
                 # scrollbar.pack(side=tk.RIGHT, fill='y')
                 # scrollbar.config(command=treeview.yview)
                 # treeview.configure(yscrollcommand=scrollbar.set)
 
+
                 expand, fill, row_should_expand, row_fill_direction = _add_expansion(element, row_should_expand, row_fill_direction)
                 element.TKTreeview.pack(side=tk.LEFT, padx=0, pady=0, expand=expand, fill=fill)
                 element_frame.pack(side=tk.LEFT, padx=elementpad[0], pady=elementpad[1], expand=expand, fill=fill)
                 if element.visible is False:
-                    element._pack_forget_save_settings(alternate_widget=element.element_frame)  # seems like it should be the frame if following other elements conventions
+                    element._pack_forget_save_settings(alternate_widget=element.element_frame)       # seems like it should be the frame if following other elements conventions
                     # element.TKTreeview.pack_forget()
                 treeview.bind("<<TreeviewSelect>>", element._treeview_selected)
                 if element.Tooltip is not None:  # tooltip
@@ -16792,11 +16828,12 @@ def StartupTK(window):
         # root.bind('<Pause>', Debugger._build_floating_window)
     try:
         if not running_mac() or \
-                (running_mac() and not window.NoTitleBar) or \
-                (running_mac() and window.NoTitleBar and not _mac_should_apply_notitlebar_patch()):
+            (running_mac() and not window.NoTitleBar) or \
+            (running_mac() and window.NoTitleBar and not _mac_should_apply_notitlebar_patch()):
             root.attributes('-alpha', 0)  # hide window while building it. makes for smoother 'paint'
     except Exception as e:
         print('*** Exception setting alpha channel to zero while creating window ***', e)
+
 
     if window.BackgroundColor is not None and window.BackgroundColor != COLOR_SYSTEM_DEFAULT:
         root.configure(background=window.BackgroundColor)
@@ -16827,6 +16864,7 @@ def StartupTK(window):
 
     if window.scaling is not None:
         root.tk.call('tk', 'scaling', window.scaling)
+
 
     # root.protocol("WM_DELETE_WINDOW", MyFlexForm.DestroyedCallback())
     # root.bind('<Destroy>', MyFlexForm.DestroyedCallback())
@@ -17091,8 +17129,7 @@ class QuickMeter(object):
                 col2 += [[Cancel(button_color=self.button_color), Stretch()]]
 
             layout = [Column(col), Column(col2)]
-        self.window = Window(self.title, grab_anywhere=self.grab_anywhere, border_depth=self.border_width, no_titlebar=self.no_titlebar, disable_close=True,
-                             keep_on_top=self.keep_on_top)
+        self.window = Window(self.title, grab_anywhere=self.grab_anywhere, border_depth=self.border_width, no_titlebar=self.no_titlebar, disable_close=True, keep_on_top=self.keep_on_top)
         self.window.Layout([layout]).Finalize()
 
         return self.window
@@ -17143,8 +17180,7 @@ class QuickMeter(object):
         return self.stat_messages
 
 
-def one_line_progress_meter(title, current_value, max_value, *args, key='OK for 1 meter', orientation='v', bar_color=(None, None), button_color=None,
-                            size=DEFAULT_PROGRESS_BAR_SIZE, border_width=None, grab_anywhere=False, no_titlebar=False, keep_on_top=None, no_button=False):
+def one_line_progress_meter(title, current_value, max_value, *args, key='OK for 1 meter', orientation='v', bar_color=(None, None), button_color=None, size=DEFAULT_PROGRESS_BAR_SIZE, border_width=None, grab_anywhere=False, no_titlebar=False, keep_on_top=None, no_button=False):
     """
     :param title:         text to display in eleemnt
     :type title:          (str)
@@ -17178,8 +17214,7 @@ def one_line_progress_meter(title, current_value, max_value, *args, key='OK for 
     :rtype:               (bool)
     """
     if key not in QuickMeter.active_meters:
-        meter = QuickMeter(title, current_value, max_value, key, *args, orientation=orientation, bar_color=bar_color, button_color=button_color, size=size,
-                           border_width=border_width, grab_anywhere=grab_anywhere, no_titlebar=no_titlebar, keep_on_top=keep_on_top, no_button=no_button)
+        meter = QuickMeter(title, current_value, max_value, key, *args, orientation=orientation, bar_color=bar_color, button_color=button_color, size=size, border_width=border_width, grab_anywhere=grab_anywhere, no_titlebar=no_titlebar, keep_on_top=keep_on_top, no_button=no_button)
         QuickMeter.active_meters[key] = meter
         QuickMeter.exit_reasons[key] = None
 
@@ -17280,9 +17315,7 @@ class _DebugWin():
         self.blocking = blocking
 
         win_size = size if size != (None, None) else DEFAULT_DEBUG_WINDOW_SIZE
-        self.output_element = Multiline(size=win_size, autoscroll=True, auto_refresh=True, reroute_stdout=False if do_not_reroute_stdout else True,
-                                        echo_stdout_stderr=self.echo_stdout, reroute_stderr=False if do_not_reroute_stdout else True, expand_x=True, expand_y=True,
-                                        key='-MULTILINE-')
+        self.output_element = Multiline(size=win_size, autoscroll=True, auto_refresh=True, reroute_stdout=False if do_not_reroute_stdout else True, echo_stdout_stderr=self.echo_stdout, reroute_stderr=False if do_not_reroute_stdout else True, expand_x=True, expand_y=True, key='-MULTILINE-')
         if no_button:
             self.layout = [[self.output_element]]
         else:
@@ -17305,16 +17338,17 @@ class _DebugWin():
                           no_button=self.no_button, grab_anywhere=self.grab_anywhere, keep_on_top=self.keep_on_top,
                           do_not_reroute_stdout=self.do_not_reroute_stdout, resizable=self.resizable, echo_stdout=self.echo_stdout)
 
+
     def Print(self, *args, end=None, sep=None, text_color=None, background_color=None, erase_all=False, font=None, blocking=None):
         global SUPPRESS_WIDGET_NOT_FINALIZED_WARNINGS
         suppress = SUPPRESS_WIDGET_NOT_FINALIZED_WARNINGS
         SUPPRESS_WIDGET_NOT_FINALIZED_WARNINGS = True
         sepchar = sep if sep is not None else ' '
         endchar = end if end is not None else '\n'
-        self.reopen_window()  # if needed, open the window again
+        self.reopen_window()            # if needed, open the window again
 
-        timeout = 0 if not blocking else None
-        if erase_all:
+        timeout  = 0 if not blocking else None
+        if  erase_all:
             self.output_element.update('')
 
         if self.do_not_reroute_stdout:
@@ -17331,7 +17365,7 @@ class _DebugWin():
             try:
                 self.output_element.update(outstring, append=True, text_color_for_value=text_color, background_color_for_value=background_color, font_for_value=font)
             except:
-                self.window = None
+                self.window=None
                 self.reopen_window()
                 self.output_element.update(outstring, append=True, text_color_for_value=text_color, background_color_for_value=background_color, font_for_value=font)
 
@@ -17340,18 +17374,18 @@ class _DebugWin():
         # This is tricky....changing the button type depending on the blocking parm. If blocking, then the "Quit" button should become a normal button
         if blocking:
             self.quit_button.BType = BUTTON_TYPE_READ_FORM
-            try:  # The window may be closed by user at any time, so have to protect
+            try:                    # The window may be closed by user at any time, so have to protect
                 self.quit_button.update(text='Click to continue...')
             except:
                 self.window = None
         else:
             self.quit_button.BType = BUTTON_TYPE_CLOSES_WIN_ONLY
-            try:  # The window may be closed by user at any time, so have to protect
+            try:                    # The window may be closed by user at any time, so have to protect
                 self.quit_button.update(text='Quit')
             except:
                 self.window = None
 
-        try:  # The window may be closed by user at any time, so have to protect
+        try:                        # The window may be closed by user at any time, so have to protect
             if blocking:
                 self.window['-PAUSE-'].update(visible=False)
             else:
@@ -17359,7 +17393,7 @@ class _DebugWin():
         except:
             self.window = None
 
-        self.reopen_window()  # if needed, open the window again
+        self.reopen_window()            # if needed, open the window again
 
         paused = None
         while True:
@@ -17373,7 +17407,7 @@ class _DebugWin():
             elif not paused and event == TIMEOUT_EVENT and not blocking:
                 break
             elif event == '-PAUSE-':
-                if blocking:  # if blocking, ignore the pause button entirely
+                if blocking:            # if blocking, ignore the pause button entirely
                     continue
                 if paused:
                     self.window['-PAUSE-'].update(text='Pause')
@@ -17394,8 +17428,7 @@ class _DebugWin():
 
 
 def easy_print(*args, size=(None, None), end=None, sep=None, location=(None, None), relative_location=(None, None), font=None, no_titlebar=False,
-               no_button=False, grab_anywhere=False, keep_on_top=None, do_not_reroute_stdout=True, echo_stdout=False, text_color=None, background_color=None, colors=None, c=None,
-               erase_all=False, resizable=True, blocking=None, wait=None):
+               no_button=False, grab_anywhere=False, keep_on_top=None, do_not_reroute_stdout=True, echo_stdout=False, text_color=None, background_color=None, colors=None, c=None, erase_all=False, resizable=True, blocking=None, wait=None):
     """
     Works like a "print" statement but with windowing options.  Routes output to the "Debug Window"
 
@@ -17717,12 +17750,10 @@ def set_options(icon=None, button_color=None, element_size=(None, None), button_
                 text_element_background_color=None, input_elements_background_color=None, input_text_color=None,
                 scrollbar_color=None, text_color=None, element_text_color=None, debug_win_size=(None, None),
                 window_location=(None, None), error_button_color=(None, None), tooltip_time=None, tooltip_font=None, use_ttk_buttons=None, ttk_theme=None,
-                suppress_error_popups=None, suppress_raise_key_errors=None, suppress_key_guessing=None, warn_button_key_duplicates=False, enable_treeview_869_patch=None,
+                suppress_error_popups=None, suppress_raise_key_errors=None, suppress_key_guessing=None,warn_button_key_duplicates=False, enable_treeview_869_patch=None,
                 enable_mac_notitlebar_patch=None, use_custom_titlebar=None, titlebar_background_color=None, titlebar_text_color=None, titlebar_font=None,
-                titlebar_icon=None, user_settings_path=None, pysimplegui_settings_path=None, pysimplegui_settings_filename=None, keep_on_top=None, dpi_awareness=None, scaling=None,
-                disable_modal_windows=None, force_modal_windows=None, tooltip_offset=(None, None),
-                sbar_trough_color=None, sbar_background_color=None, sbar_arrow_color=None, sbar_width=None, sbar_arrow_width=None, sbar_frame_color=None, sbar_relief=None,
-                alpha_channel=None):
+                titlebar_icon=None, user_settings_path=None, pysimplegui_settings_path=None, pysimplegui_settings_filename=None, keep_on_top=None, dpi_awareness=None, scaling=None, disable_modal_windows=None, force_modal_windows=None, tooltip_offset=(None, None),
+                sbar_trough_color=None, sbar_background_color=None, sbar_arrow_color=None, sbar_width=None, sbar_arrow_width=None, sbar_frame_color=None, sbar_relief=None, alpha_channel=None):
     """
     :param icon:                            Can be either a filename or Base64 value. For Windows if filename, it MUST be ICO format. For Linux, must NOT be ICO. Most portable is to use a Base64 of a PNG file. This works universally across all OS's
     :type icon:                             bytes | str
@@ -18543,14 +18574,15 @@ LOOK_AND_FEEL_TABLE = {
     "DarkGrey14": {"BACKGROUND": "#24292e", "TEXT": "#fafbfc", "INPUT": "#1d2125", "TEXT_INPUT": "#fafbfc", "SCROLL": "#1d2125",
                    "BUTTON": ("#fafbfc", "#155398"), "PROGRESS": ("#155398", "#1d2125"), "BORDER": 1, "SLIDER_DEPTH": 0, "PROGRESS_DEPTH": 0, },
     "DarkGrey15": {'BACKGROUND': '#121212', 'TEXT': '#dddddd', 'INPUT': '#1e1e1e', 'TEXT_INPUT': '#69b1ef', 'SCROLL': '#272727',
-                   'BUTTON': ('#69b1ef', '#2e2e2e'), 'PROGRESS': ('#69b1ef', '#2e2e2e'), 'BORDER': 1, 'SLIDER_DEPTH': 0, 'PROGRESS_DEPTH': 0, },
+                  'BUTTON': ('#69b1ef', '#2e2e2e'), 'PROGRESS': ('#69b1ef', '#2e2e2e'), 'BORDER': 1, 'SLIDER_DEPTH': 0, 'PROGRESS_DEPTH': 0,},
     "DarkBrown7": {"BACKGROUND": "#2c2417", "TEXT": "#baa379", "INPUT": "#baa379", "TEXT_INPUT": "#000000", "SCROLL": "#392e1c",
                    "BUTTON": ("#000000", "#baa379"), "PROGRESS": ("#baa379", "#453923"), "BORDER": 1, "SLIDER_DEPTH": 1, "PROGRESS_DEPTH": 0, },
     "Python": {"BACKGROUND": "#3d7aab", "TEXT": "#ffde56", "INPUT": "#295273", "TEXT_INPUT": "#ffde56", "SCROLL": "#295273",
                "BUTTON": ("#ffde56", "#295273"), "PROGRESS": ("#ffde56", "#295273"), "BORDER": 1, "SLIDER_DEPTH": 1, "PROGRESS_DEPTH": 0, },
     "PythonPlus": {"BACKGROUND": "#001d3c", "TEXT": "#ffffff", "INPUT": "#015bbb", "TEXT_INPUT": "#fed500", "SCROLL": "#015bbb",
-                   "BUTTON": ("#fed500", "#015bbb"), "PROGRESS": ("#015bbb", "#fed500"), "BORDER": 1, "SLIDER_DEPTH": 1, "PROGRESS_DEPTH": 0, },
+               "BUTTON": ("#fed500", "#015bbb"), "PROGRESS": ("#015bbb", "#fed500"), "BORDER": 1, "SLIDER_DEPTH": 1, "PROGRESS_DEPTH": 0, },
 }
+
 
 
 def list_of_look_and_feel_values():
@@ -19098,12 +19130,9 @@ def _hsl_to_rgb(h, s, l):
     def hue_to_rgb(p, q, t):
         t += 1 if t < 0 else 0
         t -= 1 if t > 1 else 0
-        if t < 1 / 6:
-            return p + (q - p) * 6 * t
-        if t < 1 / 2:
-            return q
-        if t < 2 / 3:
-            p + (q - p) * (2 / 3 - t) * 6
+        if t < 1 / 6: return p + (q - p) * 6 * t
+        if t < 1 / 2: return q
+        if t < 2 / 3: p + (q - p) * (2 / 3 - t) * 6
         return p
 
     if s == 0:
@@ -19195,7 +19224,6 @@ def clipboard_set(new_value):
     root.clipboard_clear()
     root.clipboard_append(str(new_value))
     root.update()
-
 
 def clipboard_get():
     """
@@ -19360,9 +19388,9 @@ def popup(*args, title=None, button_color=None, background_color=None, text_colo
 
     window = Window(_title, layout, auto_size_text=True, background_color=background_color, button_color=button_color,
                     auto_close=auto_close, auto_close_duration=auto_close_duration, icon=icon, font=font,
-                    no_titlebar=no_titlebar, grab_anywhere=grab_anywhere, keep_on_top=keep_on_top, location=location, relative_location=relative_location,
-                    return_keyboard_events=any_key_closes,
+                    no_titlebar=no_titlebar, grab_anywhere=grab_anywhere, keep_on_top=keep_on_top, location=location, relative_location=relative_location, return_keyboard_events=any_key_closes,
                     modal=modal)
+
 
     if non_blocking:
         button, values = window.read(timeout=0)
@@ -19392,8 +19420,7 @@ def MsgBox(*args):
 # ========================  Scrolled Text Box   =====#
 # ===================================================#
 def popup_scrolled(*args, title=None, button_color=None, background_color=None, text_color=None, yes_no=False, auto_close=False, auto_close_duration=None,
-                   size=(None, None), location=(None, None), relative_location=(None, None), non_blocking=False, no_titlebar=False, grab_anywhere=False, keep_on_top=None,
-                   font=None,
+                   size=(None, None), location=(None, None), relative_location=(None, None), non_blocking=False, no_titlebar=False, grab_anywhere=False, keep_on_top=None, font=None,
                    image=None, icon=None, modal=True, no_sizegrip=False):
     """
     Show a scrolled Popup window containing the user's text that was supplied.  Use with as many items to print as you
@@ -19442,8 +19469,7 @@ def popup_scrolled(*args, title=None, button_color=None, background_color=None, 
     :return:                    Returns text of the button that was pressed.  None will be returned if user closed window with X
     :rtype:                     str | None | TIMEOUT_KEY
     """
-    if not args:
-        return
+    if not args: return
     width, height = size
     width = width if width else MESSAGE_BOX_LINE_WIDTH
 
@@ -19549,8 +19575,7 @@ def popup_no_buttons(*args, title=None, background_color=None, text_color=None, 
           button_type=POPUP_BUTTONS_NO_BUTTONS,
           auto_close=auto_close, auto_close_duration=auto_close_duration, non_blocking=non_blocking, icon=icon,
           line_width=line_width,
-          font=font, no_titlebar=no_titlebar, grab_anywhere=grab_anywhere, keep_on_top=keep_on_top, location=location, relative_location=relative_location, image=image,
-          modal=modal)
+          font=font, no_titlebar=no_titlebar, grab_anywhere=grab_anywhere, keep_on_top=keep_on_top, location=location, relative_location=relative_location, image=image, modal=modal)
 
 
 # --------------------------- popup_non_blocking ---------------------------
@@ -19605,8 +19630,7 @@ def popup_non_blocking(*args, title=None, button_type=POPUP_BUTTONS_OK, button_c
                  button_type=button_type,
                  auto_close=auto_close, auto_close_duration=auto_close_duration, non_blocking=non_blocking, icon=icon,
                  line_width=line_width,
-                 font=font, no_titlebar=no_titlebar, grab_anywhere=grab_anywhere, keep_on_top=keep_on_top, location=location, relative_location=relative_location, image=image,
-                 modal=modal)
+                 font=font, no_titlebar=no_titlebar, grab_anywhere=grab_anywhere, keep_on_top=keep_on_top, location=location, relative_location=relative_location, image=image, modal=modal)
 
 
 # --------------------------- popup_quick - a NonBlocking, Self-closing Popup  ---------------------------
@@ -19662,8 +19686,7 @@ def popup_quick(*args, title=None, button_type=POPUP_BUTTONS_OK, button_color=No
                  button_type=button_type,
                  auto_close=auto_close, auto_close_duration=auto_close_duration, non_blocking=non_blocking, icon=icon,
                  line_width=line_width,
-                 font=font, no_titlebar=no_titlebar, grab_anywhere=grab_anywhere, keep_on_top=keep_on_top, location=location, relative_location=relative_location, image=image,
-                 modal=modal)
+                 font=font, no_titlebar=no_titlebar, grab_anywhere=grab_anywhere, keep_on_top=keep_on_top, location=location, relative_location=relative_location, image=image, modal=modal)
 
 
 # --------------------------- popup_quick_message - a NonBlocking, Self-closing Popup with no titlebar and no buttons ---------------------------
@@ -19718,8 +19741,7 @@ def popup_quick_message(*args, title=None, button_type=POPUP_BUTTONS_NO_BUTTONS,
                  button_type=button_type,
                  auto_close=auto_close, auto_close_duration=auto_close_duration, non_blocking=non_blocking, icon=icon,
                  line_width=line_width,
-                 font=font, no_titlebar=no_titlebar, grab_anywhere=grab_anywhere, keep_on_top=keep_on_top, location=location, relative_location=relative_location, image=image,
-                 modal=modal)
+                 font=font, no_titlebar=no_titlebar, grab_anywhere=grab_anywhere, keep_on_top=keep_on_top, location=location, relative_location=relative_location, image=image, modal=modal)
 
 
 # --------------------------- PopupNoTitlebar ---------------------------
@@ -19772,8 +19794,7 @@ def popup_no_titlebar(*args, title=None, button_type=POPUP_BUTTONS_OK, button_co
                  button_type=button_type,
                  auto_close=auto_close, auto_close_duration=auto_close_duration, non_blocking=non_blocking, icon=icon,
                  line_width=line_width,
-                 font=font, no_titlebar=True, grab_anywhere=grab_anywhere, keep_on_top=keep_on_top, location=location, relative_location=relative_location, image=image,
-                 modal=modal)
+                 font=font, no_titlebar=True, grab_anywhere=grab_anywhere, keep_on_top=keep_on_top, location=location, relative_location=relative_location, image=image, modal=modal)
 
 
 # --------------------------- PopupAutoClose ---------------------------
@@ -19829,8 +19850,7 @@ def popup_auto_close(*args, title=None, button_type=POPUP_BUTTONS_OK, button_col
                  button_type=button_type,
                  auto_close=auto_close, auto_close_duration=auto_close_duration, non_blocking=non_blocking, icon=icon,
                  line_width=line_width,
-                 font=font, no_titlebar=no_titlebar, grab_anywhere=grab_anywhere, keep_on_top=keep_on_top, location=location, relative_location=relative_location, image=image,
-                 modal=modal)
+                 font=font, no_titlebar=no_titlebar, grab_anywhere=grab_anywhere, keep_on_top=keep_on_top, location=location, relative_location=relative_location, image=image, modal=modal)
 
 
 # --------------------------- popup_error ---------------------------
@@ -20190,6 +20210,7 @@ def popup_get_folder(message, title=None, default_path='', no_window=False, size
 
         root.destroy()
 
+
         return folder_name
 
     browse_button = FolderBrowse(initial_folder=initial_folder)
@@ -20250,8 +20271,7 @@ def popup_get_file(message, title=None, default_path='', default_extension='', s
                    file_types=FILE_TYPES_ALL_FILES,
                    no_window=False, size=(None, None), button_color=None, background_color=None, text_color=None,
                    icon=None, font=None, no_titlebar=False, grab_anywhere=False, keep_on_top=None,
-                   location=(None, None), relative_location=(None, None), initial_folder=None, image=None, files_delimiter=BROWSE_FILES_DELIMITER, modal=True, history=False,
-                   show_hidden=True,
+                   location=(None, None), relative_location=(None, None), initial_folder=None, image=None, files_delimiter=BROWSE_FILES_DELIMITER, modal=True, history=False, show_hidden=True,
                    history_setting_filename=None):
     """
     Display popup window with text entry field and browse button so that a file can be chosen by user.
@@ -20365,14 +20385,14 @@ def popup_get_file(message, title=None, default_path='', default_extension='', s
         if save_as:
             if running_mac():
                 filename = tk.filedialog.asksaveasfilename(initialdir=initial_folder,
-                                                           initialfile=default_path,
-                                                           defaultextension=default_extension)  # show the 'get file' dialog box
+                                                       initialfile=default_path,
+                                                       defaultextension=default_extension)  # show the 'get file' dialog box
             else:
                 filename = tk.filedialog.asksaveasfilename(filetypes=file_types,
-                                                           initialdir=initial_folder,
-                                                           initialfile=default_path,
-                                                           parent=root,
-                                                           defaultextension=default_extension)  # show the 'get file' dialog box
+                                                       initialdir=initial_folder,
+                                                       initialfile=default_path,
+                                                       parent=root,
+                                                       defaultextension=default_extension)  # show the 'get file' dialog box
         elif multiple_files:
             if running_mac():
                 filename = tk.filedialog.askopenfilenames(initialdir=initial_folder,
@@ -20380,21 +20400,21 @@ def popup_get_file(message, title=None, default_path='', default_extension='', s
                                                           defaultextension=default_extension)  # show the 'get file' dialog box
             else:
                 filename = tk.filedialog.askopenfilenames(filetypes=file_types,
-                                                          initialdir=initial_folder,
-                                                          initialfile=default_path,
-                                                          parent=root,
-                                                          defaultextension=default_extension)  # show the 'get file' dialog box
+                                                      initialdir=initial_folder,
+                                                      initialfile=default_path,
+                                                      parent=root,
+                                                      defaultextension=default_extension)  # show the 'get file' dialog box
         else:
             if running_mac():
                 filename = tk.filedialog.askopenfilename(initialdir=initial_folder,
-                                                         initialfile=default_path,
-                                                         defaultextension=default_extension)  # show the 'get files' dialog box
+                                                     initialfile=default_path,
+                                                     defaultextension=default_extension)  # show the 'get files' dialog box
             else:
                 filename = tk.filedialog.askopenfilename(filetypes=file_types,
-                                                         initialdir=initial_folder,
-                                                         initialfile=default_path,
-                                                         parent=root,
-                                                         defaultextension=default_extension)  # show the 'get files' dialog box
+                                                     initialdir=initial_folder,
+                                                     initialfile=default_path,
+                                                     parent=root,
+                                                     defaultextension=default_extension)  # show the 'get files' dialog box
         root.destroy()
 
         if not multiple_files and type(filename) in (tuple, list):
@@ -20430,8 +20450,7 @@ def popup_get_file(message, title=None, default_path='', default_extension='', s
     layout += [[Button('Ok', size=(6, 1), bind_return_key=True), Button('Cancel', size=(6, 1))]]
 
     window = Window(title=title or message, layout=layout, icon=icon, auto_size_text=True, button_color=button_color,
-                    font=font, background_color=background_color, no_titlebar=no_titlebar, grab_anywhere=grab_anywhere, keep_on_top=keep_on_top, location=location,
-                    relative_location=relative_location, modal=modal, finalize=True)
+                    font=font, background_color=background_color, no_titlebar=no_titlebar, grab_anywhere=grab_anywhere, keep_on_top=keep_on_top, location=location, relative_location=relative_location, modal=modal, finalize=True)
 
     if running_linux() and show_hidden is True:
         window.TKroot.tk.eval('catch {tk_getOpenFile -badoption}')  # dirty hack to force autoloading of Tk's file dialog code
@@ -20523,8 +20542,7 @@ def popup_get_text(message, title=None, default_text='', password_char='', size=
                [Button('Ok', size=(6, 1), bind_return_key=True), Button('Cancel', size=(6, 1))]]
 
     window = Window(title=title or message, layout=layout, icon=icon, auto_size_text=True, button_color=button_color, no_titlebar=no_titlebar,
-                    background_color=background_color, grab_anywhere=grab_anywhere, keep_on_top=keep_on_top, location=location, relative_location=relative_location, finalize=True,
-                    modal=modal, font=font)
+                    background_color=background_color, grab_anywhere=grab_anywhere, keep_on_top=keep_on_top, location=location, relative_location=relative_location, finalize=True, modal=modal, font=font)
 
     button, values = window.read()
     window.close()
@@ -21134,9 +21152,10 @@ class UserSettings:
             self.config = configparser.ConfigParser()
             self.config.optionxform = str
             # self.config_dict = {}
-            self.section_class_dict = {}  # type: dict[_SectionDict]
+            self.section_class_dict = {}        # type: dict[_SectionDict]
         if filename is not None or path is not None:
             self.load(filename=filename, path=path)
+
 
     ########################################################################################################
     ## FIRST is the _SectionDict helper class
@@ -21145,7 +21164,6 @@ class UserSettings:
 
     class _SectionDict:
         item_count = 0
-
         def __init__(self, section_name, section_dict, config, user_settings_parent):  # (str, Dict, configparser.ConfigParser)
             """
             The Section Dictionary.  It holds the values for a section.
@@ -21160,10 +21178,10 @@ class UserSettings:
             :type user_settings_parent:         UserSettings
             """
             self.section_name = section_name
-            self.section_dict = section_dict  # type: Dict
+            self.section_dict = section_dict            # type: Dict
             self.new_section = False
-            self.config = config  # type: configparser.ConfigParser
-            self.user_settings_parent = user_settings_parent  # type: UserSettings
+            self.config = config            # type: configparser.ConfigParser
+            self.user_settings_parent = user_settings_parent    # type: UserSettings
             UserSettings._SectionDict.item_count += 1
 
             if self.user_settings_parent.convert_bools:
@@ -21179,6 +21197,7 @@ class UserSettings:
                         self.section_dict[key] = value
             # print(f'++++++ making a new SectionDict with name = {section_name}')
 
+
         def __repr__(self):
             """
             Converts the settings dictionary into a string for easy display
@@ -21191,6 +21210,7 @@ class UserSettings:
                 return_string += '          {} : {}\n'.format(entry, self.section_dict[entry])
 
             return return_string
+
 
         def get(self, key, default=None):
             """
@@ -21215,7 +21235,7 @@ class UserSettings:
             return value
 
         def set(self, key, value):
-            value = str(value)  # all values must be strings
+            value = str(value)      # all values must be strings
             if self.new_section:
                 self.config.add_section(self.section_name)
                 self.new_section = False
@@ -21249,7 +21269,7 @@ class UserSettings:
             """
             # print(f'*** In SectionDict SET *** item = {item} value = {value}')
             self.set(item, value)
-            self.section_dict[item] = value
+            self.section_dict[item]  = value
 
         def __delitem__(self, item):
             """
@@ -21268,6 +21288,7 @@ class UserSettings:
                 # print(e)
             if self.user_settings_parent.autosave:
                 self.user_settings_parent.save()
+
 
     ########################################################################################################
 
@@ -21290,6 +21311,7 @@ class UserSettings:
             rvalue += '\n'
             return rvalue
         # return str(self.dict)           # previouisly returned just a string version of the dictionary
+
 
     def set_default_value(self, default):
         """
@@ -21413,6 +21435,7 @@ class UserSettings:
     #     print(*merged_lines)
     #
 
+
     def save(self, filename=None, path=None):
         """
         Saves the current settings dictionary.  If a filename or path is specified in the call, then it will override any
@@ -21443,6 +21466,8 @@ class UserSettings:
         #    self.merge_comments_from_file(self.full_filename)
 
         return self.full_filename
+
+
 
     def load(self, filename=None, path=None):
         """
@@ -21525,9 +21550,9 @@ class UserSettings:
         try:
             if os.path.exists(self.full_filename):
                 with open(self.full_filename, 'r') as f:
-                    if not self.use_config_file:  # if using json
+                    if not self.use_config_file:        # if using json
                         self.dict = json.load(f)
-                    else:  # if using a config file
+                    else:                               # if using a config file
                         self.config.read_file(f)
                         # Make a dictionary of SectionDict classses. Keys are the config.sections().
                         self.section_class_dict = {}
@@ -21574,7 +21599,7 @@ class UserSettings:
         if self.full_filename is None:
             self.set_location()
             self.read()
-        if not self.use_config_file:  # Is using JSON file
+        if not self.use_config_file:        # Is using JSON file
             if key in self.dict:
                 del self.dict[key]
                 if self.autosave:
@@ -22028,9 +22053,9 @@ def execute_py_file(pyfile, parms=None, cwd=None, interpreter_command=None, wait
         python_program = interpreter_command
     else:
         # use the version CURRENTLY RUNNING if nothing is specified. Previously used the one from the settings file
-        pysimplegui_user_settings.load()  # Refresh the settings just in case they've changed via another program
+        pysimplegui_user_settings.load()        # Refresh the settings just in case they've changed via another program
         python_program = pysimplegui_user_settings.get('-python command-', '')
-        if python_program == '':  # if no interpreter set in the settings, then use the current one
+        if python_program == '':        # if no interpreter set in the settings, then use the current one
             python_program = sys.executable
             # python_program = 'python' if running_windows() else 'python3'
     if parms is not None and python_program:
@@ -22075,7 +22100,7 @@ def execute_editor(file_to_edit, line_number=None):
     """
     if file_to_edit is not None and len(file_to_edit) != 0 and file_to_edit[0] not in ('\"', "\'") and ' ' in file_to_edit:
         file_to_edit = '"' + file_to_edit + '"'
-    pysimplegui_user_settings.load()  # Refresh the settings just in case they've changed via another program
+    pysimplegui_user_settings.load()        # Refresh the settings just in case they've changed via another program
     editor_program = pysimplegui_user_settings.get('-editor program-', None)
     if editor_program is not None:
         format_string = pysimplegui_user_settings.get('-editor format string-', None)
@@ -22246,12 +22271,12 @@ available to make this process more atuomatic.
 
 '''
 
-# Dictionary of Mac Patches.  Used to find the key in the global settings and the default value
-MAC_PATCH_DICT = {'Enable No Titlebar Patch': ('-mac feature enable no titlebar patch-', False),
-                  'Disable Modal Windows': ('-mac feature disable modal windows-', True),
-                  'Disable Grab Anywhere with Titlebar': ('-mac feature disable grab anywhere with titlebar-', True),
-                  'Set Alpha Channel to 0.99 for MacOS >= 12.3': ('-mac feature disable Alpha 0.99', True)}
 
+# Dictionary of Mac Patches.  Used to find the key in the global settings and the default value
+MAC_PATCH_DICT = {'Enable No Titlebar Patch' : ('-mac feature enable no titlebar patch-', False),
+                  'Disable Modal Windows' : ('-mac feature disable modal windows-', True),
+                  'Disable Grab Anywhere with Titlebar' : ('-mac feature disable grab anywhere with titlebar-', True),
+                  'Set Alpha Channel to 0.99 for MacOS >= 12.3' : ('-mac feature disable Alpha 0.99', True)}
 
 def _read_mac_global_settings():
     """
@@ -22269,10 +22294,9 @@ def _read_mac_global_settings():
     ENABLE_MAC_NOTITLEBAR_PATCH = pysimplegui_user_settings.get(MAC_PATCH_DICT['Enable No Titlebar Patch'][0],
                                                                 MAC_PATCH_DICT['Enable No Titlebar Patch'][1])
     ENABLE_MAC_DISABLE_GRAB_ANYWHERE_WITH_TITLEBAR = pysimplegui_user_settings.get(MAC_PATCH_DICT['Disable Grab Anywhere with Titlebar'][0],
-                                                                                   MAC_PATCH_DICT['Disable Grab Anywhere with Titlebar'][1])
+                                                                MAC_PATCH_DICT['Disable Grab Anywhere with Titlebar'][1])
     ENABLE_MAC_ALPHA_99_PATCH = pysimplegui_user_settings.get(MAC_PATCH_DICT['Set Alpha Channel to 0.99 for MacOS >= 12.3'][0],
-                                                              MAC_PATCH_DICT['Set Alpha Channel to 0.99 for MacOS >= 12.3'][1])
-
+                                                                MAC_PATCH_DICT['Set Alpha Channel to 0.99 for MacOS >= 12.3'][1])
 
 def _mac_should_apply_notitlebar_patch():
     """
@@ -22295,24 +22319,20 @@ def _mac_should_apply_notitlebar_patch():
 
     return False
 
-
 def _mac_should_set_alpha_to_99():
+
     if not running_mac():
         return False
 
     if not ENABLE_MAC_ALPHA_99_PATCH:
         return False
 
-    # ONLY enable this patch for tkinter version 8.6.12
-    if framework_version != '8.6.12':
-        return False
-
     # At this point, we're running a Mac and the alpha patch is enabled
     # Final check is to see if Mac OS version is 12.3 or later
     try:
         platform_mac_ver = platform.mac_ver()[0]
-        mac_ver = platform_mac_ver.split('.') if '.' in platform_mac_ver else (platform_mac_ver, 0)
-        if (int(mac_ver[0]) >= 12 and int(mac_ver[1]) >= 3) or int(mac_ver[0]) >= 13:
+        mac_ver = platform_mac_ver.split('.') if '.' in platform_mac_ver  else (platform_mac_ver, 0)
+        if (int(mac_ver[0]) >= 12 and int(mac_ver[1]) >= 3) or int(mac_ver[0]) >= 13 :
             print("Mac OS Version is {} and patch enabled so applying the patch".format(platform_mac_ver))
             return True
     except Exception as e:
@@ -22341,13 +22361,14 @@ def main_mac_feature_control():
               [T('Feature Control / Settings', font='_ 16 bold')],
               [T('You are running tkinter version:', font='_ 12 bold'), T(framework_version, font='_ 12 bold')]]
 
+
     for key, value in MAC_PATCH_DICT.items():
         layout += [[Checkbox(key, k=value[0], default=pysimplegui_user_settings.get(value[0], value[1]))]]
     layout += [[T('Currently the no titlebar patch ' + ('WILL' if _mac_should_apply_notitlebar_patch() else 'WILL NOT') + ' be applied')],
                [T('The no titlebar patch will ONLY be applied on tkinter versions < 8.6.10')]]
     layout += [[Button('Ok'), Button('Cancel')]]
 
-    window = Window('Mac Feature Control', layout, keep_on_top=True, finalize=True)
+    window = Window('Mac Feature Control', layout, keep_on_top=True, finalize=True )
     while True:
         event, values = window.read()
         if event in ('Cancel', WIN_CLOSED):
@@ -22408,7 +22429,6 @@ class _Debugger:
         #     # #    # # #   ##    #     # #      #    # #    # #    # #    # #      #   #
         #     # #    # # #    #    ######  ###### #####   ####   ####   ####  ###### #    #
     '''
-
     def __init__(self):
         self.watcher_window = None  # type: Window
         self.popout_window = None  # type: Window
@@ -22634,7 +22654,6 @@ class _Debugger:
             return filename
         except:
             return
-
     '''
         ######                                 #     #
         #     #  ####  #####  #    # #####     #  #  # # #    # #####   ####  #    #
@@ -22643,7 +22662,7 @@ class _Debugger:
         #       #    # #####  #    # #####     #  #  # # #  # # #    # #    # # ## #
         #       #    # #      #    # #         #  #  # # #   ## #    # #    # ##  ##
         #        ####  #       ####  #          ## ##  # #    # #####   ####  #    #
-
+    
         ######                                    #                     #     #
         #     # #    # #    # #####   ####       # #   #      #         #     #   ##   #####   ####
         #     # #    # ##  ## #    # #          #   #  #      #         #     #  #  #  #    # #
@@ -22652,7 +22671,6 @@ class _Debugger:
         #     # #    # #    # #      #    #    #     # #      #           # #   #    # #   #  #    #
         ######   ####  #    # #       ####     #     # ###### ######       #    #    # #    #  ####
     '''
-
     # displays them into a single text box
 
     def _display_all_vars(self, dict):
@@ -22686,7 +22704,7 @@ class _Debugger:
        #       #    # #    # #    #      # #         #  #  # ######   #   #      #    #
        #     # #    # #    # #    # #    # #         #  #  # #    #   #   #    # #    #
         #####  #    #  ####   ####   ####  ######     ## ##  #    #   #    ####  #    #
-
+    
         #     #                                                       #     #
         #     #   ##   #####  #   ##   #####  #      ######  ####     #  #  # # #    #
         #     #  #  #  #    # #  #  #  #    # #      #      #         #  #  # # ##   #
@@ -22752,6 +22770,7 @@ class _Debugger:
         window.Close()
         theme(old_theme)
 
+
     '''
         ######                            #######
         #     # #    # # #      #####     #       #       ####    ##   ##### # #    #  ####
@@ -22760,7 +22779,7 @@ class _Debugger:
         #     # #    # # #      #    #    #       #      #    # ######   #   # #  # # #  ###
         #     # #    # # #      #    #    #       #      #    # #    #   #   # #   ## #    #
         ######   ####  # ###### #####     #       ######  ####  #    #   #   # #    #  ####
-
+    
         #     #
         #  #  # # #    # #####   ####  #    #
         #  #  # # ##   # #    # #    # #    #
@@ -22833,7 +22852,7 @@ class _Debugger:
         #   #   #      #      #####  #           # #    #
         #    #  #      #      #   #  #      #    # #    #
         #     # ###### #      #    # ######  ####  #    #
-
+    
         #######
         #       #       ####    ##   ##### # #    #  ####
         #       #      #    #  #  #    #   # ##   # #    #
@@ -22841,7 +22860,7 @@ class _Debugger:
         #       #      #    # ######   #   # #  # # #  ###
         #       #      #    # #    #   #   # #   ## #    #
         #       ######  ####  #    #   #   # #    #  ####
-
+    
         #     #
         #  #  # # #    # #####   ####  #    #
         #  #  # # ##   # #    # #    # #    #
@@ -23061,6 +23080,7 @@ EMOJI_BASE64_HAPPY_THUMBS_UP = b'iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAYAAACohjseAAA
 
 EMOJI_BASE64_HAPPY_WINK = b'iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAYAAACohjseAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OTFDMjA3MTk3OTk2MTFFQjg3QzdFQTc4QzI5RjM3OTMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OTFDMjA3MUE3OTk2MTFFQjg3QzdFQTc4QzI5RjM3OTMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5MUMyMDcxNzc5OTYxMUVCODdDN0VBNzhDMjlGMzc5MyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5MUMyMDcxODc5OTYxMUVCODdDN0VBNzhDMjlGMzc5MyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PhbG1A0AABOISURBVHja3FoJcFz1ff7ee3sfWkmrw5JsWbbl+5B8EmwExgeuwSYEkkCTeJgE6DCdkA7pUKYNyeSaaYakdWkgLWlDQ4a06ZRCQ3Hjgk1CwBjjS7bxKVm2ZMm6j9Xex3uv3///VqvDsr3iSGfY0dPuvvN3fr/v9/uvYpomPskvFZ/w1ydeQdtkOx999FE0NjZe80IR2Dr/KdnvXmEtE4WGYVa4NTNY5TTKGf2lULRCnuXhYQc3jZvBLcMtyS2kKBiM6ejrTKKXt+vWVHREeWs9+wxxf025viI7d+5EfX19fgru378fBw4cuO5N+Vx/GbCa0t86vwRrp5ej2utDRe0sxVtZ5YXfZ8KpRKHyRLGNWEOkvdgyVDORAAaGgAttQPtl9ESj6Gi/gNNDKbzeRVFohbP5eKq/vz9/D7rd7mvGdLGK2mo7Hlw0HXetvxnzV91Qico5c1A6cz4vLgDSfFisidKf52eKaGbyiycTZZkoyi5dxvLWNnxhz+8Qfu8Y3m4Zwj93GnglZuKqN9I0LX8Fr/Yq0lA4y4bH1yzAw9vuChau27QKhbVrANdMKhMBBg/RDW/y80UGYjrn5inlDAN5Vi032mr9LfCfO4etr+7G1v/9PfZdDOFbzSm8YXzYHLzCaxRygQ0r5xbiZ1/e4am7Y8dtsFXfRIsXAxF6qfNZYPggcvZVp65Y7iWkT43mwLzFwNfnATfUY91LL2P3wVP469MZfKcvA+MjUVAk+FI7GirmVbz85cfXBRu23o0u1KCPuXO4vx1dQ3Yk9C1IKZ9B0u6hbA4k4OLTVejElDTslNOUn1MSZ8A9aT44w71K1h4mj6S4PyWPOeSZKXgQgzsVh0+NwVwTQcnssL38f7q/5dr1VsXRCB7OR8nrKlgOzC5bUP1vvmd2BzuWLcR/MqW6uT3byWiMZ71l+wPgvYDpAJ36dWBlyWMPLf7pjy6/lcG3r6fhNeugT4U6p8T7VPTx56vWUjk7FQoTv3/cNUa5P9TLtIqLyfA99MUfIrFx+xOLbFj3oTxYreD2ktvWbFu3YS6WJ1qZiwY6Bk9iR+R9lDmjKFAjcDMgnSxpYnOJ4DQTDEZdhpgig9CU35ELSEvWEfzJUISRIyIwk4q4k7jaKb/HedehjA8h3YueuBfdCT/C3jLYt9+oBQ+8+u2WPnML0dWYkoKGVcCVqgJ89fubmrHI/iKf7uIBJl74e7hP6ccAsWWI9StFiybFlrTeU+Kdlh6mTpm0Ve/SmWztG4M9Njty9dGWlcLOfQ6mqYeb02F99zE0Z1YTC5grST6vqZ2fGTkmr/mnebi1KYQ1TSm8OyUFhSBOAtiy+WhYuIowphdRMu5NHUXPhX785GcMExKdUFRIzKcpSu7dlJ+zVV0ZU90VjK/0I08a9xmjnuZ+0zCgsYZWUbkv3gtsXk8lsxI7qfzyFdDePkp7U0FzqgrynhtvXAOPUrTQcqlmINT6Dp74PnCsxQUnzapWe3NKjQglFDVZdE0lm6CKMhqQI5/NMRFlZhUydNrQkEqZGaveqKoqXdzW3Yknn+qSEbJ4GYMoarGgmTVEwHJsOnwBbooYzxtk7AJgNGxausxHE5Rbp5ltePXFMzjRrMG1aBHM0ioYHr+szCpFNJxeJIsrkSokeVNt0NIpclMqopJhKJrlYYx4VpP7Jc9kHCt6BrongGRRJTL+YpjRCPTuy0gzB9IpA0rNfBjF5fiPl5gWIcFaLLJaRJY7bRpqGW1zpxSiPgWe4mlYOG06CzkKpRXTnYfx9ltpaMFyKkY6lklRiSTCMxahc+1dGJq9Ahl3QHrEHhtCoOUIph3cBV/7GZjqlTRKoacypHXd67agf8l6JIoroNvdVDgBd08rSva8gOC+l0EajgwN5ZhWha6zPTh7zsTy5Vbui4CoqYGzaj+W8JbH8/ZgSsf00hJMLygP8huptBpG64kjaCEhVotLZIipVLBtw/048ufPo7d+M7REHAWtJ1B4/jA8PW2Il1ajj4JbXrsyQ4TXotPmYGBRA6+Nwt/6vrzW1XsJiZIqNP/ZUzj9xK+QKWQEDfVB1xzIuHw4dWpM1ItU4mE6s35KOehRUV5ZDh/cVEaxS9L8fuNlRHUbVI8XaiqBnhV/hK41d2L+L7+Loqb34BjulUKP5hlkLho2x+SMjPsDLUdR95N3xyktLkz7ihEtrcGlhs+h5Ss/wNwfPwwjGYfNX4j2tjAipL1Op5XyhQyaAgfm25UpKDjdicryUpEgAcsD4UM4doKo5vLCdLBcUBB33yUs+8c/hWvgMgy7UwqsaDYL/dT8yKg4T3e4ZbiKiEgUV0mjuAY6UXixEZ7GNxGqXgLd6YESj0PxF4CPRW8vAYb8npfBTZybHkB5QJ1KHaTnRQLDRgWNEFJdp0SvRtf6pOACIf3tp+W77vZBIVBo5Ixp5pTJAmePDlFoEkWbc9L8Gxeqpi6N07L9a+hf2iDPL2w+glm7noEWT6Dg7AF53GSBNDUP4hkbenoyIvekB4UnufnZfIumOpYvkynyC13srH+p8+jv6sUA0UuVO7NG0OxWEjNck0UVaNt4P4ZrllFAGxzhfpQcfwNlR3YTcELSS1flikTbltsfQceWe60en6/uhq28xov5z37NCnEREawLBtFXZQR1d0Vy5VSQAW4eTFFBl8spzMt/sQMYHmZRD/NrqXMcXMiwClbi5Ff+BtHaOVarwxNiSg2G6lai4+b7MOfXO1F8et+kuaiw9iULStC37FZLuZF2i2IOLLgR8aq5cPZ1w1AdVuhnKdDAwNhGV24O06pueXNRRdKnDLlR7DTCEUG/yLyZY7kxo8w1Dc13Py6Vc7e0wne5Cd7OZoZoSOZXdPpchKcvlApOnoRmtk5emUAi/EU0jIVMk8XPpKEEyIyIkSVOqqS8UyHbkmvEW6hZJyIxSSuy4DHqveFZdYhU1KL2+SdR1vga7JGB8cJeB0lNGswZ6pUo3FW5DTnKzIgOHD8GT+9F6OJaI3tAvNPyqbTFZMaPhyZHtaspmBK0CJGjUlXrZuPvIcBEIGn9M38Cd2+bRFLd6Z16A08D1Ox6mjnnwsDCG+k5DYGm46h96Uc0YhqZsUVPUkFFMj2hqwhPw/pMOpSbA+SlYCQmvJbqsk6yYQJJtkLIFg/DxnAUMP6B2zyGoQjpBS98E7HyGvnd03MRqp6m9+yj/jGz8Si4q5ILTUnZ6ICkkoOoPBRkkPUNR8YUfre4Lzkhw9IkesoEFTkowlH78F2vma2f3q6WHELLsBa9lwzPrIZZjcTjBXqKQ4Ky0dERkfJ5U7WYgc7+wdE88pNTO1VdJrkRj03GvCbtSdR0QiLlVUsEDWaxF8s7Qimp2EhYCveMXTthTCosKz7vqAeTbFGHYxhmWqbzVrCdTKynN5vy/F9Ibh3wQ8aCyc7WZO0bRwgn4ZnJQDkur/08dPJHwTU1XiMUEpsgBTbuEwjbV7eJ509uBCOVumK6Bz2F4uAogpLgoD2My6HMFJgMo66XCvabSZSKKAySkpawsegOx6D4AtCHBmArq8jlxGQUzBHuo4L3oH3jF1D+3m8k75QoK9CAtW9g0Tp0fWob5ry0k/mWIpmeQAZEb5iIjYYR81G0XwpdVlE5qqCcKuhoUqfCRW0qugYG0Uk9SovISR0kMLOqgZMHhqGWlCM9PAh9cABaUbHFMiYqSSS0UbiZv30epx/8DlrvfFDOOjWBXCKNPAQl3tN3uhmlx/fCEPx2JCKyRjPCw4yU1CiwkKqJ8PTYM6IHHAFUyUsJpien1A+GTaR6unGutx/LiqZZ+1ayB9v1ZkROOxWnC0aEArAfVFwky3ZBtLXRxKAWOoGj5NAuzGQT27b1AZhu2zi09Z46g3m/eAIqjSVAReS3QA2T6GmmxJYckwZU0E021t+JMhq8rEzyfTnXaW9HpuMa6xeTKiiyNaJj37lmfHbeUotC1fO9tEBHXzjMlsnP9iUpLWyOzRN1zCxGjDEYUlUvfBf+/bswuGIDkmyBVDHIbTqM4kPkqQzjlM05aZiPtl1iXGLnH1lUaBBz68TaCWWkkILR0INtRITzU1JQ3Lob2H/0BPRtn2YEUMGyGcBqevHVd7qgLSCpTvlgxqLjBTJH6IuRmyHpDFc/O4KC0++MBxDZYjknzG0m0DjTyj0tWAY1MiTHknV1OUJDoACaOtHIq4evloNXLWK0yvtnzqGJTEpSoy5qvGkDa6IegdLWBLvXA62kDIqX8Gp3jBfKHO8JkWM6e8mxm6x9I1O1iZuY17g8cnpgJ8LZI/1IXziPxUuA6hmW94RNmpuBaAK7zGt0n7arLbbwL3qmA785dgILGm4C2tgPutgefulLzMVdbJ+a+mH3B5DxBWFSWcE5deE4wetYec0sh7J41ch40MyyIIbvyKiRIKWoVkugsHqrkjnzGgKKFuqGFh5kq5DA2rXAHXeMEhqxrnjyJIa6M9gz5cn2CDNqTeIXu17DIzethc1LoIsz71euBGrnAs/9FxP8/CC8Q4PkdQQVm4sCsp0SQCK6UAk81nTXFIEyYS6qjHiPRECACuIM98E4c5QPIUHwuzJQ+cxEsYrtm1XcstJAKmORbJGDxxqp4EW80qej7QOP7hMqGg804pd7f4f7l68GWtqt8BDUzV1hg8+l4L5VYrpmorUtjs7OOAb6hyCqQZT9YyIpapQqCXQOYbNhKADIpuhygi2qhrhnoEyOAVFZBcyYDuy7YMP+ZnLTwrQMBgG0gqIR57B3D3udKJ683uLLNRWM8obHo/irp5/D2r8sxNxCQnQsbrnXoCXtdIyY3ZQxdOfNt+QXoCoUFFuC5yZSBsPJEBEnBRRlUwCEi95xuixnC+W8XmvfiA3stElBt/Uc0exJvLFZUf8Ko+fdJnxjwLx6/ct7+WzQwOXTfbj37/4eL3/6HsxcstRSrDRgoGNAk2ErvJrWRwFRcEXBXxXlmowuh0sj6Tq24ohhnlgacNhNlidTGqKbgPdrKvf7Q/jBxQx26nlw4rxW9lpSOBrqwIa+f8HTN30KW9ffCqyqNdDYakNzt4oZJXpOQSGwfPBU1pmvpIqIiOLWq2JhtYFir4m33gZ++wZ6j7bhm6eTeDbfny/lpaAQuCeDlndD2N62BzsOH8Mj9UuMFdO0NI60aFhCIcoCpkTRiWUsN+GYAGJjy99YTysWguPts4wOMegisvz0H9Bz/AJ+1ZbE3/bqaJ3Kb7OmtDYbNaA3Gfh5Ryf+9VwfGso8+t3BQuPG55pRO28W/KXMx0CBlU9iGUyUOkGnhEfUMeXRzC7RiZwkM7PyViyukpmIgdKldpiXuo0L/cP6++ej+O+OJF4TaPlBguIDLT7HyFXPpbC3mVsgbGoZHbXTzqDaY8NcCl5DVlXJti5Y4obTa0exYteWwuVRLXeKkQM1i8cGYmkc64sjSQWHWTqZYbhEWzRToYsZxWwJGRj8sL+k+1Cr68Kig7pcvj0bTpPwpvH6yDFBwkp49wIF9WWlvoPJ4BJV1DxR3LV4GEbviQOtcdwulsTTFnO6cg3v4/op1wd5CfYTUFFQYccNHg3bi3yOlXa73WGYJjte0+bsax5T5A3SMH9DAdRGG6lLKpUKh8Kxd6IZ7OpM4eCQLoYK/08Kip+VFCmYzzo/2xAOUmAXdNNlQ8O0Yv8GZ7B8nmf6LNgKgnKdUIKHaY5f9KQX2V75oslU3RA7VsFeSpPRdaVDvY/VDPef6hkIv5HImPt4mY1bmmE73JVBM+tek25+zArOceLOP74JL6xeDb/HJcku+thVnz3D5EE9SpesYE+XkUOqEQgVhdqYhA4HSKgdDif6iSwJzQG1oAxGZ9ui2+adWEQ6+NXSQpIAMVznMw68h9C/78N955LY/bEpKNY5Vs3Ed//iUSonVp90q3kcGAZ28+DZw4ZUzsiks+VAslBEIBYPMvJ7xlAkMbCWqAWvdKGC/GxwcBChSBTpeBx1y01suoWRUpBdbiaruXkdAufa8L3WZuxJApm8U2cqClZo2HznJtR5glJqIEvbfE5rdGD3FYypdWKWbuIwKvAylmAvZiFlqAj4TezYATzwgFydRTxuyrX4YDDIbr0UqtuHHt7L58oCTdx6lp8G3bYRKynDhilhQ74nklejvhIPrW/A+AGdaXUZ/SENNoacmf1RgVDuIKrwHmZIDzajFK9nZuMzn1WwcaOJBt7nscfYRK8WrY8pr/P5fHCKNcABwWEnICl9tvFmKHNK8ZDycShIPjx/7QpsKJ+BKyaQokD3htgAi9VIsbydVe4gqrNSyt6eRS6Ib+ydjZ4+67Gi7RGenD0728TyPBs9eLnPgejEhTAqXEGP37oCmwlysz9yBavd+Dwt6Jusde7pIxCkvXCw71FZ6/ppjlYEsIb/hdCuEYvYdLx5phQ/fyOQI6uig9iyJTvAphedPj9CMRd6+ydvVDffgsB0Fz73kSoofnRUNxt3L1w0wXuKNd3q6BJLekHSMk2ipY/mLkCSnWgA5QxQh0Qj0QeJnzalMaskOW7IMHbu6yQ0h5J+eU9dnzCL4LMXLwaWzsTdznx/CprPSQUq1jSswlJ3YRY5xyg4zFBqvSR+e1KRmzs5edKNaCdyphGlesP0oTjgMdN48vZm3HNzNCf52bPAiy9avZ7IQweNFLcX4yL79HB8goJ8tpcAt24lVvhVLM9H9v8TYADubV2dyUV/vwAAAABJRU5ErkJggg=='
 
+
 EMOJI_BASE64_CRY = b'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UmVhZHlxyWU8AAADJmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDUgNzkuMTYzNDk5LCAyMDE4LzA4LzEzLTE2OjQwOjIyICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOSAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6ODFFRjMyQzU3NjZBMTFFQzk5RjlGOEVGNzI0N0Q5MkUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6ODFFRjMyQzY3NjZBMTFFQzk5RjlGOEVGNzI0N0Q5MkUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4MUVGMzJDMzc2NkExMUVDOTlGOUY4RUY3MjQ3RDkyRSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4MUVGMzJDNDc2NkExMUVDOTlGOUY4RUY3MjQ3RDkyRSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pn1wWbgAABOOSURBVHja3FoJkBzVef66p+ee2Z3Z+97VsZIWCQmEOASWBCXJSFy2MQFMKnawcJwEJ6SCyxSpJEXKYMc5IAVVxIVtHELZ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'
 
 EMOJI_BASE64_DEAD = b'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UmVhZHlxyWU8AAADJmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDUgNzkuMTYzNDk5LCAyMDE4LzA4LzEzLTE2OjQwOjIyICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOSAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OERFNzRCQkY3NjZBMTFFQzkyQjU5MzI2RDQ4OTlFMTgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OERFNzRCQzA3NjZBMTFFQzkyQjU5MzI2RDQ4OTlFMTgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4REU3NEJCRDc2NkExMUVDOTJCNTkzMjZENDg5OUUxOCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4REU3NEJCRTc2NkExMUVDOTJCNTkzMjZENDg5OUUxOCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pmz6ud4AABNfSURBVHja3FoJkBzleX3dPffMzt73ag+dK4nViSLABolDgMDYYNmGBMJlm0DASYXEFWKCj1Bgp0wljp2EmFA+ioBJkB2D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'
@@ -23087,6 +23107,7 @@ EMOJI_BASE64_MIKE = b'iVBORw0KGgoAAAANSUhEUgAAAEYAAABGCAYAAABxLuKEAAAkzklEQVR4nM
 
 EMOJI_BASE64_SUPERHERO = b'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'
 
+
 EMOJI_BASE64_HAPPY_LIST = [EMOJI_BASE64_HAPPY_STARE, EMOJI_BASE64_HAPPY_LAUGH, EMOJI_BASE64_HAPPY_JOY, EMOJI_BASE64_HAPPY_IDEA, EMOJI_BASE64_HAPPY_GASP,
                            EMOJI_BASE64_HAPPY_RELIEF, EMOJI_BASE64_HAPPY_WINK, EMOJI_BASE64_HAPPY_THUMBS_UP, EMOJI_BASE64_HAPPY_HEARTS,
                            EMOJI_BASE64_HAPPY_CONTENT, EMOJI_BASE64_HAPPY_BIG_SMILE, EMOJI_BASE64_PRAY, EMOJI_BASE64_GUESS, EMOJI_BASE64_FINGERS_CROSSED,
@@ -23109,6 +23130,7 @@ def _random_happy_emoji():
     return c
 
 
+
 '''
 M"""""`'"""`YM                            
 M  mm.  mm.  M                            
@@ -23117,7 +23139,7 @@ M  MMM  MMM  M 88'  `88 88'  `88 88ooood8
 M  MMM  MMM  M 88.  .88 88       88.  ... 
 M  MMM  MMM  M `88888P' dP       `88888P' 
 MMMMMMMMMMMMMM                            
-
+                                          
 M#"""""""'M                             .d8888P dP   dP 
 ##  mmmm. `M                            88'     88   88 
 #'        .M .d8888b. .d8888b. .d8888b. 88baaa. 88aaa88 
@@ -23125,7 +23147,7 @@ M#  MMMb.'YM 88'  `88 Y8ooooo. 88ooood8 88` `88      88
 M#  MMMM'  M 88.  .88       88 88.  ... 8b. .d8      88 
 M#       .;M `88888P8 `88888P' `88888P' `Y888P'      dP 
 M#########M                                             
-
+                                                        
 M""M                                                
 M  M                                                
 M  M 88d8b.d8b. .d8888b. .d8888b. .d8888b. .d8888b. 
@@ -23135,6 +23157,8 @@ M  M dP  dP  dP `88888P8 `8888P88 `88888P' `88888P'
 MMMM                          .88                   
                           d8888P
 '''
+
+
 
 '''
 
@@ -23148,6 +23172,7 @@ This offers more flexibility for use in a main window (larger) or perhaps a titl
 
 HEART_FLAT_BASE64 = b'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'
 
+
 HEART_3D_BASE64 = b'iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAWO0lEQVR4nO1ca4xdV3X+1t7n3vGM7dhOCMHGQFIIaZwmSnAohiRMIFFLWwq0cEN4tEKtRBBVo6YVFFCrwap4CNpSgYqKRCraJn14qJAIlNICwQXS0DIkMYlDKaFNME7sxPaMPQ/fe85aX3/sxzn3ejKe8SuRepd1c889j733+fba3/rWOmcCDG1oQxva0IY2tKENbWhDG9rQhja0oQ1taEP7f2YE5Excc4rbOmX9n/aGCYgA7Ns3Pl7gfBQYWesw3xUA2Ds9wk0XVIpdCyo7d1aD42IYHLECS+Au2v/oT/zex+e8O9vkWQD2HnTsrWnb+Xi4kp2oBttZad/Hs1PnQRNwsh0GhIHOdLZtGCvGXtAz93I4voiCLQJshJO1MJg4OSDCR0l5COA3CXeXiu45a/f0YZmaKlM7cZBL3vTgedy6tXV4/dxZuspv1m75Mm+4WmkvAHUjlGeT8KAeBriXZrsJfNfD/m2BxUPPuXvPodwO4AThnk7WThro5k0SkMNvvO5CB321OLxzdXvk+WqEicAYRp8QEydwAJwIChFAgIWy2kPi71oin1tA9YN1f/PVA0CYRGwHj/FUQDABSRM83dl2ti50LypUX2tmbxnz2GxqKM1gZlBVkARpEIbReCMcDJ6G2cp+CPCTpSx84TnfPvJDxHtK93cyOJ0U0M0ldqhzzQUt598EkXetbrfWz6uBIioSUUwbIpBwbRo44yQBgB/1DqBhvqy+DvJjleO3moDnVdPYnnndi88B+TIqbxnzeAXNMF8qzEzFFASFZgIaQBMagQA4SSNI0IxC82d5YKanB4X8iJr+/aZ7ph8evNcTsRMGutnx3BuvfS0FH1rdHrl4riwN4k2ceBERiADiIIl1JX76ug+wx5s2ENZyaBXO4WhZ3VEZ/nTt7V/+OgCw0/EAIJOTCgCHO9vGneJ3V4m8plcpuqolTR1oTkihKWAGkgANNEsgIwIMxG2jkWoKmtvgxR0s9QGhvXfjPdN3DN7zmQJaAJCdjj/Cx97tvPtgy3uUQA9wLfFORACIhyRQxQHOQZwAUoQWxAWYSQgVUAWpgAGEKUkd87493+vNg/ZRE/fJtbf9634AeOzGl5y3pmq9g7R3j3kZm+2WPZAeNM8EaJw3mMbv9LsGPoAfJyECTxphVhZguzQjje/91n0zf3wDoCeI14kBzYkJBwBHdn/tI2vard+bUzMRBxHv4AERF71YIrgOcAVQtAAnEOfB6OWkhBs2g6jCtIRUVcPzWJHmx9pejnbLL4rwXT0zKVQ/OurdLx45WhKsFGBBBcAAavJUatOTNYPaD3DDu/MkEGZqMGLUwc1X+tFNuw6/Z7IDuWFy5YCvXOt2Ol4mJ/VI5+oPrWm33jOnqCDw4nzgX3GAdxBEkIsWpGiD3kOKFuB89u4UHsUMNAUrg2gJK0ug6gEWjpspAZZj3rfnu73vgipjhb9ittfr0dgSmmRgraaDmjYaAFpjEsgafDMQjUlJLGZGIXXMWTFf8QMbdx35gx2AX6l3rwhoTkw42b7dpt9w9W+PeP9xBZTivBMHeJ89GBK8VlptoNWGtNqQogBdAfEBaEoUy2BY2qpgVUGqEtQS6PUArWpvI0HVasxLQRJzvbISsIApaIiAafbMvCJMG8A3v5nP7/N8JE9P3p/BVy/wpeK3Nn/v8CdXKv2WDTQnJhx275Z5PHp5ZfxKq9Vap4Q4F7lXfKAFkQBmewRorYpgB6+GLwDnQOdSqwANUipgFVhFTy4rsDwKVFXtkZk/VWkGIXy/5zb4t+nFpgPg1oA3wSQN0OjFsb+6b4MZUQhZGqdLuOvO3zWz6/0Aty8TbHf8U5Jth0xOKg0fWtUq1hvJENjSBznAsRgB2iOQdhtotyGtEbDVAtvtvF9aI8HbfQtoFWESvA8rIVFQVCxBpcRJhPNOnA9ukjutXSbtSseb5zR217ff8DXX31RzQwSoCKxysqEt9kEB9JIVOOqygGan4/F+cLbz0l+ryGuNBEScRLkmyFI5eG+7DSlGgCKC3G5DWqsgrVVgewRoBbCdbwXv9z6uCgeKr+lH+tvP8jD3C0AYlU04n6iP9wmxQUWZ1HxWmFLvlnis7/x4GgBCXvnoFWfd+ABAduBPCdA5MxKQlHesbRetUmExMPfdCZ0PXloUQOHBogBbLaDVBht8jVYb9AXMeUA8ABe9WCBkSMeIGrAMbhpREwTXB0gfnk3PxsAnn/BkTnnMzEAA6RG22kmbincm2lhOAev4Hj0+7mVyUve//qpfoMlPV7DgfKgnnnH2xReA86ArQF9AfAviiiDtWoEagnZueCTiUEkILe5j/iep7eSgImHYUoM0OOnBs12QkM1bzG00PwRFQJGYo9Yrom91ZJoRsdDJxY9duvp6mYR+ffz4Xn18oJ/5uAOAEVavGSnk7F4VEqQMQVrazgXvjEExcStjsEzJSV6SpmHbQhDK0owKUY2+4jLUTAhFpSJpEYORuxsgAWF/jlMNjh/gbYGHQ5SjIjGg583+RSACJyI9CtrOPcN8+zUAcO3jx8dxyRMICLZ0qokJOJpc1hYHo5mltc2Q1TEmp3QCOIDiUHtdvHWzyDcW5JtayATNIAwaOuyrYFqBMACh+COsgc1TFeeLdH3FqtRnmgYI+yh78FwKm/MDMDoQg+OERMw1grOAEF3lBYBdQUBwCfR49LH0THQ6TrZvt1vu23alCDdWtIxbAjjQhiAv+uh+kmSSKUwrSFlCyh7Y7UF6UcZVVfyUECtB7cGipBMk2RX6qINCYz8F1pwACeOyTOF9EqTvX5YeuZwY0UhKx4WDeXKyuhLAiZQQUNzGn1y27nKZhE52lsayWBLo/fvjaOz5Rjm7ZwCZY3yM2wEEB4JGuKhJzYLHAhXECHqPFOlJwMUkRaoSKHuwqgf2SohVYfos0UVK0+NvCyAL0EhmkCcgUW0dO7Krwhq4Nvk4nO8ASqCbyM/MK1KaV4KAKAgnsoEt/3wA93T2L+3RSwN90axgJ0DjRoqsMRogLgBBhgEY4IRh6XuDqcFVCkgFCGAkxDxEHVymWINVIWGwqgepFNLrgdoNGVpMl0PK3Ki0xYhHSt4OQITlb+ifiLQCrMEZCY20NgkJLCgMXmxJStReT7jQP7KvoAJg5FoINwEAZk8C6AcOLQgAlMY17UK8ahyQxJuDAXAwCRThqICVME2DJKAG8SFiGwSQEPREDbQqFJDKsk6Vww0A0AwUqeHGm+VOxhgBi0CyD8zANBIyQKAPJBKNEkDN28KgQASBu2GJ2LOuasQGwHtpGWUtADywcBJAXxK/PVB4GHpxEcEC4BJ5TAwgNBSDIHAWPNGZgeJgkfNcGjTDkw5UCmgJUw1LvpkO5xpDoomYZjc4OhyvQU5wZMpJNMzIsdrQ31GQUID0+MckTozFSXLxYouz0ki2iezwS7PCcoBOJmC3JMKSdy5zlos3pIzZWVmGARdBLWhVBY3kHYRAlYJZrKq5yK8EQWVNSSnwmQVVkEqYSLOcflsOvoEywhjB6OUWQQKRIiQjumRCukYsBF6Ji7GxEoA+zgaC9xtBCrsnDfTkA+FbiYNU6xbOj9AYXRNQixrWSQYFFQFViJaA83AQmDi4hhwMk5fqjMGLRJJjJi+1DKBF8In4XUfKEHhpkcpCH5LAD1PRf1MNaZ24O4RMBsAjx1NcVE6SuagZEp1zqKgLAjkAAJecu3RxaUmgO+eeawDgiUcqYNqB55UkPGMQEQk0YBIyMBfQcmIwCzIpySKFhMMCCFzmzBTTMnUE+HK1LQe0SCsGxklA4zuAljjXgMZkxLJnWgkSVgpQczXi/QRZGRUHkppJJ7g8bUS6VTdj2ntkKQyTLa2jd+40EjJbtf5dYXtbAQ1TGjRKOIslyPRNMyjqArxaUCLI24SaQs2gmq5RmGp4Um0VNG4n5ZHat9hnajs8ELFc2jSz0I5aZJCwGiy2Y0i6vI6dGfAItkmUgZFSGJUJgZCIiQPprAjfP1G1b3MCDjuX9uglgRbAHrhhS+u5/3L3QZAPkQY1iMW02SxwqyXtHD+qhBphsSYcAIzgxt8WJ8A0AK5VAtHCQwCNoJmGCckpusGYqloKo4ZJTxMOghKelugAsLkMbZG+WW9nBdjY1uYk1IIjCmuBCR664L6ZaUxuKQQnQR0AcMmPRklA9pm7a7ZX/ZJzflRJOpggpr91DSvQhJN4s3RRuEbh7xoKSFKqi3wHKQFKfMxMokFBSHrigcjTfQqkDqbNfSkuWKZgRspqcLfUE4A0pkjisbdE5ABA78QdsWre0b5BQDC6eyAQHGtLar8EHwDg1VvP+XFXvzXW9i+cVzPnnEOK0M16cNSh4iQG9H6w03Yu+WaObPSYZiBngGxIO2Sw0QC4yefNVwjqpIUhMWkE0qwsjrm20T+b6X8IB6u9uAXD99fPuqvW7d5zKM3VUjget+okAKe2bi3kC1NPOOGXjqrBgc4yJQQKMRIal74ZIz1EPtbAwUzPBlVhldbHLB7LXB3PMUOl8bz0dJsKgwVKsRAraHW8MLXswcqw/DULmCQnEblboHGfIR2XeDzsizXGXEoVEbcQYsNX1u/ec3BqK4rjgQwsU0dvnZqqAKBVtD881+396mghzylJilCEUtdzgViGNIi5+ncMMk2Scw2tlIMPosxCvUOiFxvY8MSkC5A9nU2va1BOTTWxTQblkF4JS23XOh0J2kxB0tizyol0zfauwcLHAOCOqeU9DV9mwgJyfLyQf9r52MPXX/q5rsrNFEjQmAZJXCySdWf9ZlJoIRWiUram/e1nC8zL/IScEVjk78i7CUhLk5M4HWBdsGhEs/QgQfoCZKKnxGGW+6pH10jApTTC0yaf9Z2ZH3EcxeCbqEtguDyLsYS7rr50w1ibUy0vF5QpaCQOzs/xpG+/NDkaQMoBnmxAg+CmIJl+hzeZGvydAU3ZntVpOOtJy0Eyt9/09nBt5vHmKoiDbYmgp/aQc4++6IX/gcMJk+Xgt2ygAeQXC//3537mLd3K/lpE8qPR/PJiDoyx+YZHI54Xb/vJO88iN4HYjJiDXp1AZ/biQA0hDZdEK/HcXOeO/aRvyek8EB44AHXSkoWKFdJ984X/+cQOnq73OjIGcRb/+5UXf9aLvP6oxYKi1M9AJHtyoJJ+GulvbHAg6fq61AlA6ppz2tfn4XEymJ45Nni5SUN12p6eBqaHBMzFq7hc+q4zgqNOpKf6DxdPPXbjSjx58P5WZDs68K84dNF5+0rcVYh7XmmkE5cfXIeW6+cbjL/TLC3VeRp9ppfEo7HewAR8PrkGUJKHgrlSRzTkWggpiR/iRBjqF4eP9XoCLETEzH60eqG66vzO4/vT68IrsRMCOtme6y69fqbXu6MiW3DiU5MCIFX5JaawzVclsqQe8InmYTb3Zpps1h+s5u4BoNgAv0kDaXdYYYRZ3E7tR0XS0MwQwDywMFJ2f/nC+w7ceaJYreBNpX6bANzmr37vK3R8X9uJr1TLWluHtNoaKbeq5RQ8farGR5vXNq/RdK6iMsYaS6hnVBp0vGpIw5XM6XjQyQZlKCjWuphBX0fKN4Zn5WqEMvxlgkKg4ZpeIXRq+vsX3nfgzomTwOtkPFp2dOBumITee/UL/mLM+Zumy7LrxI3EqNhHEznlbnbaJGY0FUf6Uft1fSob7s7GaU3+bQZOxGAa9XNcFf3tSUOxECKEEd113o3MleUnrrh3/807OvA3TPY/dlwRWCdyUdMIuB9v2zxy0I1+esTxzYfKquedtI9tupZ8SZBk5TE49AR8bCLXsBNuzQsSpybBR0OilrqTpEQQuSNCbjY410mtdNd7NzJr1W29/a23v3TPnu5KFMZidtJAxzZ4//iWNWW58Jee6ExX2muJaxsYlUc8rVHuWEyA1MAuNkD2gZLlV99AGsEMTaduMH7OOPOOfLXAUBG9dV7avara4U1+4/Jd++ZWBsfidiqARtKU9770p55Zqd7uBdcfVvY80K4f/yy24qTxX9TuzRz6Ggc4MFgONFkHu75zk3OjTqWbfSRHFQiU1ltXuLaaftnc/FuvnJp9givUy09mpwRooAb7nm2bn13RfVroXjVdlmXhpJW6YqO3AYhzI+mRUsMn83eesnr1o99b641jb2yRiWmYGct1hbRU9fMjOv/2y+6f23eqQG6O/ZRYGtjuF286Z8bcZxzw6pnKKpFYU+kDevGu+6XdwACzXKw1c/O45d+sz8+XDlAG4oSFhKRa15KirPj5NTz6tsu+N3PoVIJ8zH2cCss0ctllq4+0Dt3mqK+bKc2cSJ80kpPpOfGsICuIfkXT7631SuhT50mH21lOnCn+cWTE//qVU4/On2qQm2M4pTYBuO2APbJt2+j/dB/5WxpfN1tZiIcDCB8j+Rb93S/zjmH7pmsPcvST9hOoZLUTkPrZjUcPvPWFP0T3dIAMnIQAX8q2x4Heevfd3fF79v5K4fjnbUc1GkpThuQjfDR+6n3NBEVRxn3pUw4kOan4nxOdmKxUjY+yfkhbGVEaqQQKQJ3px8fvP9C5/S0ogZAJng5MTotHN+3OcRSv2Inq21s33rzvaO8DjrKma3VWvlyTge9kS2UPiwZEgCMCUePseof3Xb374CcmxlFsX2Zd+UTttAMN1GDfvXXzmx6dX/hAAVwwq0YXtPUxY5DF+GGRkT7Z4NPlg5qGAFYLpGd86JlO3/eyBw/vOBMgpzGdEUt/BHnfzz5788OzR2+H8eVz4Q9TVQR+cSCP1eABwOUwHvP1JNUJ/JgHSNy51cobnv2D2SdO5A8zT9TOGNBAKK+GP+8VfPnSc/7qcE/f4MCxBUUpgtbp6NOIatRLQbP5tQ6Tr/qvmbcB9cSfjj4XszMKNBCk7STgbgD0G5ef95uPL3RvaYtccrC0nndS4NQFaFOiOruQds/s/nO9/7NrHjx46w7Ad+oXcs+YnRbVsZQJwA5gO7agfc29+249b+3IjXDypWe0fRugI1GeVEkRAIkSgDuncG1HfHFToW+85sGDt+7YgvZTAXIa11Nm39mK1pVTKPeNb1lzz4F97z3S07et8rJpumdd56R9AuMzM5QbWm5kwXTParjPXLGq/eGNu/bNpb5Ox30sx55SoAGAHXiJ/1uGnZc+4+VzFW828PUHS6MD1AmK47mfIHAxBcUGL/DgZ0cFH7/2welvAAABL2eQj59sjE+5TQBuE+BvAspdlz53w+N65KZptT8k3NhCxa5zWMq7SaI76mUVaDOrxf3RRavs1gvum5n+1Fa09k5Bt5+mJGQl9rQAOtmntqJ1U1zeX7ts7Uu6pf8Twl31eGX0obDZF1MY/u7LnVuICO2bI8DvvPL7M1ODbT0d7GkFNFDXSQDgm1ecs2m+W/38nOJjBlm3YKgE4c+BSeiol8JRZ1YXcsvZVv7zld+ffxSATADydPDipj3tgE7W1LlfvXj980rgj7smb5iLr32t9oJVtB2Fk3df92D4P3mdaW28EnvaAg30lZ/xna0bxw4fOnLFQlHcBgBtp2++aPbIvc/dg4XBc4d2gtao3+OubZtH79q2eXSxY0Mb2tCGNrShDW1oQxva0IY2tKENbWhDG9rQhja0p639H6VtrWHYZMWdAAAAAElFTkSuQmCC'
 
 PYTHON_COLORED_HEARTS_BASE64 = b'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'
@@ -23155,6 +23180,8 @@ PYTHON_COLORED_HEARTS_BASE64 = b'iVBORw0KGgoAAAANSUhEUgAAAFoAAABJCAYAAAC96jE3AAA
 RED_X_BASE64 = b'iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAQ5ElEQVR4nO1ca3SV1Zl+3nefSwJ4IQaMXBJU1HIZqwSt1ULAG/VSuXm0hVTrtMvOz+n8mBln1pqU+TNrOqur7ZrlrMrMWJ22dGoUQscbFKtAaylNtK0IbRHIDYlKQTEhOef79vvMj5yPppRLzvlOElzrPGt9a0GSs/ezn+/93r33s9/zAWWUUUYZZZRRRhlllFFGGWWUUXIQEDY16VjzKBRsalICMtY8hoWhAn9UiJ8cGCMRJCMiwtHGz1yaloqa/QNom9vcnCMgAnAk+oqLiNuuTCZ1WQXqRXOHKp/c2F7qfkpy56KoZSZT2bdq5dfP08pWgb14eQXbjjeuvFEAnouphE1NKgCPN6688fIKtgnsxSTTbX2rVn6dmUwl8MexxUXsRqKI4OpPnz8g4x6tSCQbA/MQCARAYP4InNxX+eQzL51LkR1x6X9w5S3wfCqprooASCLpHLI+/K80j/21fO/HfaXgHSvKCKgAPLx69flZGfdohXON/UFgoTcG3jPnPR2kCgGf/rBx+c0C8FzI2ZFwHzYuvxkBn3aQqpz3DLxnaMb+ILC0ui9led43DjU2jheATTG1KnrQEdnDqz99/nirfLQimWjsCwJTET3p76iAGPiBQZeft279y3EIlwofrlqxWGEbFHKBAZSTtDDSxqeS2h8EayuPhV+RZ589HieyixL6jyKvPr/Seh8dl0g09gbhn4k85O+pgJD4QB2XVX5/4ytjkUZOpIvVSxeZlxYRnFLkCGZmE9Ip7c/ZY5W9ub+JI3ZRj4MAPLp06YUVYe9/jHOusS8IvAIKEqe6hBRPUgQXmOeGD1fds3i0J8ho4ju66p7F9Fgvggs8SSHldLxVRPtyOV+ZkC/3TtBvvJPJTBitiBYCQCYzvg8D3x6fTK7u86EHxA3nwySpIgLgSC7EyonPbHyFmYyT5mZfKPFCEPVxLHN3g1O3HkCVkZRBLsNpwY9PJF1vGH57QsX7X8GTW7OFCl5QRDU15ScRDKypcInVfWHgYXAwYjiXEOLNKGRVSm3dkfvvWiDNzb714YeThfAoBK0PP5yU5mZ/7HN3f8pBfiBk1SAHyHB5w+COB0E4TuSvjvWe/4/5Sb0g7YYd0WxqUqxZw6Mr7qxNiLyRcm5c4M0Vk+YJMqUqAe3tQLCqqvnZrXz44aSsXRsU3NiZ+sm3eWTFPQtTjusSkKk5MwqGG8l/yjrp1Oe8HQ8Sbk7V/27sBggRGVZkF3pXqE6qYUIahYPzHAq/IDnvLQmZkvTy/aMr7lwsa9cGzGRShfA5E5jJpGTt2uDoijsXJ4XrEsTUnPeWH0bBnAmQRgFB5cAkERBf/eqwb1hBd5ZNTYrdu9PHwt5XK5y7ZsCbSbz1pU+puiyt27x+YeLGZ19iJpOS5uZcjDYRtXF06d23qLMn0qLTcmYewLDmklO2CViFU816e/288/tuxIxFOVmzxob7+cKEzi9tepcvmedN1yed1g0+irE2IT6t6gJjt1C+PGHjc8/HSSPRZ3uX3nUnhY8lVaZl44vMlKqExnYvfuXEDZteK3SZV7BAUQfv3f3p69IOzU60LmB8sSucc/2hf9fAv6z60abnWuvrk/Pb2goSO/rMkXuW3KWQxysTbvKA97FFToqKp3UY5d4Lf/RCazFr6YIf+2j9O+nZF39p4laG9J0JQIwkSRR5ueNh6FMqk5V4/INlt90xv60tYENDYtiCNDQk5re1BR8su+0OJR5PqUw+HoaepCuWl5FMABLSdw5oYsWFP3qhNVqPF6FbcWgCdA1g7y27vT7pZYMTTA/JWJFNwNKqmjX/nph+/sLnNm1iU5OeLRdGf/P+XUuWUO27aXWTshZv/iDAhIh4oitwXD6pZXNbNOZi2otl8ORNJTt695J5gLU41emhNxOJNUBLqWjg7bCAn7vwuZe2sAkqa049wOh37991y62E/CDptDpnjCcyYQmn6s26AF028dlNr0VjLbbNktmk799x63wKnkk4rQ28NzmN7zHMNi0pooHxiEDvnfj85pdPlRejnx2947abTdicUqkKGFdkWtI5Dbx1KrHywhe2FJWTT0ZJLMvobh++/ebr1aE56bQ25xk3sulExJsdEdqKqhdf2Tp0wCcm5SUNi1Tceud0oo+bukhLOac5bx30vK968092xo3kCCUxdQQwNjVp9eaf7LSE3p8NrSOtojD60xk2Z7uEFG9GB1QZdcO7dy5eOMQXFgE4+DO33gkm5rf2pzWIznoZfVpVs6HvYEI+W735JzvzE19skfMalQ6RefOHOxbdROJ7aXUzSrBRGPSziaMKv7Rq07btAHDkzgULzSdaVDDxTFbnMOHTqm7AfLsIGi964ZWfldrsKvlpBxsaErJ1a3hkycIFZvhupUvUDXjvKeKK7cwAOogQfNepu9szSND0ORVM9PkbURRXAEIOruF92KGKz1dt2rY9GkORdE+JETlWijYO79y24Hah/Gelam2W5onixSZJpyKePAgACplqBEViiAz6tKjrN+s0xZdqNm/7cTEbpeFgxM7vWF+flLa24Mitn2rwxHcqnLs06y1eZJN0eQ+5MD/5JG4YjOS0Uzfg/QEneKhqy0+3RpyLpHdGjOhBKTOzU9K8O/furTc0wBJPpFVnZM08ZHgHBaduND85xVjRgPRpVZc1OwANH5q8ZcfWiGvRbZ4FI3qUJM27c7sys1OTt+zYCtgDAyE7UqKORivKXeUJzlrs52m0lKgbCNlB5QOTt+zYumuERQZG6eg/eiTfWbDgRnW2zqnWBfktcqxdQAEQ5DdCqurNOszrqou3b391JNPFyf2PCqKZ/PCCBdeb881OtDZnVvSKoVBY3ur0tE71LlO9ffvOkVhdnA6jWswSrU0PLbjhelV52kGmBzF3c8PqF2BSRDzYZcZ7L9m+Y+doHAoPxajWw0lzs38qk3GXbN+x0weywhu7Xd5iLXpHd5bLSDpAvLHbB7Liku07dj41yiIDY1SeFdmNHTdeNz+l0uJEp8a1WE+FyOo0stuAZVN++otYVmccjFkdXGTWvL3wmusQJjc4kakeiHsGObR9c4Aa2E2Gy6e8+nprqQyiYjCmBYeRA/fugvp5YSgbVWRaKcQ+ITLZTXLp1B1tBZ/xlRrDPioaSRwPgBRgYMl1sBFftw0TY1Yc3pQv+e26ad4NSePzQtZ60kBqjLNHcHASVE+akLVJ4/NdN827oRSlt3EwJqkjeoy7r7v2k4C0OMFkH9/qPFU/HFzV4F0nWFqz87UdY5VCRl3oaELqvu7aT4LcoCIXj4TIQ/qLxH4HEiyf9stdPx+LSXFUHyVm4ASwg/Ufv0nM1qvg4rOVzsa9opJhFVws5ta313/8JgGMmeIPI4rBqAndWl+flGb4juvnLSDQLCI1oTeClLg5eRg5W0LvKSI1CaC54/p5C6QZvrW+fsSqWE/GqJpK++fPbUiZrnMiUwKzWCflRfEgLamqIfl2oLbqstZdI+pBD8WIC71r9uzU3N27c+3zZt+sXr6bVJ2SY7wT8jggYSkRDWkH4fD56W1vvhxxHMl+R1ToaADd1/zFrd7sibTq1Gzcuov8JBa3jbSI5mjdKvrQtF+9sWWkxR4xoSPiHR//2O2E++80dFqW8Utnoy8kkTTELBlOi7osrFvgv1j3699uHkmxR/RwtmvOnEVe7X/SqtOzxhJUdYqExoMAxCmmhCxFmYG4rFmnM31w+ptvvvKROZyNzPT2WbNuocN3UiLTcyyNyAG5Lwm3IlTvxNiiIrWlEDsl4nJkl3g8NGPPnpfO+XKDpwB3H+APzLlqMSnfS4tMiZuT8UeDqJNiSy/dvfdXAHBg1sxrAdfiRGr9YN6OnbOz5NsibLz0zd+9HI0lBu8/QcmEjnZb7bOuvMWAHyREJ8UuOAQsAagnO0Vs2aV73nqd+fYEsAOzZl5LaosTqQ3ju34+KeJytEOe9rkrf/vW1lLuIEtV5CgCsGvOVYtyoT2dVL0o7hEVAUsCGpAdDG3lzH372ob6FNG/37r88npJ6DNJkbogvtiWGKxi7QmV9121Z+/2UnkjsdeyEZH9H5vZkA3sGQUuylm8HZ+RliQ1MGsHJTNz3762yO2L+o3cuJn79rWBkgnM2pOEGmkxdpE6eGDMGufRsv9jMxtkcDMfOyBLEtH7Z12x0EK2uHwtXEkmJ7MDSdhna/ceOGPpbPS7/VfM+IRH4ocVKnWlmHwdIJ44qglZdtmevduKHk0ecfKnAMD+K2Ys9KG1CDgxHAyLON6FTwFuwPsDZlidF9mdKU8KYE8B7rK97b+AcdWA9wdSgCPpY3kjJAWc6ENr2X/FjIVDx1wMihI6eoz3Xl63yJu0KDkxjguXH6ClATcQ+v1qeOCKfft+/nIDEjKMmf8+wL/cgMQV+/a9ap4PDnh/ID0otjGu60dO9CYtv58xoyHO4UHBdyjKyXvr6haL02YILopdn0z6lKjL0vbTwoeuau/eFufrb7+fMa0Bmng8LXpZjvFq/YjoFRj8Q8Lz3ks7Oop6BUZB4kQd/L6u7gZR/J8TqQ544o0FRYGkT4u4LNkBJw9e+Vb71ji7sxNiz5zRAM8n0yJ1WdJLDLGNHCzAId8zymeuam//RaFiFyRQE6BfnDYt3Z/QnyVFrg1JQxyrk/SpQZG7neILM/d3vrQLSM0FYvkNURtvXVZ7izc8kRKZFpAxq1g5uPQjXksRNz3R0ZErpD5k2CJFhSc51dkgLydpKOhVDH960cwSgBswO6hOHiiVyAAwF8jtAlIz93e+pE4eCMwOJgBHMyuWLwgBaaDN7CdnrwGskHxdSEQrAb5WU1M7IZV4IylSGYBFlSuQg19v88TBQINVc9p7trUCyflASc2cqM3fzahZqJZcp4KpQQwvPAkJA2N/EPq5cw4d6srPS8OK6kI6NACo7+npEMq3EkRCPEMaUchlRiYIDb31GML7R0pkAJgPBK1A8qr2nm2e4WdDbz0JQs3IQnmLZ5gkEwQfm3voUOdXCxAZKG6lIAfq6tLHffBPE0Qf6S/gW1cEmADEgE4PuX/2wYM78uvkkX3VT76P3VOn3uDAHypQGxa2UvLjRFyv8d8tCP5h7nvv9WEkVx1D0VqP5PhDU9aMV32k18wr4M7UcySyJ7uCBFdc3dUzqrVwUV+/mV4zPxnKeicy/Wxi50PWj1d1/WbfGqf6SG13d38x/ReVqwjI/DYEfZdc0tQXhv8yXsQZT//lTZJ0g7ut7gBYfnVXT2vTKNdWSH7yurqrpzUAlnuyOzG4iz1tybCRfryIOx6G39Rx4/6utru7v9jdYRx3TfKGS+K3NTX/PE7kkd5T26L5qk50BcCKq3tGN5JPwXswsmtq5ieADQ6Ydio/m4BNENHj5DddT8/fXwlk4zh5Ra+Bow4FCPt6epqOkf86DlCSln93B400R6o36xwisoyVyHm+RkCu7ulpFWB5aNblyMj1Y567VQLaS36zJ51+5Eogi5h2aUls0vlAkJ4woamP/FYloI4UR0oqL3JO5L6re06ki9jeblxEnsWsnp7WQCTjzTpT5AnelYAeB/5t9tSpf7u4o2OAJ75rNMaI8lYnUPmb6uqv7amuPrxr0qT335g06bVdVVXXA4MbnrFl+eeIOL1ZVfWJN6qrX39j0qT391RXH/5NdfXXXgVK+lrjEcGvq6qm7brggmui/5/LZIdwkzerq6/9dVXVtDElNFxwSORycDd5zoocgYCczHss+QwbBORcTBVnQ9NHJDDKKKOMMsooo4wyyiijjDLK+Cji/wF6UgmmVAL7cgAAAABJRU5ErkJggg=='
 
 GREEN_CHECK_BASE64 = b'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'
+
+
 
 '''
 M""MMMMM""M                                           dP          
@@ -23196,10 +23223,10 @@ def __send_dict(ip, port, dict_to_send):
         # Create a socket object
         s = socket.socket()
 
-        s.settimeout(5.0)  # set a 5 second timeout
+        s.settimeout(5.0)       # set a 5 second timeout
 
         # connect to the server on local computer
-        s.connect((ip, int(port)))
+        s.connect((ip , int(port)))
         # send a python dictionary
         s.send(json.dumps(dict_to_send).encode())
 
@@ -23217,7 +23244,6 @@ def __send_dict(ip, port, dict_to_send):
         # print(f'UPGRADE THREAD - Error decoding reply {reply_data} as a dictionary. Error = {e}')
         data_dict = {}
     return data_dict
-
 
 def __show_previous_upgrade_information():
     """
@@ -23237,8 +23263,7 @@ def __show_previous_upgrade_information():
     recommended_version = pysimplegui_user_settings.get('-upgrade recommendation-', '')
     severity_level = pysimplegui_user_settings.get('-severity level-', '')
 
-    if severity_level != 'Critical':
-        return
+    message2 = r'https://www.PySimpleGUI.org'
 
     layout = [[Image(EMOJI_BASE64_HAPPY_THUMBS_UP), T('An upgrade is available & recommended', font='_ 14')],
               [T('It is recommended you upgrade to version {}'.format(recommended_version))],
@@ -23253,15 +23278,14 @@ def __show_previous_upgrade_information():
     if 'http' in message2:
         window['-MESSAGE 2-'].set_cursor('hand1')
 
-    seconds_left = 30
+    seconds_left=30
     while True:
         event, values = window.read(timeout=1000)
         if event in ('Close', WIN_CLOSED) or seconds_left < 1:
             break
         if values['-SKIP IN FUTURE-']:
-            if not running_trinket():
-                pysimplegui_user_settings['-upgrade info available-'] = False
-                pysimplegui_user_settings['-upgrade info seen-'] = True
+            pysimplegui_user_settings['-upgrade info available-'] = False
+            pysimplegui_user_settings['-upgrade info seen-'] = True
         if event == '-MESSAGE 1-' and 'http' in message1 and webbrowser_available:
             webbrowser.open_new_tab(message1)
         elif event == '-MESSAGE 2-' and 'http' in message2 and webbrowser_available:
@@ -23273,20 +23297,15 @@ def __show_previous_upgrade_information():
 
 
 def __get_linux_distribution():
-    line_tuple = ('Linux Distro', 'Unknown', 'No lines Found in //etc//os-release')
-    try:
-        with open('/etc/os-release') as f:
-            data = f.read()
-        lines = data.split('\n')
-        for line in lines:
-            if line.startswith('PRETTY_NAME'):
-                line_split = line.split('=')[1].strip('"')
-                line_tuple = tuple(line_split.split(' '))
-                return line_tuple
-    except:
-        line_tuple = ('Linux Distro', 'Exception', 'Error reading//processing //etc//os-release')
-
-    return line_tuple
+    with open('/etc/os-release') as f:
+        data = f.read()
+    lines = data.split('\n')
+    for line in lines:
+        if line.startswith('PRETTY_NAME'):
+            line_split = line.split('=')[1].strip('"')
+            line_tuple = tuple(line_split.split(' '))
+            return line_tuple
+    return ('Linux Distro', 'Unknown','No lines Found in //etc//os-release')
 
 
 def __perform_upgrade_check_thread():
@@ -23316,12 +23335,12 @@ def __perform_upgrade_check_thread():
         python_ver = sys.version
 
         upgrade_dict = {
-            'OSName': str(os_name),
-            'OSVersion': str(os_ver),
-            'PythonVersion': str(python_ver),
-            'PSGVersion': str(psg_ver),
-            'FrameworkName': 'tkinter',
-            'FrameworkVersion': str(framework_ver),
+            'OSName' : str(os_name),
+            'OSVersion' : str(os_ver),
+            'PythonVersion' : str(python_ver),
+            'PSGVersion' : str(psg_ver),
+            'FrameworkName' : 'tkinter',
+            'FrameworkVersion' : str(framework_ver),
         }
         reply_data = __send_dict(__upgrade_server_ip, __upgrade_server_port, upgrade_dict)
 
@@ -23332,9 +23351,9 @@ def __perform_upgrade_check_thread():
         # If any part of the reply has changed from the last reply, overwrite the data and set flags so user will be informed
         if (message1 or message2) and not running_trinket():
             if pysimplegui_user_settings.get('-upgrade message 1-', '') != message1 or \
-                    pysimplegui_user_settings.get('-upgrade message 2-', '') != message2 or \
-                    pysimplegui_user_settings.get('-upgrade recommendation-', '') != recommended_version or \
-                    pysimplegui_user_settings.get('-severity level-', '') != severity_level:
+               pysimplegui_user_settings.get('-upgrade message 2-', '') != message2 or \
+               pysimplegui_user_settings.get('-upgrade recommendation-', '') != recommended_version or \
+               pysimplegui_user_settings.get('-severity level-', '') != severity_level:
                 # Save the data to the settings file
                 pysimplegui_user_settings['-upgrade info seen-'] = False
                 pysimplegui_user_settings['-upgrade info available-'] = True
@@ -23347,10 +23366,9 @@ def __perform_upgrade_check_thread():
         # print('Upgrade server error', e)
     # print(f'Upgrade Reply = {reply_data}')
 
-
 def __perform_upgrade_check():
     # For now, do not show data returned. Still testing and do not want to "SPAM" users with any popups
-    __show_previous_upgrade_information()
+    # __show_previous_upgrade_information()
     threading.Thread(target=lambda: __perform_upgrade_check_thread(), daemon=True).start()
 
 
@@ -23380,6 +23398,7 @@ def __perform_upgrade_check():
 # M#########M                .88                         MMMMMMMMMMMM
 #                        d8888P
 # =========================================================================#
+
 
 
 # =========================================================================#
@@ -23449,106 +23468,107 @@ def _github_issue_post_make_markdown(issue_type, operating_system, os_ver, psg_p
                                      cb_docs, cb_demos, cb_demo_port, cb_readme_other, cb_command_line, cb_issues, cb_latest_pypi, cb_github,
                                      detailed_desc, code, project_details, where_found):
     body = \
-        """
-        ## Type of Issue (Enhancement, Error, Bug, Question)
-        
-        {}
-        
-        ----------------------------------------
-        
-        ## Environment 
-        
-        #### Operating System
-        
-        {}  version {}
-        
-        #### PySimpleGUI Port (tkinter, Qt, Wx, Web)
-        
-        {}
-        
-        ----------------------------------------
-        
-        ## Versions
-        
-        
-        #### Python version (`sg.sys.version`)
-        
-        {}
-        
-        #### PySimpleGUI Version (`sg.__version__`)
-        
-        {}
-        
-        #### GUI Version  (tkinter (`sg.tclversion_detailed`), PySide2, WxPython, Remi)
-        
-        {}
-        """.format(issue_type, operating_system, os_ver, psg_port, python_ver, psg_ver, gui_ver, project_details)
+"""
+## Type of Issue (Enhancement, Error, Bug, Question)
+
+{}
+
+----------------------------------------
+
+## Environment 
+
+#### Operating System
+
+{}  version {}
+
+#### PySimpleGUI Port (tkinter, Qt, Wx, Web)
+
+{}
+
+----------------------------------------
+
+## Versions
+
+
+#### Python version (`sg.sys.version`)
+
+{}
+
+#### PySimpleGUI Version (`sg.__version__`)
+
+{}
+
+#### GUI Version  (tkinter (`sg.tclversion_detailed`), PySide2, WxPython, Remi)
+
+{}
+""".format(issue_type, operating_system,os_ver, psg_port,python_ver, psg_ver, gui_ver, project_details)
 
     body2 = \
-        """
-        
-        
-        ---------------------
-        
-        ## Your Experience In Months or Years (optional)
-        
-        {} Years Python programming experience
-        {} Years Programming experience overall
-        {} Have used another Python GUI Framework? (tkinter, Qt, etc) (yes/no is fine)
-        {}
-        
-        ---------------------
-        
-        ## Troubleshooting
-        
-        These items may solve your problem. Please check those you've done by changing - [ ] to - [X]
-        
-        - [{}] Searched main docs for your problem  www.PySimpleGUI.org
-        - [{}] Looked for Demo Programs that are similar to your goal. It is recommend you use the Demo Browser! Demos.PySimpleGUI.org
-        - [{}] If not tkinter - looked for Demo Programs for specific port
-        - [{}] For non tkinter - Looked at readme for your specific port if not PySimpleGUI (Qt, WX, Remi)
-        - [{}] Run your program outside of your debugger (from a command line)
-        - [{}] Searched through Issues (open and closed) to see if already reported Issues.PySimpleGUI.org
-        - [{}] Upgraded to the latest official release of PySimpleGUI on PyPI
-        - [{}] Tried using the PySimpleGUI.py file on GitHub. Your problem may have already been fixed but not released
-        
-        ## Detailed Description
-        
-        {}
-        
-        #### Code To Duplicate
-        
-        
-        ```python
-        {}
-        
-        
-        ```
-        
-        #### Screenshot, Sketch, or Drawing
-        
-        
-        
-        """.format(python_exp, prog_exp, used_gui, gui_notes,
-                   cb_docs, cb_demos, cb_demo_port, cb_readme_other, cb_command_line, cb_issues, cb_latest_pypi, cb_github,
-                   detailed_desc, code if len(code) > 10 else '# Paste your code here')
+"""
+
+
+---------------------
+
+## Your Experience In Months or Years (optional)
+
+{} Years Python programming experience
+{} Years Programming experience overall
+{} Have used another Python GUI Framework? (tkinter, Qt, etc) (yes/no is fine)
+{}
+
+---------------------
+
+## Troubleshooting
+
+These items may solve your problem. Please check those you've done by changing - [ ] to - [X]
+
+- [{}] Searched main docs for your problem  www.PySimpleGUI.org
+- [{}] Looked for Demo Programs that are similar to your goal. It is recommend you use the Demo Browser! Demos.PySimpleGUI.org
+- [{}] If not tkinter - looked for Demo Programs for specific port
+- [{}] For non tkinter - Looked at readme for your specific port if not PySimpleGUI (Qt, WX, Remi)
+- [{}] Run your program outside of your debugger (from a command line)
+- [{}] Searched through Issues (open and closed) to see if already reported Issues.PySimpleGUI.org
+- [{}] Upgraded to the latest official release of PySimpleGUI on PyPI
+- [{}] Tried using the PySimpleGUI.py file on GitHub. Your problem may have already been fixed but not released
+
+## Detailed Description
+
+{}
+
+#### Code To Duplicate
+
+
+```python
+{}
+
+
+```
+
+#### Screenshot, Sketch, or Drawing
+
+
+
+""".format(python_exp, prog_exp, used_gui, gui_notes,
+                cb_docs, cb_demos, cb_demo_port, cb_readme_other, cb_command_line, cb_issues, cb_latest_pypi, cb_github,
+                detailed_desc, code if len(code) > 10 else '# Paste your code here')
+
 
     if project_details or where_found:
-        body2 += '------------------------'
+        body2 +=  '------------------------'
 
     if project_details:
-        body2 += \
-            """
-            ## Watcha Makin?
-            {}
-            """.format(str(project_details))
+        body2 +=  \
+"""
+## Watcha Makin?
+{}
+""".format(str(project_details))
 
     if where_found:
         body2 += \
-            """
-            ## How did you find PySimpleGUI?
-            {}
-            """.format(str(where_found))
+"""
+## How did you find PySimpleGUI?
+{}
+""".format(str(where_found))
     return body + body2
 
 
@@ -23616,52 +23636,52 @@ def _github_issue_help():
         return Text(text, size=(80, None), font=text_font)
 
     help_why = \
-        """ Let's start with a review of the Goals of the PySimpleGUI project
-        1. To have fun
-        2. For you to be successful
-        
-        This form is as important as the documentation and the demo programs to meeting those goals.
-        
-        The GitHub Issue GUI is here to help you more easily log issues on the PySimpleGUI GitHub Repo. """
+""" Let's start with a review of the Goals of the PySimpleGUI project
+1. To have fun
+2. For you to be successful
+
+This form is as important as the documentation and the demo programs to meeting those goals.
+
+The GitHub Issue GUI is here to help you more easily log issues on the PySimpleGUI GitHub Repo. """
 
     help_goals = \
-        """ The goals of using GitHub Issues for PySimpleGUI question, problems and suggestions are:
-        * Give you direct access to engineers with the most knowledge of PySimpleGUI
-        * Answer your questions in the most precise and correct way possible
-        * Provide the highest quality solutions possible
-        * Give you a checklist of things to try that may solve the problem
-        * A single, searchable database of known problems and their workarounds
-        * Provide a place for the PySimpleGUI project to directly provide support to users
-        * A list of requested enhancements
-        * An easy to use interface to post code and images
-        * A way to track the status and have converstaions about issues
-        * Enable multiple people to help users """
+""" The goals of using GitHub Issues for PySimpleGUI question, problems and suggestions are:
+* Give you direct access to engineers with the most knowledge of PySimpleGUI
+* Answer your questions in the most precise and correct way possible
+* Provide the highest quality solutions possible
+* Give you a checklist of things to try that may solve the problem
+* A single, searchable database of known problems and their workarounds
+* Provide a place for the PySimpleGUI project to directly provide support to users
+* A list of requested enhancements
+* An easy to use interface to post code and images
+* A way to track the status and have converstaions about issues
+* Enable multiple people to help users """
 
     help_explain = \
-        """ GitHub does not provide a "form" that normal bug-tracking-databases provide. As a result, a form was created specifically for the PySimpleGUI project.
-        
-        The most obvious questions about this form are
-        * Why is there a form? Other projects don't have one?
-        * My question is an easy one, why does it still need a form?
-        
-        The answer is:
-        I want you to get your question answered with the highest quality answer possible as quickly as possible.
-        
-        The longer answer - For quite a while there was no form. It resulted the same back and forth, multiple questions comversation.  "What version are you running?"  "What OS are you using?"  These waste precious time.
-        
-        If asking nicely helps... PLEASE ... please fill out the form.
-        
-        I can assure you that this form is not here to punish you. It doesn't exist to make you angry and frustrated.  It's not here for any purpose than to try and get you support and make PySimpleGUI better. """
+""" GitHub does not provide a "form" that normal bug-tracking-databases provide. As a result, a form was created specifically for the PySimpleGUI project.
+
+The most obvious questions about this form are
+* Why is there a form? Other projects don't have one?
+* My question is an easy one, why does it still need a form?
+
+The answer is:
+I want you to get your question answered with the highest quality answer possible as quickly as possible.
+
+The longer answer - For quite a while there was no form. It resulted the same back and forth, multiple questions comversation.  "What version are you running?"  "What OS are you using?"  These waste precious time.
+
+If asking nicely helps... PLEASE ... please fill out the form.
+
+I can assure you that this form is not here to punish you. It doesn't exist to make you angry and frustrated.  It's not here for any purpose than to try and get you support and make PySimpleGUI better. """
 
     help_experience = \
-        """ Not many Bug-tracking systems ask about you as a user. Your experience in programming, programming in Python and programming a GUI are asked to provide you with the best possible answer.  Here's why it's helpful.  You're a human being, with a past, and a some amount of experience.  Being able to taylor the reply to your issue in a way that fits you and your experience will result in a reply that's efficient and clear.  It's not something normally done but perhaps it should be. It's meant to provide you with a personal response.
-        
-        If you've been programming for a month, the person answering your question can answer your question in a way that's understandable to you.  Similarly, if you've been programming for 20 years and have used multiple Python GUI frameworks, then you are unlikely to need as much explanation.  You'll also have a richer GUI vocabularly. It's meant to try and give you a peronally crafted response that's on your wavelength. Fun & success... Remember those are our shared goals"""
+""" Not many Bug-tracking systems ask about you as a user. Your experience in programming, programming in Python and programming a GUI are asked to provide you with the best possible answer.  Here's why it's helpful.  You're a human being, with a past, and a some amount of experience.  Being able to taylor the reply to your issue in a way that fits you and your experience will result in a reply that's efficient and clear.  It's not something normally done but perhaps it should be. It's meant to provide you with a personal response.
+
+If you've been programming for a month, the person answering your question can answer your question in a way that's understandable to you.  Similarly, if you've been programming for 20 years and have used multiple Python GUI frameworks, then you are unlikely to need as much explanation.  You'll also have a richer GUI vocabularly. It's meant to try and give you a peronally crafted response that's on your wavelength. Fun & success... Remember those are our shared goals"""
 
     help_steps = \
-        """ The steps to log an issue are:
-        1. Fill in the form
-        2. Click Post Issue """
+""" The steps to log an issue are:
+1. Fill in the form
+2. Click Post Issue """
 
     # layout = [  [T('Goals', font=heading_font, pad=(0,0))],
     #             [HelpText(help_goals)],
@@ -23725,8 +23745,7 @@ def main_open_github_issue():
     checklist_col2 = Col([[CB(c, k=('-CB-', i + 4)), T(t, k='-T{}-'.format(i + 4), enable_events=True)] for i, (c, t) in enumerate(checklist[4:])], pad=(0, 0),
                          k='-C FRAME CBs2-')
     checklist_tabgropup = TabGroup(
-        [[Tab('Checklist 1 *', [[checklist_col1]], expand_x=True, expand_y=True), Tab('Checklist 2  *', [[checklist_col2]]),
-          Tab('Experience', col_experience, k='-Tab Exp-', pad=(0, 0))]], expand_x=True, expand_y=True)
+        [[Tab('Checklist 1 *', [[checklist_col1]], expand_x=True, expand_y=True), Tab('Checklist 2  *', [[checklist_col2]]), Tab('Experience', col_experience, k='-Tab Exp-', pad=(0, 0))]], expand_x=True, expand_y=True)
 
     frame_details = [[Multiline(size=(65, 10), font='Courier 10', k='-ML DETAILS-', expand_x=True, expand_y=True)]]
 
@@ -23765,6 +23784,7 @@ def main_open_github_issue():
                                  ]], k='-TABGROUP-', expand_x=True, expand_y=True),
                       ]]
 
+
     layout_pane = Pane([Col(middle_layout), Col(bottom_layout)], key='-PANE-', expand_x=True, expand_y=True)
 
     layout = [
@@ -23788,6 +23808,7 @@ def main_open_github_issue():
         window['-OS WIN VER-'].update(platform.win32_ver())
     elif running_linux():
         window['-OS LINUX VER-'].update(platform.libc_ver())
+
 
     window.bring_to_front()
     while True:  # Event Loop
@@ -23850,15 +23871,14 @@ def main_open_github_issue():
                 continue
 
             cb_dict = {'cb_docs': checkboxes[0], 'cb_demos': checkboxes[1], 'cb_demo_port': checkboxes[2], 'cb_readme_other': checkboxes[3],
-                       'cb_command_line': checkboxes[4], 'cb_issues': checkboxes[5], 'cb_latest_pypi': checkboxes[6], 'cb_github': checkboxes[7],
-                       'detailed_desc': values['-ML DETAILS-'],
+                       'cb_command_line': checkboxes[4], 'cb_issues': checkboxes[5], 'cb_latest_pypi': checkboxes[6], 'cb_github': checkboxes[7], 'detailed_desc': values['-ML DETAILS-'],
                        'code': values['-ML CODE-'],
                        'project_details': values['-ML PROJECT DETAILS-'].rstrip(),
                        'where_found': values['-ML FOUND PSG-']}
 
             markdown = _github_issue_post_make_markdown(issue_type, operating_system, os_ver, 'tkinter', values['-VER PSG-'], values['-VER TK-'],
                                                         values['-VER PYTHON-'],
-                                                        values['-EXP PYTHON-'], values['-EXP PROG-'], 'Yes' if values['-CB PRIOR GUI-'] else 'No',
+                                                        values['-EXP PYTHON-'],values['-EXP PROG-'], 'Yes' if values['-CB PRIOR GUI-'] else 'No',
                                                         values['-EXP NOTES-'],
                                                         **cb_dict)
             window['-ML MARKDOWN-'].update(markdown)
@@ -23879,7 +23899,7 @@ M  MMM   `M 88   88   M  MMMMM  MM 88    88 88'  `88
 M. `MMM' .M 88   88   M  MMMMM  MM 88.  .88 88.  .88 
 MM.     .MM dP   dP   M  MMMMM  MM `88888P' 88Y8888' 
 MMMMMMMMMMM           MMMMMMMMMMMM                   
-
+                                                     
 M""MMMMM""M                                           dP          
 M  MMMMM  M                                           88          
 M  MMMMM  M 88d888b. .d8888b. 88d888b. .d8888b. .d888b88 .d8888b. 
@@ -23891,6 +23911,7 @@ MMMMMMMMMMM 88            .88
 
 '''
 
+
 '''
 M""""""""M dP                                        dP 
 Mmmm  mmmM 88                                        88 
@@ -23900,7 +23921,6 @@ MMMM  MMMM 88    88 88       88.  ... 88.  .88 88.  .88
 MMMM  MMMM dP    dP dP       `88888P' `88888P8 `88888P8 
 MMMMMMMMMM
 '''
-
 
 def _the_github_upgrade_thread(window, sp):
     """
@@ -23926,17 +23946,19 @@ def _the_github_upgrade_thread(window, sp):
     window.write_event_value('-THREAD-', (sp, '===THEAD DONE==='))
 
 
+
 def _copy_files_from_github():
     """Update the local PySimpleGUI installation from Github"""
 
     github_url = 'https://raw.githubusercontent.com/PySimpleGUI/PySimpleGUI/master/'
-    # files = ["PySimpleGUI.py", "setup.py"]
+    #files = ["PySimpleGUI.py", "setup.py"]
     files = ["PySimpleGUI.py"]
 
     # add a temp directory
     temp_dir = tempfile.TemporaryDirectory()
     psg_dir = os.path.join(temp_dir.name, 'PySimpleGUI')
     path = psg_dir
+
 
     os.mkdir(path)
     # path = os.path.abspath('temp')
@@ -23960,26 +23982,26 @@ def _copy_files_from_github():
 
     # create a setup.py file from scratch
     setup_text = ''.join([
-        "import setuptools\n",
-        "setuptools.setup(",
-        "name='PySimpleGUI',",
-        "author='PySimpleGUI',"
-        "author_email='PySimpleGUI@PySimpleGUI.org',",
-        "description='Unreleased Development Version',",
-        "url='https://github.com/PySimpleGUI/PySimpleGUI',"
-        "packages=setuptools.find_packages(),",
-        "version='", package_version, "',",
-        "entry_points={",
-        "'gui_scripts': [",
-        "'psgissue=PySimpleGUI.PySimpleGUI:main_open_github_issue',",
-        "'psgmain=PySimpleGUI.PySimpleGUI:_main_entry_point',",
-        "'psgupgrade=PySimpleGUI.PySimpleGUI:_upgrade_entry_point',",
-        "'psghelp=PySimpleGUI.PySimpleGUI:main_sdk_help',",
-        "'psgver=PySimpleGUI.PySimpleGUI:main_get_debug_data',",
-        "'psgsettings=PySimpleGUI.PySimpleGUI:main_global_pysimplegui_settings',",
-        "],",
-        "},)"
-    ])
+            "import setuptools\n",
+            "setuptools.setup(",
+            "name='PySimpleGUI',",
+            "author='PySimpleGUI',"
+            "author_email='PySimpleGUI@PySimpleGUI.org',",
+            "description='Unreleased Development Version',",
+            "url='https://github.com/PySimpleGUI/PySimpleGUI',"
+            "packages=setuptools.find_packages(),",
+            "version='", package_version, "',",
+            "entry_points={",
+            "'gui_scripts': [",
+            "'psgissue=PySimpleGUI.PySimpleGUI:main_open_github_issue',",
+            "'psgmain=PySimpleGUI.PySimpleGUI:_main_entry_point',",
+            "'psgupgrade=PySimpleGUI.PySimpleGUI:_upgrade_entry_point',",
+            "'psghelp=PySimpleGUI.PySimpleGUI:main_sdk_help',",
+            "'psgver=PySimpleGUI.PySimpleGUI:main_get_debug_data',",
+            "'psgsettings=PySimpleGUI.PySimpleGUI:main_global_pysimplegui_settings',",
+            "],",
+            "},)"
+            ])
 
     with open(os.path.join(temp_dir.name, 'setup.py'), 'w', encoding='utf-8') as f:
         f.write(setup_text)
@@ -23996,12 +24018,12 @@ def _copy_files_from_github():
     # https://pip.pypa.io/en/stable/user_guide/?highlight=subprocess#using-pip-from-your-program
     # subprocess.check_call([sys.executable, '-m', 'pip', 'install', path])
     # python_command = execute_py_get_interpreter()
-    python_command = sys.executable  # always use the currently running interpreter to perform the pip!
+    python_command = sys.executable         # always use the currently running interpreter to perform the pip!
     if 'pythonw' in python_command:
         python_command = python_command.replace('pythonw', 'python')
 
     layout = [[Text('Pip Upgrade Progress')],
-              [Multiline(s=(90, 15), k='-MLINE-', reroute_cprint=True, write_only=True)],
+              [Multiline(s=(90,15), k='-MLINE-', reroute_cprint=True, write_only=True)],
               [Button('Downloading...', k='-EXIT-')]]
 
     window = Window('Pip Upgrade', layout, finalize=True, keep_on_top=True, modal=True, disable_close=True)
@@ -24015,7 +24037,7 @@ def _copy_files_from_github():
 
     cprint('Installing with the Python interpreter =', python_command, c='white on purple')
 
-    sp = execute_command_subprocess(python_command, '-m pip install', temp_dir.name, pipe_output=True)
+    sp = execute_command_subprocess(python_command, '-m pip install', temp_dir.name,  pipe_output=True)
 
     threading.Thread(target=_the_github_upgrade_thread, args=(window, sp), daemon=True).start()
 
@@ -24030,6 +24052,7 @@ def _copy_files_from_github():
     window.close()
     # cleanup and remove files
     temp_dir.cleanup()
+
 
     return package_version
 
@@ -24058,7 +24081,6 @@ def _upgrade_gui():
     else:
         popup_quick_message('Cancelled upgrade\nNothing overwritten', background_color='red', text_color='white', keep_on_top=True, non_blocking=False)
 
-
 # main_upgrade_from_github = _upgrade_gui
 
 def _upgrade_entry_point():
@@ -24076,6 +24098,7 @@ def _upgrade_entry_point():
     execute_py_file(__file__, 'upgrade', interpreter_command=interpreter)
 
 
+
 def _main_entry_point():
     # print('Restarting main as a new process...(needed in case you want to GitHub Upgrade)')
     # Relaunch using the same python interpreter that was used to run this function
@@ -24084,9 +24107,7 @@ def _main_entry_point():
         interpreter = interpreter.replace('pythonw', 'python')
     execute_py_file(__file__, interpreter_command=interpreter)
 
-
 main_upgrade_from_github = _upgrade_entry_point
-
 
 ####################################################################################################
 
@@ -24204,7 +24225,6 @@ def main_global_get_screen_snapshot_symcode():
         return screenshot_keysym
     return ''
 
-
 def main_global_pysimplegui_settings_erase():
     """
     *** WARNING ***
@@ -24277,61 +24297,57 @@ def main_global_pysimplegui_settings():
         elif key in (TTK_SCROLLBAR_PART_ARROW_WIDTH, TTK_SCROLLBAR_PART_SCROLL_WIDTH):
             ttk_layout += [[T(key, s=t_len, justification='r'), Combo(list(range(100)), default_value=settings.get(('-ttk scroll-', key), item), key=('-TTK SCROLL-', key))]]
         elif key == TTK_SCROLLBAR_PART_RELIEF:
-            ttk_layout += [
-                [T(key, s=t_len, justification='r'), Combo(RELIEF_LIST, default_value=settings.get(('-ttk scroll-', key), item), readonly=True, key=('-TTK SCROLL-', key))]]
+            ttk_layout += [[T(key, s=t_len, justification='r'), Combo(RELIEF_LIST, default_value=settings.get(('-ttk scroll-', key), item), readonly=True, key=('-TTK SCROLL-', key))]]
 
     ttk_scrollbar_tab_layout += ttk_layout
     ttk_scrollbar_tab_layout += [[Button('Reset Scrollbar Settings'), Button('Test Scrollbar Settings')]]
     ttk_tab = Tab('TTK', ttk_scrollbar_tab_layout)
 
-    layout = [[T('Global PySimpleGUI Settings', text_color=theme_button_color()[0], background_color=theme_button_color()[1], font='_ 18', expand_x=True, justification='c')]]
+    layout = [[T('Global PySimpleGUI Settings', text_color=theme_button_color()[0], background_color=theme_button_color()[1],font='_ 18', expand_x=True, justification='c')]]
 
     # ------------------------- Interpreter Tab -------------------------
 
+
     interpreter_tab = Tab('Python Interpreter',
-                          [[T('Normally leave this blank')],
-                           [T('Command to run a python program:'), In(settings.get('-python command-', ''), k='-PYTHON COMMAND-', enable_events=True), FileBrowse()]], font='_ 16',
-                          expand_x=True)
+              [[T('Normally leave this blank')],
+                [T('Command to run a python program:'), In(settings.get('-python command-', ''), k='-PYTHON COMMAND-', enable_events=True), FileBrowse()]], font='_ 16', expand_x=True)
 
     # ------------------------- Editor Tab -------------------------
 
     editor_tab = Tab('Editor Settings',
-                     [[T('Command to invoke your editor:'), In(settings.get('-editor program-', ''), k='-EDITOR PROGRAM-', enable_events=True), FileBrowse()],
-                      [T('String to launch your editor to edit at a particular line #.')],
-                      [T('Use tags <editor> <file> <line> to specify the string')],
-                      [T('that will be executed to edit python files using your editor')],
-                      [T('Edit Format String (hover for tooltip)', tooltip=tooltip),
-                       In(settings.get('-editor format string-', '<editor> <file>'), k='-EDITOR FORMAT-', tooltip=tooltip)]], font='_ 16', expand_x=True)
+              [[T('Command to invoke your editor:'), In(settings.get('-editor program-', ''), k='-EDITOR PROGRAM-', enable_events=True), FileBrowse()],
+              [T('String to launch your editor to edit at a particular line #.')],
+              [T('Use tags <editor> <file> <line> to specify the string')],
+              [T('that will be executed to edit python files using your editor')],
+              [T('Edit Format String (hover for tooltip)', tooltip=tooltip),
+               In(settings.get('-editor format string-', '<editor> <file>'), k='-EDITOR FORMAT-', tooltip=tooltip)]], font='_ 16', expand_x=True)
 
     # ------------------------- Explorer Tab -------------------------
 
     explorer_tab = Tab('Explorer Program',
-                       [[In(settings.get('-explorer program-', ''), k='-EXPLORER PROGRAM-', tooltip=tooltip_file_explorer)]], font='_ 16', expand_x=True,
-                       tooltip=tooltip_file_explorer)
+              [[In(settings.get('-explorer program-', ''), k='-EXPLORER PROGRAM-', tooltip=tooltip_file_explorer)]], font='_ 16', expand_x=True,  tooltip=tooltip_file_explorer)
 
     # ------------------------- Snapshots Tab -------------------------
 
     snapshots_tab = Tab('Window Snapshots',
-                        [[Combo(('',) + key_choices, default_value=settings.get(json.dumps(('-snapshot keysym-', i)), ''), readonly=True, k=('-SNAPSHOT KEYSYM-', i), s=(None, 30))
-                          for i in range(4)],
-                         [T('Manually Entered Bind String:'), Input(settings.get('-snapshot keysym manual-', ''), k='-SNAPSHOT KEYSYM MANUAL-')],
-                         [T('Folder to store screenshots:'), Push(), In(settings.get('-screenshots folder-', ''), k='-SCREENSHOTS FOLDER-'), FolderBrowse()],
-                         [T('Screenshots Filename or Prefix:'), Push(), In(settings.get('-screenshots filename-', ''), k='-SCREENSHOTS FILENAME-'), FileBrowse()],
-                         [Checkbox('Auto-number Images', k='-SCREENSHOTS AUTONUMBER-')]], font='_ 16', expand_x=True, )
+              [[Combo(('',)+key_choices, default_value=settings.get(json.dumps(('-snapshot keysym-', i)), ''), readonly=True, k=('-SNAPSHOT KEYSYM-', i), s=(None, 30)) for i in range(4)],
+              [T('Manually Entered Bind String:'), Input(settings.get('-snapshot keysym manual-', ''),k='-SNAPSHOT KEYSYM MANUAL-')],
+              [T('Folder to store screenshots:'), Push(), In(settings.get('-screenshots folder-', ''), k='-SCREENSHOTS FOLDER-'), FolderBrowse()],
+              [T('Screenshots Filename or Prefix:'), Push(), In(settings.get('-screenshots filename-', ''), k='-SCREENSHOTS FILENAME-'), FileBrowse()],
+              [Checkbox('Auto-number Images', k='-SCREENSHOTS AUTONUMBER-')]], font='_ 16', expand_x=True,)
 
     # ------------------------- Theme Tab -------------------------
 
     theme_tab = Tab('Theme',
-                    [[T('Leave blank for "official" PySimpleGUI default theme: {}'.format(OFFICIAL_PYSIMPLEGUI_THEME))],
-                     [T('Default Theme For All Programs:'),
-                      Combo([''] + theme_list(), settings.get('-theme-', None), readonly=True, k='-THEME-', tooltip=tooltip_theme),
-                      Checkbox('Always use custom Titlebar', default=pysimplegui_user_settings.get('-custom titlebar-', False), k='-CUSTOM TITLEBAR-')]],
-                    font='_ 16', expand_x=True)
+              [[T('Leave blank for "official" PySimpleGUI default theme: {}'.format(OFFICIAL_PYSIMPLEGUI_THEME))],
+              [T('Default Theme For All Programs:'),
+               Combo([''] + theme_list(), settings.get('-theme-', None), readonly=True, k='-THEME-', tooltip=tooltip_theme), Checkbox('Always use custom Titlebar', default=pysimplegui_user_settings.get('-custom titlebar-',False), k='-CUSTOM TITLEBAR-')]],
+                        font='_ 16', expand_x=True)
 
-    settings_tab_group = TabGroup([[theme_tab, ttk_tab, interpreter_tab, explorer_tab, editor_tab, snapshots_tab]])
+    settings_tab_group = TabGroup([[theme_tab, ttk_tab, interpreter_tab, explorer_tab, editor_tab, snapshots_tab ]])
     layout += [[settings_tab_group]]
-    # [T('Buttons (Leave Unchecked To Use Default) NOT YET IMPLEMENTED!',  font='_ 16')],
-    #      [Checkbox('Always use TTK buttons'), CBox('Always use TK Buttons')],
+              # [T('Buttons (Leave Unchecked To Use Default) NOT YET IMPLEMENTED!',  font='_ 16')],
+              #      [Checkbox('Always use TTK buttons'), CBox('Always use TK Buttons')],
     layout += [[B('Ok', bind_return_key=True), B('Cancel'), B('Mac Patch Control')]]
 
     window = Window('Settings', layout, keep_on_top=True, modal=False, finalize=True)
@@ -24340,7 +24356,7 @@ def main_global_pysimplegui_settings():
     ttk_theme_list = ttk.Style().theme_names()
 
     window['-TTK THEME-'].update(value=DEFAULT_TTK_THEME, values=ttk_theme_list)
-
+    
     while True:
         event, values = window.read()
         if event in ('Cancel', WIN_CLOSED):
@@ -24363,7 +24379,7 @@ def main_global_pysimplegui_settings():
             pysimplegui_user_settings.set('-snapshot keysym manual-', values['-SNAPSHOT KEYSYM MANUAL-'])
             screenshot_keysym = ''
             for i in range(4):
-                pysimplegui_user_settings.set(json.dumps(('-snapshot keysym-', i)), values[('-SNAPSHOT KEYSYM-', i)])
+                pysimplegui_user_settings.set(json.dumps(('-snapshot keysym-',i)), values[('-SNAPSHOT KEYSYM-', i)])
                 if values[('-SNAPSHOT KEYSYM-', i)]:
                     screenshot_keysym += "<{}>".format(values[('-SNAPSHOT KEYSYM-', i)])
             if screenshot_keysym_manual:
@@ -24521,8 +24537,7 @@ def main_sdk_help():
     layout += [[CBox('Summary Only', enable_events=True, k='-SUMMARY-'), CBox('Display Only PEP8 Functions', default=True, k='-PEP8-')]]
     # layout += [[Button('Exit', size=(15, 1))]]
 
-    window = Window('SDK API Call Reference', layout, resizable=True, use_default_focus=False, keep_on_top=True, icon=EMOJI_BASE64_THINK, finalize=True,
-                    right_click_menu=MENU_RIGHT_CLICK_EDITME_EXIT)
+    window = Window('SDK API Call Reference', layout, resizable=True, use_default_focus=False, keep_on_top=True, icon=EMOJI_BASE64_THINK, finalize=True, right_click_menu=MENU_RIGHT_CLICK_EDITME_EXIT)
     window['-DOC LINK-'].set_cursor('hand1')
     online_help_link = ''
     ml = window['-ML-']
@@ -24707,7 +24722,7 @@ def _create_main_window():
         [Combo(['Combo item %s' % i for i in range(5)], size=(20, 3), default_value='Combo item 2', key='-COMBO1-', )],
         [Combo(['Combo item %s' % i for i in range(5)], size=(20, 3), font='Courier 14', default_value='Combo item 2', key='-COMBO2-', )],
         # [Combo(['Combo item 1', 2,3,4], size=(20, 3), readonly=False, text_color='blue', background_color='red', key='-COMBO2-')],
-
+        
     ]
 
     frame3 = [
@@ -24724,18 +24739,18 @@ def _create_main_window():
 
     frame5 = [vtop([
         Table(values=matrix, headings=matrix[0],
-              auto_size_columns=False, display_row_numbers=True, change_submits=False, justification='right', header_border_width=4,
+              auto_size_columns=False, display_row_numbers=True, change_submits=False, justification='right',  header_border_width=4,
               # header_relief=RELIEF_GROOVE,
               num_rows=10, alternating_row_color='lightblue', key='-TABLE-',
               col_widths=[5, 5, 5, 5]),
         Tree(data=treedata, headings=['col1', 'col2', 'col3'], col_widths=[5, 5, 5, 5], change_submits=True, auto_size_columns=False, header_border_width=4,
              # header_relief=RELIEF_GROOVE,
-             num_rows=8, col0_width=8, key='-TREE-', show_expanded=True)])]
-    frame7 = [
-        [Image(EMOJI_BASE64_HAPPY_HEARTS, enable_events=True, k='-EMOJI-HEARTS-'), T('Do you'), Image(HEART_3D_BASE64, subsample=3, enable_events=True, k='-HEART-'), T('so far?')],
-        [T('Want to be taught PySimpleGUI?\nThen maybe the "Official PySimpleGUI Course" on Udemy is for you.')],
-        [B(image_data=UDEMY_ICON, enable_events=True, k='-UDEMY-'), T('Check docs, announcements, easter eggs on this page for coupons.')],
-        [B(image_data=ICON_BUY_ME_A_COFFEE, enable_events=True, k='-COFFEE-'), T('It is financially draining to operate a project this huge. $1 helps')]]
+             num_rows=8, col0_width=8, key='-TREE-', show_expanded=True )])]
+    frame7 = [[Image(EMOJI_BASE64_HAPPY_HEARTS, enable_events=True, k='-EMOJI-HEARTS-'), T('Do you'), Image(HEART_3D_BASE64, subsample=3, enable_events=True, k='-HEART-'), T('so far?')],
+              [T('Want to be taught PySimpleGUI?\nThen maybe the "Official PySimpleGUI Course" on Udemy is for you.')],
+              [B(image_data=UDEMY_ICON, enable_events=True,  k='-UDEMY-'),T('Check docs, announcements, easter eggs on this page for coupons.')],
+              [B(image_data=ICON_BUY_ME_A_COFFEE, enable_events=True,  k='-COFFEE-'), T('It is financially draining to operate a project this huge. $1 helps')]]
+
 
     pop_test_tab_layout = [
         [Image(EMOJI_BASE64_HAPPY_IDEA), T('Popup tests? Good idea!')],
@@ -24743,30 +24758,31 @@ def _create_main_window():
         [T('"Get" popups too!')],
         [B('Get File'), B('Get Folder'), B('Get Date'), B('Get Text')]]
 
-    GRAPH_SIZE = (500, 200)
+    GRAPH_SIZE=(500, 200)
     graph_elem = Graph(GRAPH_SIZE, (0, 0), GRAPH_SIZE, key='+GRAPH+')
 
-    frame6 = [[VPush()], [graph_elem]]
+    frame6 = [[VPush()],[graph_elem]]
 
     themes_tab_layout = [[T('You can see a preview of the themes, the color swatches, or switch themes for this window')],
                          [T('If you want to change the default theme for PySimpleGUI, use the Global Settings')],
                          [B('Themes'), B('Theme Swatches'), B('Switch Themes')]]
 
+
     upgrade_recommendation_tab_layout = [[T('Latest Recommendation and Announcements For You', font='_ 14')],
-                                         [T('Severity Level of Update:'), T(pysimplegui_user_settings.get('-severity level-', ''))],
-                                         [T('Recommended Version To Upgrade To:'), T(pysimplegui_user_settings.get('-upgrade recommendation-', ''))],
-                                         [T(pysimplegui_user_settings.get('-upgrade message 1-', ''))],
-                                         [T(pysimplegui_user_settings.get('-upgrade message 2-', ''))],
-                                         [Checkbox('Show Only Critical Messages', default=pysimplegui_user_settings.get('-upgrade show only critical-', False),
-                                                   key='-UPGRADE SHOW ONLY CRITICAL-', enable_events=True)],
-                                         [Button('Show Notification Again'),
-                                          ],
+                                         [T('Severity Level of Update:'), T(pysimplegui_user_settings.get('-severity level-',''))],
+                                         [T('Recommended Version To Upgrade To:'), T(pysimplegui_user_settings.get('-upgrade recommendation-',''))],
+                                         [T(pysimplegui_user_settings.get('-upgrade message 1-',''))],
+                                         [T(pysimplegui_user_settings.get('-upgrade message 2-',''))],
+                                         [Checkbox('Show Only Critical Messages', default=pysimplegui_user_settings.get('-upgrade show only critical-', False), key='-UPGRADE SHOW ONLY CRITICAL-', enable_events=True)],
+                                         [Button('Show Notification Again'), B('Upgrade from GitHub', button_color='white on red', key='-UPGRADE FROM GITHUB-'),
+],
                                          ]
-    tab_upgrade = Tab('Upgrade\n', upgrade_recommendation_tab_layout, expand_x=True)
+    tab_upgrade = Tab('Upgrade\n',upgrade_recommendation_tab_layout,  expand_x=True)
+
 
     tab1 = Tab('Graph\n', frame6, tooltip='Graph is in here', title_color='red')
     tab2 = Tab('CB, Radio\nList, Combo',
-               [[Frame('Multiple Choice Group', frame2, title_color='#FFFFFF', tooltip='Checkboxes, radio buttons, etc', vertical_alignment='t', ),
+               [[Frame('Multiple Choice Group', frame2, title_color='#FFFFFF', tooltip='Checkboxes, radio buttons, etc', vertical_alignment='t',),
                  Frame('Binary Choice Group', frame3, title_color='#FFFFFF', tooltip='Binary Choice', vertical_alignment='t', ), ]])
     # tab3 = Tab('Table and Tree', [[Frame('Structured Data Group', frame5, title_color='red', element_justification='l')]], tooltip='tab 3', title_color='red', )
     tab3 = Tab('Table &\nTree', [[Column(frame5, element_justification='l', vertical_alignment='t')]], tooltip='tab 3', title_color='red', k='-TAB TABLE-')
@@ -24777,7 +24793,7 @@ def _create_main_window():
     tab8 = Tab('Themes\n', themes_tab_layout, k='-TAB THEMES-')
 
     def VerLine(version, description, justification='r', size=(40, 1)):
-        return [T(version, justification=justification, font='Any 12', text_color='yellow', size=size, pad=(0, 0)), T(description, font='Any 12', pad=(0, 0))]
+        return [T(version, justification=justification, font='Any 12', text_color='yellow', size=size, pad=(0,0)), T(description, font='Any 12', pad=(0,0))]
 
     layout_top = Column([
         [Image(EMOJI_BASE64_HAPPY_BIG_SMILE, enable_events=True, key='-LOGO-', tooltip='This is PySimpleGUI logo'),
@@ -24789,21 +24805,21 @@ def _create_main_window():
         VerLine(tclversion_detailed, 'detailed tkinter version'),
         VerLine(os.path.dirname(os.path.abspath(__file__)), 'PySimpleGUI Location', size=(40, None)),
         VerLine(sys.executable, 'Python Executable'),
-        VerLine(sys.version, 'Python Version', size=(40, 2)) + [Image(PYTHON_COLORED_HEARTS_BASE64, subsample=3, k='-PYTHON HEARTS-', enable_events=True)]], pad=0)
+        VerLine(sys.version, 'Python Version', size=(40,2)) +[Image(PYTHON_COLORED_HEARTS_BASE64, subsample=3, k='-PYTHON HEARTS-', enable_events=True)]], pad=0)
 
     layout_bottom = [
         [B(SYMBOL_DOWN, pad=(0, 0), k='-HIDE TABS-'),
          pin(Col([[TabGroup([[tab1, tab2, tab3, tab6, tab4, tab5, tab7, tab8, tab_upgrade]], key='-TAB_GROUP-')]], k='-TAB GROUP COL-'))],
-        [B('Button', highlight_colors=('yellow', 'red'), pad=(1, 0)),
-         B('ttk Button', use_ttk_buttons=True, tooltip='This is a TTK Button', pad=(1, 0)),
-         B('See-through Mode', tooltip='Make the background transparent', pad=(1, 0)),
-         B('Upgrade PySimpleGUI from GitHub', button_color='white on red', key='-INSTALL-', pad=(1, 0)),
-         B('Global Settings', tooltip='Settings across all PySimpleGUI programs', pad=(1, 0)),
-         B('Exit', tooltip='Exit button', pad=(1, 0))],
+        [B('Button', highlight_colors=('yellow', 'red'),pad=(1, 0)),
+         B('ttk Button', use_ttk_buttons=True, tooltip='This is a TTK Button',pad=(1, 0)),
+         B('See-through Mode', tooltip='Make the background transparent',pad=(1, 0)),
+         B('Upgrade PySimpleGUI from GitHub', button_color='white on red', key='-INSTALL-',pad=(1, 0)),
+         B('Global Settings', tooltip='Settings across all PySimpleGUI programs',pad=(1, 0)),
+         B('Exit', tooltip='Exit button',pad=(1, 0))],
         # [B(image_data=ICON_BUY_ME_A_COFFEE,pad=(1, 0), key='-COFFEE-'),
-        [B(image_data=UDEMY_ICON, pad=(1, 0), key='-UDEMY-'),
-         B('SDK Reference', pad=(1, 0)), B('Open GitHub Issue', pad=(1, 0)), B('Versions for GitHub', pad=(1, 0)),
-         ButtonMenu('ButtonMenu', button_menu_def, pad=(1, 0), key='-BMENU-', tearoff=True)
+        [B(image_data=UDEMY_ICON,pad=(1, 0), key='-UDEMY-'),
+         B('SDK Reference', pad=(1, 0)), B('Open GitHub Issue',pad=(1, 0)), B('Versions for GitHub',pad=(1, 0)),
+         ButtonMenu('ButtonMenu', button_menu_def, pad=(1, 0),key='-BMENU-', tearoff=True)
          ]]
 
     layout = [[]]
@@ -24909,7 +24925,7 @@ def main():
         elif event == 'Get Text':
             popup_scrolled('Returned:', popup_get_text('Enter some text', keep_on_top=True))
         elif event.startswith('-UDEMY-'):
-            webbrowser.open_new_tab(r'https://www.udemy.com/course/pysimplegui/?couponCode=9AF99B123C49D51EB547')
+                webbrowser.open_new_tab(r'https://udemy.com/PySimpleGUI')
         elif event.startswith('-SPONSOR-'):
             if webbrowser_available:
                 webbrowser.open_new_tab(r'https://www.paypal.me/pythongui')
@@ -24917,9 +24933,10 @@ def main():
             if webbrowser_available:
                 # webbrowser.open_new_tab(r'https://udemy.com/PySimpleGUI')
                 webbrowser.open_new_tab(r'https://www.buymeacoffee.com/PySimpleGUI')
-        elif event in ('-EMOJI-HEARTS-', '-HEART-', '-PYTHON HEARTS-'):
-            popup_scrolled("Oh look!  It's a Udemy discount coupon!", '9AF99B123C49D51EB547',
+        elif event in  ('-EMOJI-HEARTS-', '-HEART-', '-PYTHON HEARTS-'):
+            popup_scrolled("Oh look!  It's a Udemy discount coupon!", '4FD91A459D56B1029FF8',
                            'A personal message from Mike -- thank you so very much for supporting PySimpleGUI!', title='Udemy Coupon', image=EMOJI_BASE64_MIKE, keep_on_top=True)
+
         elif event == 'Themes':
             search_string = popup_get_text('Enter a search term or leave blank for all themes', 'Show Available Themes', keep_on_top=True)
             if search_string is not None:
@@ -24966,19 +24983,17 @@ def main():
             main_open_github_issue()
             window.normal()
         elif event == 'Show Notification Again':
-            if not running_trinket():
-                pysimplegui_user_settings.set('-upgrade info seen-', False)
-                __show_previous_upgrade_information()
+            pysimplegui_user_settings.set('-upgrade info seen-', False)
+            __show_previous_upgrade_information()
         elif event == '-UPGRADE SHOW ONLY CRITICAL-':
-            if not running_trinket():
-                pysimplegui_user_settings.set('-upgrade show only critical-', values['-UPGRADE SHOW ONLY CRITICAL-'])
+            pysimplegui_user_settings.set('-upgrade show only critical-', values['-UPGRADE SHOW ONLY CRITICAL-'])
+
 
         i += 1
         # _refresh_debugger()
     print('event = ', event)
     window.close()
     set_options(force_modal_windows=forced_modal)
-
 
 # ------------------------ PEP8-ify The SDK ------------------------#
 
@@ -25049,8 +25064,7 @@ if running_trinket():
     USE_CUSTOM_TITLEBAR = True
 
 if tclversion_detailed.startswith('8.5'):
-    warnings.warn('You are running a VERY old version of tkinter {}. You cannot use PNG formatted images for example.  Please upgrade to 8.6.x'.format(tclversion_detailed),
-                  UserWarning)
+    warnings.warn('You are running a VERY old version of tkinter {}. You cannot use PNG formatted images for example.  Please upgrade to 8.6.x'.format(tclversion_detailed), UserWarning)
 
 # Enables the correct application icon to be shown on the Windows taskbar
 if running_windows():
@@ -25059,6 +25073,7 @@ if running_windows():
         ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
     except Exception as e:
         print('Error using the taskbar icon patch', e)
+
 
 _read_mac_global_settings()
 
@@ -25074,6 +25089,7 @@ if _mac_should_set_alpha_to_99():
 
 
 __perform_upgrade_check()
+
 
 # -------------------------------- ENTRY POINT IF RUN STANDALONE -------------------------------- #
 if __name__ == '__main__':
