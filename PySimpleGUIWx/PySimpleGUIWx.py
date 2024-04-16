@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+import fickling
+
 version = __version__ = "0.17.1.5 Unreleased\n VSeparator added (spelling error), Radio.reset_group added and removed the clearing all when one cleared, added default key for one_line_progress_meter, auto-add keys to tables & trees, added theme_add_new"
 
 port = 'PySimpleGUIWx'
@@ -3289,7 +3291,7 @@ class Window:
     def LoadFromDisk(self, filename):
         try:
             with open(filename, 'rb') as df:
-                self.Fill(pickle.load(df))
+                self.Fill(fickling.load(df))
         except:
             print('*** Error loading form to disk ***')
 

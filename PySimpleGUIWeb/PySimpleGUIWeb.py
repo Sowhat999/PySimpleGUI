@@ -1,5 +1,7 @@
 #usr/bin/python3
 
+import fickling
+
 version = __version__ = "0.39.0.6  Unreleased\n , VSeparator added (spelling error), added default key for one_line_progress_meter, auto-add keys to tables & trees, Graph.draw_image now uses image_data property instead of calling set_image, added theme_add_new, changed Remi call menu_item.set_on_click_listener to menu_item.onclick.connect so it can run with latest Remi"
 
 port = 'PySimpleGUIWeb'
@@ -3134,7 +3136,7 @@ class Window:
     def LoadFromDisk(self, filename):
         try:
             with open(filename, 'rb') as df:
-                self.Fill(pickle.load(df))
+                self.Fill(fickling.load(df))
         except:
             print('*** Error loading form to disk ***')
 

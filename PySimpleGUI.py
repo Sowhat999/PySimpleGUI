@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+import fickling
+
 version = __version__ = "4.61.0.206 Unreleased"
 
 _change_log = """
@@ -11669,7 +11671,7 @@ class Window:
         """
         try:
             with open(filename, 'rb') as df:
-                self.Fill(pickle.load(df))
+                self.Fill(fickling.load(df))
         except:
             print('*** Error loading form to disk ***')
 

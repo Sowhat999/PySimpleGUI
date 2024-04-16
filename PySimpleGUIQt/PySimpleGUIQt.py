@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+import fickling
+
 version = __version__ = "0.35.0.18.1 Unreleased\nMassive update of docstrings (thanks nngogol), default for slider tick interval set automatically now, margins added to Window but not yet hooked up, VSeparator added (spelling error), added Radio.reset_group and removed clearing all when one of them is cleared (recent change), added default key for one_line_progress_meter, auto-add keys to tables & trees, InputText element gets new disabled-readonly foreground and background color settings and also a readonly parameter, InputText gets border_width parameter, fixed up some docstrings, popup gets new image and any_key_closes parms, input type popups also get image parameter, error checks for trying to manipulate a window prior to finalize, added a dummy Element.expand method, added theme_add_new, added Window.set_title, updated to the latest themes from tktiner port, big styles update (thanks nngogol!), more Styles work, changed popup text layout to match tkinter port, fixed vertical alignment in row, added margin to some elements, renamed styles related variables, window margin support but be careful. Added back the truncated portion"
 
 __version__ = version.split()[0]    # For PEP 396 and PEP 345
@@ -4500,7 +4502,7 @@ class Window:
     def LoadFromDisk(self, filename):
         try:
             with open(filename, 'rb') as df:
-                self.Fill(pickle.load(df))
+                self.Fill(fickling.load(df))
         except:
             print('*** Error loading form to disk ***')
 
