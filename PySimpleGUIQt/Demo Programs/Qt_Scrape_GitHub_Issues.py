@@ -15,7 +15,7 @@ def get_num_issues():
     headers = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
     # download the page
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers, timeout=60)
     # parse the downloaded homepage and grab all text,
     soup = BeautifulSoup(response.text, "lxml")
     # look for phrase "XXX Open"

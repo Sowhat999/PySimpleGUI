@@ -70,7 +70,7 @@ def shipping_status(tracking_num):
         }
     payload = '''data=%7B%22TrackPackagesRequest%22%3A%7B%22appType%22%3A%22WTRK%22%2C%22appDeviceType%22%3A%22%22%2C%22supportHTML%22%3Atrue%2C%22supportCurrentLocation%22%3Atrue%2C%22uniqueKey%22%3A%22%22%2C%22processingParameters%22%3A%7B%7D%2C%22trackingInfoList%22%3A%5B%7B%22trackNumberInfo%22%3A%7B%22trackingNumber%22%3A%22{}%22%2C%22trackingQualifier%22%3A%22%22%2C%22trackingCarrier%22%3A%22%22%7D%7D%5D%7D%7D&action=trackpackages&locale=en_US&version=1&format=json'''
 
-    response = requests.post(url, headers=headers, data=payload.format(tracking_num))
+    response = requests.post(url, headers=headers, data=payload.format(tracking_num), timeout=60)
     if response.status_code == 200:
         return response.json()
     else:

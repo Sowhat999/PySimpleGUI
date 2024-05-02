@@ -30,7 +30,7 @@ def get_num_issues():
     # download the page
     requests.adapters.DEFAULT_RETRIES = 25
     try:
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, timeout=60)
     except:
         return 0,0
     # parse the downloaded homepage and grab all text,
