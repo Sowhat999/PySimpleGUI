@@ -15,8 +15,7 @@ def execute_command_blocking(command, *args):
         expanded_args.append(a)
         # expanded_args += a
     try:
-        sp = subprocess.Popen([command, expanded_args], shell=True,
-                              stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        sp = subprocess.Popen([command, expanded_args], shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out, err = sp.communicate()
         if out:
             print(out.decode("utf-8"))
@@ -34,8 +33,7 @@ def execute_command_nonblocking(command, *args):
     for a in args:
         expanded_args += a
     try:
-        sp = subprocess.Popen([command, expanded_args], shell=True,
-                              stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        sp = subprocess.Popen([command, expanded_args], shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     except:
         pass
 

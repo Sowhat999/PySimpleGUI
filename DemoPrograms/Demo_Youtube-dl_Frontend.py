@@ -60,8 +60,7 @@ def DownloadSubtitlesGUI():
 def ExecuteCommandSubprocess(command, wait=False, quiet=True, *args):
     try:
         sp = subprocess.Popen([command, *args],
-                              shell=True,
-                              stdout=subprocess.PIPE,
+                              shell=False, stdout=subprocess.PIPE,
                               stderr=subprocess.PIPE)
         if wait:
             out, err = sp.communicate()

@@ -22742,7 +22742,7 @@ def _process_thread(*args):
 
     # start running the command with arugments
     try:
-        __shell_process__ = subprocess.run(args, shell=True, stdout=subprocess.PIPE)
+        __shell_process__ = subprocess.run(args, shell=False, stdout=subprocess.PIPE)
     except Exception as e:
         print('Exception running process args = {}'.format(args))
         __shell_process__ = None
@@ -23727,13 +23727,13 @@ def execute_command_subprocess(command, *args, wait=False, cwd=None, pipe_output
             # sp = subprocess.Popen(command +' '+ expanded_args, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, cwd=cwd)
             if pipe_output:
                 if merge_stderr_with_stdout:
-                    sp = subprocess.Popen(command + ' ' + expanded_args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, cwd=cwd, stdin=stdin)
+                    sp = subprocess.Popen(command + ' ' + expanded_args, shell=False, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, cwd=cwd, stdin=stdin)
                 else:
-                    sp = subprocess.Popen(command + ' ' + expanded_args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=cwd, stdin=stdin)
+                    sp = subprocess.Popen(command + ' ' + expanded_args, shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=cwd, stdin=stdin)
             else:
-                sp = subprocess.Popen(command + ' ' + expanded_args, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, cwd=cwd, stdin=stdin)
+                sp = subprocess.Popen(command + ' ' + expanded_args, shell=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, cwd=cwd, stdin=stdin)
         else:
-            sp = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=cwd, stdin=stdin)
+            sp = subprocess.Popen(command, shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=cwd, stdin=stdin)
         if wait:
             out, err = sp.communicate()
             if out:

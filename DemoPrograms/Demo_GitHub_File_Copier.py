@@ -262,10 +262,10 @@ def execute_command_subprocess(command, *args, wait=False):
         arg_string = ''
         for arg in args:
             arg_string += ' ' + str(arg)
-        sp = subprocess.Popen(['python3' + arg_string, ], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        sp = subprocess.Popen(['python3' + arg_string, ], shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     else:
         expanded_args = ' '.join(args)
-        sp = subprocess.Popen([command, expanded_args], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        sp = subprocess.Popen([command, expanded_args], shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     if wait:
         out, err = sp.communicate()
         if out:

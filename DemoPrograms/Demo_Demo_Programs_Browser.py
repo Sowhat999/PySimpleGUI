@@ -590,10 +590,10 @@ except:
             arg_string = ''
             for arg in args:
                 arg_string += ' ' + str(arg)
-            sp = subprocess.Popen(str(command) + arg_string, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=cwd)
+            sp = subprocess.Popen(str(command) + arg_string, shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=cwd)
         else:
             expanded_args = ' '.join(args)
-            sp = subprocess.Popen([command, *args], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=cwd)
+            sp = subprocess.Popen([command, *args], shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=cwd)
         if wait:
             out, err = sp.communicate()
             if out:

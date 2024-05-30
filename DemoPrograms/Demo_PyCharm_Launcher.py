@@ -75,8 +75,7 @@ def execute_command_blocking(command, *args):
     print(f'Executing {command} with {args}')
     expanded_args = [a for a in args]
     try:
-        sp = subprocess.Popen([command, expanded_args], shell=True,
-                              stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        sp = subprocess.Popen([command, expanded_args], shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out, err = sp.communicate()
         if out:
             print(out.decode("utf-8"))

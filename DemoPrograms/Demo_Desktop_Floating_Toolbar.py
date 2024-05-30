@@ -71,14 +71,12 @@ def ExecuteCommandSubprocess(command, *args, wait=False):
             #     arg_string += ' ' + str(arg)
             print('python3 ' + arg_string)
             sp = subprocess.Popen(['python3 ', arg_string],
-                                  shell=True,
-                                  stdout=subprocess.PIPE,
+                                  shell=False, stdout=subprocess.PIPE,
                                   stderr=subprocess.PIPE)
         else:
             arg_string = ' '.join([str(arg) for arg in args])
             sp = subprocess.Popen([command, arg_string],
-                                  shell=True,
-                                  stdout=subprocess.PIPE,
+                                  shell=False, stdout=subprocess.PIPE,
                                   stderr=subprocess.PIPE)
             # sp = subprocess.Popen([command, list(args)], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 

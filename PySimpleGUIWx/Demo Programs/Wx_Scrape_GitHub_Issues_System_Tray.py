@@ -135,7 +135,7 @@ def system_tray():
             sg.PopupNoWait('Refreshing issue data...', auto_close=True, auto_close_duration=3)
             issues, first_issue = get_num_issues()
             tray.ShowMessage('Refreshed', '{} Issues\n{} First Issue'.format(issues, first_issue), messageicon=sg.SYSTEM_TRAY_MESSAGE_ICON_INFORMATION, )
-            sp = subprocess.Popen([CHROME, VIEW_ISSUES_URL], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            sp = subprocess.Popen([CHROME, VIEW_ISSUES_URL], shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         elif menu_item  in('Refresh', sg.EVENT_SYSTEM_TRAY_ICON_DOUBLE_CLICKED):
             tray.ShowMessage('Refreshing', 'Old values are\n{} Issues\n{} First Issue'.format(issues, first_issue), messageicon=sg.SYSTEM_TRAY_MESSAGE_ICON_NOICON )
             tray.Update(data_base64=red_x)
@@ -146,19 +146,19 @@ def system_tray():
         #     tray.ShowMessage('Last check', '{} Issues\n{} First Issue'.format(issues, first_issue), messageicon=sg.SYSTEM_TRAY_MESSAGE_ICON_INFORMATION, )
         elif menu_item == sg.EVENT_SYSTEM_TRAY_MESSAGE_CLICKED :
             tray.Update(data_base64=logo)
-            sp = subprocess.Popen([CHROME, VIEW_ISSUES_URL], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            sp = subprocess.Popen([CHROME, VIEW_ISSUES_URL], shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         elif  menu_item.startswith('Pull'):
-            sp = subprocess.Popen([CHROME, PULL_REQUEST_URL], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            sp = subprocess.Popen([CHROME, PULL_REQUEST_URL], shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         elif  menu_item.startswith('Announcements'):
-            sp = subprocess.Popen([CHROME, ANNOUCEMENTS], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            sp = subprocess.Popen([CHROME, ANNOUCEMENTS], shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         elif  menu_item.startswith('Traffic'):
-            sp = subprocess.Popen([CHROME, TRAFFIC], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            sp = subprocess.Popen([CHROME, TRAFFIC], shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         elif  menu_item.startswith('Search'):
-            sp = subprocess.Popen([CHROME, SEARCH], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            sp = subprocess.Popen([CHROME, SEARCH], shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         elif  menu_item.startswith('Discord'):
-            sp = subprocess.Popen([DISCORD, r''], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            sp = subprocess.Popen([DISCORD, r''], shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         elif  menu_item.startswith('PyPI'):
-            sp = subprocess.Popen([CHROME, PYPI_STATS], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            sp = subprocess.Popen([CHROME, PYPI_STATS], shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 
         if seconds % 12 == 0:     # Every 60 seconds read GitHub

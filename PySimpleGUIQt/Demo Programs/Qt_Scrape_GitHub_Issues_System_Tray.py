@@ -128,11 +128,11 @@ def system_tray():
             issues, first_issue = get_num_issues()
             tray.ShowMessage('Issue', '{} Issues\n{} First Issue'.format(issues, first_issue), messageicon=sg.SYSTEM_TRAY_MESSAGE_ICON_INFORMATION, )
         elif menu_item == sg.EVENT_SYSTEM_TRAY_MESSAGE_CLICKED or menu_item.startswith('View Issues'):
-            sp = subprocess.Popen([CHROME, VIEW_ISSUES_URL], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            sp = subprocess.Popen([CHROME, VIEW_ISSUES_URL], shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         elif  menu_item.startswith('Pull'):
-            sp = subprocess.Popen([CHROME, PULL_REQUEST_URL], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            sp = subprocess.Popen([CHROME, PULL_REQUEST_URL], shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         elif  menu_item.startswith('Discord'):
-            sp = subprocess.Popen([DISCORD, r''], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            sp = subprocess.Popen([DISCORD, r''], shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
         seconds += poll_frequncy/1000
 

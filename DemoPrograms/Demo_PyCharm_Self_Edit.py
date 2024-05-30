@@ -25,6 +25,6 @@ while True:             # Event Loop
     if event == sg.WIN_CLOSED or event == 'Exit':
         break
     if event == 'PyCharm Me':
-        subprocess.Popen([PYCHARM, __file__], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        subprocess.Popen([PYCHARM, __file__], shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 window.close()

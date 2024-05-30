@@ -116,7 +116,7 @@ def runCommand(cmd, timeout=None, window=None):
     @param window: the PySimpleGUI window that the output is going to (needed to do refresh on)
     @return: (return code from command, command output)
     """
-    p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    p = subprocess.Popen(cmd, shell=False, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     output = ''
     for line in p.stdout:
         line = line.decode(errors='replace' if (sys.version_info) < (3, 5) else 'backslashreplace').rstrip()
