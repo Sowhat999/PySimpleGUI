@@ -2,11 +2,10 @@
 import PySimpleGUIQt as sg
 import subprocess
 import re
-# Import requests (to download the page)
-import requests
 
 # Import BeautifulSoup (to parse what we download)
 from bs4 import BeautifulSoup
+from security import safe_requests
 
 # CCNSTANTS - CHANGE THESE TO MATCH YOUR SYSTEM
 CHROME = r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
@@ -22,7 +21,7 @@ def get_num_issues():
     headers = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
     # download the page
-    response = requests.get(url, headers=headers)
+    response = safe_requests.get(url, headers=headers)
     # parse the downloaded homepage and grab all text,
     soup = BeautifulSoup(response.text, "lxml")
     # look for phrase "XXX Open"

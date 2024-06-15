@@ -9,6 +9,7 @@ import time
 
 # Import BeautifulSoup (to parse what we download)
 from bs4 import BeautifulSoup
+from security import safe_requests
 
 # CCNSTANTS - CHANGE THESE TO MATCH YOUR SYSTEM
 CHROME = r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
@@ -30,7 +31,7 @@ def get_num_issues():
     # download the page
     requests.adapters.DEFAULT_RETRIES = 25
     try:
-        response = requests.get(url, headers=headers)
+        response = safe_requests.get(url, headers=headers)
     except:
         return 0,0
     # parse the downloaded homepage and grab all text,
